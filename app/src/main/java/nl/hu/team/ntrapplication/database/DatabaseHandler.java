@@ -18,7 +18,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // TABLE
     private static final String TABLE_RESEARCH = "RESEARCH";
     // COLUMNS
-    private static final String ID = "ID";
+    private static final String ID = "id";
+    private static final String NAME = "name";
+    private static final String BEGINDATE = "beginDate";
+    private static final String ENDDATE = "endDate";
+    private static final String STATUS = "status";
 
     /**
      * SURVEY
