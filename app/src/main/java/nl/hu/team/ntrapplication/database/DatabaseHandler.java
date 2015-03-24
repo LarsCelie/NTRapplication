@@ -35,8 +35,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // COLUMNS
     private static final String ID_R = "id";
     private static final String NAME_R = "name";
-    private static final String BEGINDATE_R = "beginDate";
-    private static final String ENDDATE_R = "endDate";
+    private static final String BEGIN_DATE_R = "beginDate";
+    private static final String END_DATE_R = "endDate";
     private static final String STATUS_R = "status";
 
     /**
@@ -47,8 +47,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // COLUMNS
     private static final String ID_S = "id";
     private static final String NAME_S = "name";
-    private static final String BEGINDATE_S = "beginDate";
-    private static final String ENDDATE_S = "endDate";
+    private static final String BEGIN_DATE_S = "beginDate";
+    private static final String END_DATE_S = "endDate";
     private static final String STATUS_S = "status";
     private static final String FK_ID_R = "id_r";
 
@@ -95,11 +95,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_RESEARCH_TABLE = "CREATE TABLE " + TABLE_RESEARCH_R + "("
                 + ID_R + " INTEGER PRIMARY KEY, " + NAME_R + " TEXT, "
-                + STATUS_R + " TEXT, " + BEGINDATE_R + " TEXT, "
-                + ENDDATE_R + " TEXT " + ");";
+                + STATUS_R + " TEXT, " + BEGIN_DATE_R + " TEXT, "
+                + END_DATE_R + " TEXT " + ");";
         String CREATE_SURVEY_TABLE = "CREATE TABLE " + TABLE_SURVEY_S + "("
                 + ID_S + " INTEGER PRIMARY KEY, " + NAME_S + " TEXT, "
-                + BEGINDATE_S + " TEXT, " + ENDDATE_S + " TEXT, "
+                + BEGIN_DATE_S + " TEXT, " + END_DATE_S + " TEXT, "
                 + STATUS_S + " TEXT, " + FK_ID_R + " TEXT," + " FOREIGN KEY(" + FK_ID_R + ") REFERENCES " + TABLE_RESEARCH_R + "("+ ID_R +")" + ");";
         String CREATE_QUESTION_TABLE = "CREATE TABLE " + TABLE_QUESTION_Q + "("
                 + ID_Q + " INTEGER PRIMARY KEY, " + DESCRIPTION_Q + " TEXT, "
@@ -140,8 +140,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(ID_R, research.getID());
         values.put(NAME_R, research.getNAME());
         values.put(STATUS_R, research.getSTATUS());
-        values.put(BEGINDATE_R, convertDateToString(research.getBEGINDATE()));
-        values.put(ENDDATE_R, convertDateToString(research.getENDDATE()));
+        values.put(BEGIN_DATE_R, convertDateToString(research.getBEGINDATE()));
+        values.put(END_DATE_R, convertDateToString(research.getENDDATE()));
 
         db.insert(TABLE_RESEARCH_R,null,values);
         db.close();
@@ -152,8 +152,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(ID_S, survey.getId());
         values.put(NAME_S, survey.getName());
-        values.put(BEGINDATE_S, convertDateToString(survey.getBeginDate()));
-        values.put(ENDDATE_S, convertDateToString(survey.getEndDate()));
+        values.put(BEGIN_DATE_S, convertDateToString(survey.getBeginDate()));
+        values.put(END_DATE_S, convertDateToString(survey.getEndDate()));
         values.put(STATUS_S, survey.getStatus());
         values.put(FK_ID_R, research.getID());
 
