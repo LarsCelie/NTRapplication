@@ -4,6 +4,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import nl.hu.team.ntrapplication.objects.Attachment;
+import nl.hu.team.ntrapplication.objects.Option;
+import nl.hu.team.ntrapplication.objects.Question;
+import nl.hu.team.ntrapplication.objects.Research;
+import nl.hu.team.ntrapplication.objects.Survey;
+
 /**
  * Created by jiry on 24-3-2015.
  */
@@ -114,19 +120,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addResearch() {
+    public void addResearch(Research research) {
 
     }
-    public void addSurvey() {
+    public void addSurvey(Survey survey) {
 
     }
-    public void addQuestion() {
+    public void addQuestion(Question question) {
 
     }
-    public void addOption() {
+    public void addOption(Option option) {
 
     }
-    public void addAttachment() {
+    public void addAttachment(Attachment attachment) {
 
     }
 }
