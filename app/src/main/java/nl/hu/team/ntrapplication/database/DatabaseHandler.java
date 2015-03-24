@@ -18,7 +18,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // TABLE
     private static final String TABLE_RESEARCH = "RESEARCH";
     // COLUMNS
-
+    private static final String ID = "ID";
 
     /**
      * SURVEY
