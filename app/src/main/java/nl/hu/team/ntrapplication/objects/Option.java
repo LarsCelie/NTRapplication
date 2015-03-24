@@ -5,11 +5,10 @@ package nl.hu.team.ntrapplication.objects;
  */
 public class Option {
     private int ID;
-    private String DESCRIPTION;
-    private int SEQUENCE;
-    private String TYPE;
+    private String CONTENT;
+    private String VALUE;
 
-    private Option() {
+    public Option() {
 
     }
 
@@ -21,27 +20,19 @@ public class Option {
         this.ID = ID;
     }
 
-    public String getDESCRIPTION() {
-        return DESCRIPTION;
+    public String getCONTENT() {
+        return CONTENT;
     }
 
-    public void setDESCRIPTION(String DESCRIPTION) {
-        this.DESCRIPTION = DESCRIPTION;
+    public void setCONTENT(String CONTENT) {
+        this.CONTENT = CONTENT;
     }
 
-    public int getSEQUENCE() {
-        return SEQUENCE;
+    public String getVALUE() {
+        return VALUE;
     }
 
-    public void setSEQUENCE(int SEQUENCE) {
-        this.SEQUENCE = SEQUENCE;
-    }
-
-    public String getTYPE() {
-        return TYPE;
-    }
-
-    public void setTYPE(String TYPE) {
-        this.TYPE = TYPE;
+    public void setVALUE(String VALUE) {
+        this.VALUE = VALUE;
     }
 }
