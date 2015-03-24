@@ -40,9 +40,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /**
      * QUESTION
      */
-    //TABLE
+    // TABLE
     private static final String TABLE_QUESTION_Q = "QUESTION";
-    //COLUMNS
+    // COLUMNS
     private static String DESCRIPTION_Q = "description";
     private static String SEQUENCE_Q = "sequence";
     private static String TYPE_Q = "type";
@@ -50,9 +50,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /**
      * OPTION
      */
-    //TABLE
+    // TABLE
     private static final String TABLE_OPTION_O = "OPTION";
-    //COLUMNS
+    // COLUMNS
     private static String CONTENT_O = "content";
     private static String VALUE_O = "value";
 
@@ -61,13 +61,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /**
+     * ATTACHMENT
+     */
+    // TABLE
+    private static final String TABLE_ATTACHMENT_A = "ATTACHMENT";
+    // COLUMNS
+    private static final String TYPE_A = "type";
+    private static final String LOCATION_A = "location";
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // Drop older table if existed
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESEARCH_R);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SURVEY_S);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTION_Q);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_OPTION_O);
 
+        // Create tables again
+        onCreate(db);
     }
 }
