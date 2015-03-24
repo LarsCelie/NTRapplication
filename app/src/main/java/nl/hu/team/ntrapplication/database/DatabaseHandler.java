@@ -58,6 +58,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static String CONTENT_O = "content";
     private static String VALUE_O = "value";
 
+    /**
+     * ATTACHMENT
+     */
+    // TABLE
+    private static final String TABLE_ATTACHMENT_A = "ATTACHMENT";
+    // COLUMNS
+    private static final String ID_A = "id";
+    private static final String TYPE_A = "type";
+    private static final String LOCATION_A = "location";
+
     // Constructor
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
