@@ -42,6 +42,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //TABLE
     private static final String TABLE_QUESTION_Q = "QUESTION";
     //COLUMNS
+    private static String ID_Q = "id";
     private static String DESCRIPTION_Q = "description";
     private static String SEQUENCE_Q = "sequence";
     private static String TYPE_Q = "type";
@@ -52,6 +53,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //TABLE
     private static final String TABLE_OPTION_O = "OPTION";
     //COLUMNS
+    private static String ID_O = "id";
     private static String CONTENT_O = "content";
     private static String VALUE_O = "value";
 
@@ -59,7 +61,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        String CREATE_RESEARCH_TABLE = "CREATE TABLE " + TABLE_RESEARCH_R + "("
+                + ID_R + " INTEGER PRIMARY KEY, " + NAME_R + " TEXT, "
+                + STATUS_R + " TEXT" + ")";
+        db.execSQL(CREATE_RESEARCH_TABLE);
     }
 
     @Override
