@@ -67,6 +67,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static String ID_O = "id";
     private static String CONTENT_O = "content";
     private static String VALUE_O = "value";
+    private static String FK_ID_QQ = "id_q";
 
     /**
      * ATTACHMENT
@@ -89,21 +90,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_RESEARCH_TABLE = "CREATE TABLE " + TABLE_RESEARCH_R + "("
                 + ID_R + " INTEGER PRIMARY KEY, " + NAME_R + " TEXT, "
                 + STATUS_R + " TEXT, " + BEGINDATE_R + " TEXT, "
-                + ENDDATE_R + " TEXT " + ")";
+                + ENDDATE_R + " TEXT " + ");";
         String CREATE_SURVEY_TABLE = "CREATE TABLE " + TABLE_SURVEY_S + "("
-                + ID_S + "INTEGER PRIMARY KEY, " + NAME_S + "TEXT, "
+                + ID_S + " INTEGER PRIMARY KEY, " + NAME_S + " TEXT, "
                 + BEGINDATE_S + " TEXT, " + ENDDATE_S + " TEXT, "
-                + STATUS_S + " TEXT, " + FK_ID_R + "INTEGER FOREIGN KEY " + ")";
-        String CREATE_QUESTION_TABLE = "CREATE_TABLE " + TABLE_QUESTION_Q + "("
-                + ID_Q + "INTEGER PRIMARY KEY, " + DESCRIPTION_Q + " TEXT, "
-                + SEQUENCE_Q + " INTEGER, " + TYPE_Q + " TEXT"
-                + FK_ID_S + "INTEGER FOREIGN KEY "+ ")";
-        String CREATE_OPTION_TABLE = "CREATE_TABLE " + TABLE_OPTION_O + "("
+                + STATUS_S + " TEXT, " + FK_ID_R + " TEXT," + " FOREIGN KEY(" + FK_ID_R + ") REFERENCES " + TABLE_RESEARCH_R + "("+ ID_R +")" + ");";
+        String CREATE_QUESTION_TABLE = "CREATE TABLE " + TABLE_QUESTION_Q + "("
+                + ID_Q + " INTEGER PRIMARY KEY, " + DESCRIPTION_Q + " TEXT, "
+                + SEQUENCE_Q + " INTEGER, " + TYPE_Q + " TEXT, " + FK_ID_S + " TEXT," + " FOREIGN KEY(" + FK_ID_S + ") REFERENCES " + TABLE_SURVEY_S + "("+ ID_S +")" + ");";
+        String CREATE_OPTION_TABLE = "CREATE TABLE " + TABLE_OPTION_O + "("
                 + ID_O + " INTEGER PRIMARY KEY, " + CONTENT_O + " TEXT, "
-                + VALUE_O + " TEXT" + FK_ID_Q + "INTEGER FOREIGN KEY " + ")";
+                + VALUE_O + " TEXT, " + FK_ID_QQ + " TEXT," + " FOREIGN KEY(" + FK_ID_QQ + ") REFERENCES " + TABLE_QUESTION_Q + "("+ID_Q+")" + ");";
         String CREATE_ATTACHMENT_TABLE = "CREATE TABLE " + TABLE_ATTACHMENT_A + "("
                 + ID_A + " INTEGER PRIMARY KEY, " + TYPE_A + " TEXT, "
-                + LOCATION_A + " TEXT " + FK_ID_Q + "INTEGER FOREIGN KEY " + ")";
+                + LOCATION_A + " TEXT, " + FK_ID_Q + " TEXT, " + "FOREIGN KEY(" + FK_ID_Q + ") REFERENCES " + TABLE_QUESTION_Q + "(" + ID_Q + ")" + ");";
+
 
         db.execSQL(CREATE_RESEARCH_TABLE);
         db.execSQL(CREATE_SURVEY_TABLE);
