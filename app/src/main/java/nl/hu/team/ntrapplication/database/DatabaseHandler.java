@@ -140,8 +140,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(ID_R, research.getID());
         values.put(NAME_R, research.getNAME());
         values.put(STATUS_R, research.getSTATUS());
-        values.put(BEGIN_DATE_R, convertDateToString(research.getBEGINDATE()));
-        values.put(END_DATE_R, convertDateToString(research.getENDDATE()));
+        values.put(BEGIN_DATE_R, convertDateToString(research.getBEGIN_DATE()));
+        values.put(END_DATE_R, convertDateToString(research.getEND_DATE()));
 
         db.insert(TABLE_RESEARCH_R,null,values);
         db.close();
@@ -206,8 +206,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             research.setID(Integer.parseInt(cursor.getString(0)));
             research.setNAME(cursor.getString(1));
             research.setSTATUS(cursor.getString(2));
-            research.setBEGINDATE(convertStringToDate(cursor.getString(3)));
-            research.setENDDATE(convertStringToDate(cursor.getString(4)));
+            research.setBEGIN_DATE(convertStringToDate(cursor.getString(3)));
+            research.setEND_DATE(convertStringToDate(cursor.getString(4)));
             return research;
         }
         return null;

@@ -1,8 +1,6 @@
 package nl.hu.team.ntrapplication.objects;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -11,9 +9,10 @@ import java.util.Date;
 public class Research {
     private int ID;
     private String NAME;
-    private Date BEGINDATE;
-    private Date ENDDATE;
+    private Date BEGIN_DATE;
+    private Date END_DATE;
     private String STATUS;
+    private ArrayList<Survey> surveys = new ArrayList<>();
 
     public Research() {
 
@@ -35,20 +34,20 @@ public class Research {
         this.NAME = NAME;
     }
 
-    public Date getBEGINDATE() {
-        return BEGINDATE;
+    public Date getBEGIN_DATE() {
+        return BEGIN_DATE;
     }
 
-    public void setBEGINDATE(Date BEGINDATE) {
-        this.BEGINDATE = BEGINDATE;
+    public void setBEGIN_DATE(Date BEGIN_DATE) {
+        this.BEGIN_DATE = BEGIN_DATE;
     }
 
-    public Date getENDDATE() {
-        return ENDDATE;
+    public Date getEND_DATE() {
+        return END_DATE;
     }
 
-    public void setENDDATE(Date ENDDATE) {
-        this.ENDDATE = ENDDATE;
+    public void setEND_DATE(Date END_DATE) {
+        this.END_DATE = END_DATE;
     }
 
     public String getSTATUS() {
@@ -59,5 +58,20 @@ public class Research {
         this.STATUS = STATUS;
     }
 
+    public ArrayList<Survey> getSurveys() {
+        return surveys;
+    }
+
+    public void setSurveys(ArrayList<Survey> surveys) {
+        this.surveys = surveys;
+    }
+
+    public void addSurvey(Survey survey) {
+        surveys.add(survey);
+    }
+
+    public void removeSurvey(Survey survey) {
+        surveys.remove(survey);
+    }
 
 }

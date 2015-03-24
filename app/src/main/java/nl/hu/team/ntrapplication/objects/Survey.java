@@ -3,6 +3,7 @@ package nl.hu.team.ntrapplication.objects;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -13,6 +14,7 @@ public class Survey {
     private Date beginDate;
     private Date endDate;
     private String status;
+    private ArrayList<Question> questions = new ArrayList<>();
 
     // Constructor
     public Survey() {
@@ -61,14 +63,19 @@ public class Survey {
         this.status = status;
     }
 
-    private Date convertString(String input) {
-        DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
-        Date date = null;
-        try {
-            date = format.parse(input);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
+    public ArrayList<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(ArrayList<Question> questions) {
+        this.questions = questions;
+    }
+
+    public void addQuestion(Question question) {
+        questions.add(question);
+    }
+
+    public void removeQuestion(Question question) {
+        questions.remove(question);
     }
 }
