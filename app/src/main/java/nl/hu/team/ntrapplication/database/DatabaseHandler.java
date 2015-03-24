@@ -31,11 +31,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_SURVEY = "SURVEY";
     // COLUMNS
 
+    /**
+     * QUESTION
+     */
+    //TABLE
     private static final String TABLE_QUESTION = "QUESTION";
+    //COLUMNS
+    private static String DESCRIPTION = "DESCRIPTION";
+    private static String SEQUENCE = "SEQUENCE";
+    private static String TYPE = "TYPE";
+
     /**
      * OPTION
      */
+    //TABLE
     private static final String TABLE_OPTION = "OPTION";
+    //COLUMNS
+    private static String CONTENT = "CONTENT";
+    private static String VALUE = "VALUE";
+
 
 
     @Override
