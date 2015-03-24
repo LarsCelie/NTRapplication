@@ -67,11 +67,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_RESEARCH_TABLE = "CREATE TABLE " + TABLE_RESEARCH_R + "("
                 + ID_R + " INTEGER PRIMARY KEY, " + NAME_R + " TEXT, "
-                + STATUS_R + " TEXT " + BEGINDATE_R + " TEXT "
+                + STATUS_R + " TEXT, " + BEGINDATE_R + " TEXT, "
                 + ENDDATE_R + " TEXT " + ")";
-        String CREATE_SURVEY_TABLE = "";
-        String CREATE_QUESTION_TABLE = "";
-        String CREATE_OPTION_TABLE = "";
+        String CREATE_SURVEY_TABLE = "CREATE TABLE " + TABLE_SURVEY_S + "("
+                + ID_S + "INTEGER PRIMARY KEY, " + NAME_S + "TEXT, "
+                + BEGINDATE_S + " TEXT, " + ENDDATE_S + " TEXT, "
+                + STATUS_S + " TEXT " + ")";
+        String CREATE_QUESTION_TABLE = "CREATE_TABLE" + TABLE_QUESTION_Q + "("
+                + ID_Q + "INTEGER PRIMARY KEY, " + DESCRIPTION_Q + " TEXT, "
+                + SEQUENCE_Q + " INTEGER, " + TYPE_Q + " TEXT" + ")";
+        String CREATE_OPTION_TABLE = "CREATE_TABLE" + TABLE_OPTION_O + "("
+                + ID_O + " INTEGER PRIMARY KEY, " + CONTENT_O + " TEXT, "
+                + VALUE_O + " TEXT" + ")";
 
         db.execSQL(CREATE_RESEARCH_TABLE);
         db.execSQL(CREATE_SURVEY_TABLE);
