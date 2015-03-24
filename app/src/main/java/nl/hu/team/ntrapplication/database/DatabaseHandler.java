@@ -28,6 +28,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // COLUMNS
 
     private static final String TABLE_QUESTION = "QUESTION";
+    /**
+     * OPTION
+     */
     private static final String TABLE_OPTION = "OPTION";
 
 
