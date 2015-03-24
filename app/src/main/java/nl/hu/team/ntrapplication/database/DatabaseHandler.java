@@ -69,7 +69,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + ID_R + " INTEGER PRIMARY KEY, " + NAME_R + " TEXT, "
                 + STATUS_R + " TEXT " + BEGINDATE_R + " TEXT "
                 + ENDDATE_R + " TEXT " + ")";
+        String CREATE_SURVEY_TABLE = "";
+        String CREATE_QUESTION_TABLE = "";
+        String CREATE_OPTION_TABLE = "";
+
         db.execSQL(CREATE_RESEARCH_TABLE);
+        db.execSQL(CREATE_SURVEY_TABLE);
+        db.execSQL(CREATE_QUESTION_TABLE);
+        db.execSQL(CREATE_OPTION_TABLE);
+
     }
 
     @Override
