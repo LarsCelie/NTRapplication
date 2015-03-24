@@ -2,6 +2,7 @@ package nl.hu.team.ntrapplication.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -162,6 +163,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
     public Attachment getAttachmentByID(int ID) {
+        String selectQuery = "SELECT * FROM " + TABLE_ATTACHMENT_A + " WHERE " + ID_A + " = " + ID;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if(cursor.moveToFirst()) {
+            Attachment attachment = new Attachment();
+            attachment.setID(Integer.parseInt(cursor.getString(0)));
+            attachment.setTYPE(cursor.getString(1));
+            attachment.setLOCATION(cursor.getString(2));
+            return attachment;
+        }
        return null;
     }
 }
