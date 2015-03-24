@@ -135,4 +135,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void addAttachment(Attachment attachment) {
 
     }
+    public Research getResearchByID(int ID) {
+        return null;
+    }
+    public Survey getSurveyByID(int ID) {
+        return null;
+    }
+    public Question getQuestionByID(int ID) {
+        return null;
+    }
+    public Option getOptionByID(int ID) {
+        return null;
+    }
+    public Attachment getAttachmentByID(int ID) {
+       return null;
+    }
 }
