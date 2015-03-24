@@ -83,10 +83,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + ID_S + "INTEGER PRIMARY KEY, " + NAME_S + "TEXT, "
                 + BEGINDATE_S + " TEXT, " + ENDDATE_S + " TEXT, "
                 + STATUS_S + " TEXT " + ")";
-        String CREATE_QUESTION_TABLE = "CREATE_TABLE" + TABLE_QUESTION_Q + "("
+        String CREATE_QUESTION_TABLE = "CREATE_TABLE " + TABLE_QUESTION_Q + "("
                 + ID_Q + "INTEGER PRIMARY KEY, " + DESCRIPTION_Q + " TEXT, "
                 + SEQUENCE_Q + " INTEGER, " + TYPE_Q + " TEXT" + ")";
-        String CREATE_OPTION_TABLE = "CREATE_TABLE" + TABLE_OPTION_O + "("
+        String CREATE_OPTION_TABLE = "CREATE_TABLE " + TABLE_OPTION_O + "("
                 + ID_O + " INTEGER PRIMARY KEY, " + CONTENT_O + " TEXT, "
                 + VALUE_O + " TEXT" + ")";
         String CREATE_ATTACHMENT_TABLE = "CREATE TABLE " + TABLE_ATTACHMENT_A + "("
