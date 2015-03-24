@@ -93,7 +93,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + ID_A + " INTEGER PRIMARY KEY, " + TYPE_A + " TEXT, "
                 + LOCATION_A + " TEXT " + ")";
 
-
         db.execSQL(CREATE_RESEARCH_TABLE);
         db.execSQL(CREATE_SURVEY_TABLE);
         db.execSQL(CREATE_QUESTION_TABLE);
