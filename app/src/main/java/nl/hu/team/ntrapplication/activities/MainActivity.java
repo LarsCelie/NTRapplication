@@ -1,45 +1,17 @@
 package nl.hu.team.ntrapplication;
 
-import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-
-import nl.hu.team.ntrapplication.database.DatabaseHandler;
-import nl.hu.team.ntrapplication.objects.Attachment;
-import nl.hu.team.ntrapplication.objects.Question;
 
 
-public class MainActivity extends Activity {
-    TextView textView;
+public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        DatabaseHandler db = new DatabaseHandler(this);
-
-        // TEST DATA
-        Attachment a = new Attachment();
-        a.setID(1);
-        a.setLOCATION("iets");
-        a.setTYPE("image");
-
-        Question q = new Question();
-        q.setId(1);
-        q.setDescription("blabla");
-        q.setSequence(1);
-        q.setType("blablabla");
-        db.addAttachment(a,q);
-
-        Attachment test = db.getAttachmentByID(1);
-        String s = test.getTYPE();
-
-        textView = (TextView) findViewById(R.id.textviewtje);
-        textView.setText(s);
     }
 
 
