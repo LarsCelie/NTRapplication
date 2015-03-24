@@ -258,7 +258,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
     public ArrayList<Question> getQuestionBySurvey(Survey survey) {
-        String selectQuery = "SELECT * FROM" + TABLE_QUESTION_Q + " WHERE " + FK_ID_S + " = " + survey.getID();
+        String selectQuery = "SELECT * FROM" + TABLE_QUESTION_Q + " WHERE " + FK_ID_S + " = " + survey.getId();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         ArrayList<Question> questions = new ArrayList<>();
@@ -285,6 +285,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return null;
     }
+    public ArrayList<Option> getOptionByQuestion(Question question) {
+        String selectQuery = "SELECT * FROM" + TABLE_OPTION_O + " WHERE " + FK_ID_QQ + " = " + question.getId();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        ArrayList<Option> options = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            Option option = new Option();
+            option.setID(Integer.parseInt(cursor.getString(0)));
+            option.setCONTENT(cursor.getString(1));
+            option.setVALUE(cursor.getString(2));
+            options.add(option);
+        }
+        return options;
+    }
     public Attachment getAttachmentByID(int ID) {
         String selectQuery = "SELECT * FROM " + TABLE_ATTACHMENT_A + " WHERE " + ID_A + " = " + ID;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -297,6 +311,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             return attachment;
         }
        return null;
+    }
+    public ArrayList<Attachment> getAttachmentByQuestion(Question question) {
+        String selectQuery = "SELECT * FROM" + TABLE_ATTACHMENT_A + " WHERE " + FK_ID_Q + " = " + question.getId();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        ArrayList<Attachment> attachments = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            Attachment attachment = new Attachment();
+            attachment.setID(Integer.parseInt(cursor.getString(0)));
+            attachment.setTYPE(cursor.getString(1));
+            attachment.setLOCATION(cursor.getString(2));
+            attachments.add(attachment);
+        }
+        return attachments;
     }
 
 
