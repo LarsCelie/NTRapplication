@@ -89,11 +89,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_OPTION_TABLE = "CREATE_TABLE" + TABLE_OPTION_O + "("
                 + ID_O + " INTEGER PRIMARY KEY, " + CONTENT_O + " TEXT, "
                 + VALUE_O + " TEXT" + ")";
+        String CREATE_ATTACHMENT_TABLE = "CREATE TABLE " + TABLE_ATTACHMENT_A + "("
+                + ID_A + " INTEGER PRIMARY KEY, " + TYPE_A + " TEXT, "
+                + LOCATION_A + " TEXT " + ")";
+
 
         db.execSQL(CREATE_RESEARCH_TABLE);
         db.execSQL(CREATE_SURVEY_TABLE);
         db.execSQL(CREATE_QUESTION_TABLE);
         db.execSQL(CREATE_OPTION_TABLE);
+        db.execSQL(CREATE_ATTACHMENT_TABLE);
 
     }
 
@@ -104,6 +109,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SURVEY_S);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTION_Q);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_OPTION_O);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ATTACHMENT_A);
 
         // Create tables again
         onCreate(db);
