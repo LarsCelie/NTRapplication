@@ -1,5 +1,6 @@
 package nl.hu.team.ntrapplication.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -42,6 +43,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String BEGINDATE_S = "beginDate";
     private static final String ENDDATE_S = "endDate";
     private static final String STATUS_S = "status";
+    private static final String FK_ID_R = "id_r";
 
     /**
      * QUESTION
@@ -53,6 +55,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static String DESCRIPTION_Q = "description";
     private static String SEQUENCE_Q = "sequence";
     private static String TYPE_Q = "type";
+    private static String FK_ID_S = "id_s";
 
     /**
      * OPTION
@@ -73,6 +76,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String ID_A = "id";
     private static final String TYPE_A = "type";
     private static final String LOCATION_A = "location";
+    private static final String FK_ID_Q = "id_q";
 
     // Constructor
     public DatabaseHandler(Context context) {
@@ -88,16 +92,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_SURVEY_TABLE = "CREATE TABLE " + TABLE_SURVEY_S + "("
                 + ID_S + "INTEGER PRIMARY KEY, " + NAME_S + "TEXT, "
                 + BEGINDATE_S + " TEXT, " + ENDDATE_S + " TEXT, "
-                + STATUS_S + " TEXT " + ")";
+                + STATUS_S + " TEXT, " + FK_ID_R + "INTEGER FOREIGN KEY " + ")";
         String CREATE_QUESTION_TABLE = "CREATE_TABLE " + TABLE_QUESTION_Q + "("
                 + ID_Q + "INTEGER PRIMARY KEY, " + DESCRIPTION_Q + " TEXT, "
-                + SEQUENCE_Q + " INTEGER, " + TYPE_Q + " TEXT" + ")";
+                + SEQUENCE_Q + " INTEGER, " + TYPE_Q + " TEXT"
+                + FK_ID_S + "INTEGER FOREIGN KEY "+ ")";
         String CREATE_OPTION_TABLE = "CREATE_TABLE " + TABLE_OPTION_O + "("
                 + ID_O + " INTEGER PRIMARY KEY, " + CONTENT_O + " TEXT, "
-                + VALUE_O + " TEXT" + ")";
+                + VALUE_O + " TEXT" + FK_ID_Q + "INTEGER FOREIGN KEY " + ")";
         String CREATE_ATTACHMENT_TABLE = "CREATE TABLE " + TABLE_ATTACHMENT_A + "("
                 + ID_A + " INTEGER PRIMARY KEY, " + TYPE_A + " TEXT, "
-                + LOCATION_A + " TEXT " + ")";
+                + LOCATION_A + " TEXT " + FK_ID_Q + "INTEGER FOREIGN KEY " + ")";
 
         db.execSQL(CREATE_RESEARCH_TABLE);
         db.execSQL(CREATE_SURVEY_TABLE);
@@ -132,8 +137,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void addOption(Option option) {
 
     }
-    public void addAttachment(Attachment attachment) {
+    public void addAttachment(Attachment attachment, Question question) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(ID_A, attachment.getID());
+        values.put(TYPE_A, attachment.getTYPE());
+        values.put(LOCATION_A, attachment.getLOCATION());
+        values.put(FK_ID_Q, question.getId());
+
+        db.insert(TABLE_ATTACHMENT_A,null,values);
+        db.close();
     }
     public Research getResearchByID(int ID) {
         return null;
