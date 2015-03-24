@@ -64,10 +64,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase db) {
         String CREATE_RESEARCH_TABLE = "CREATE TABLE " + TABLE_RESEARCH_R + "("
                 + ID_R + " INTEGER PRIMARY KEY, " + NAME_R + " TEXT, "
-                + STATUS_R + " TEXT" + ")";
+                + STATUS_R + " TEXT " + BEGINDATE_R + " TEXT "
+                + ENDDATE_R + " TEXT " + ")";
         db.execSQL(CREATE_RESEARCH_TABLE);
     }
 
