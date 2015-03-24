@@ -6,6 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Option;
 import nl.hu.team.ntrapplication.objects.Question;
@@ -152,17 +157,63 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
     public Research getResearchByID(int ID) {
+        String selectQuery = "SELECT * FROM" + TABLE_RESEARCH_R + " WHERE " + ID_R  + " = " + ID;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if(cursor.moveToFirst()) {
+            Research research = new Research();
+            research.setID(Integer.parseInt(cursor.getString(0)));
+            research.setNAME(cursor.getString(1));
+            research.setSTATUS(cursor.getString(2));
+            research.setBEGINDATE(convertString(cursor.getString(3)));
+            research.setENDDATE(convertString(cursor.getString(4)));
+            return research;
+        }
         return null;
     }
     public Survey getSurveyByID(int ID) {
+        String selectQuery = "SELECT * FROM" + TABLE_SURVEY_S + " WHERE " + ID_S + " = " + ID;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if(cursor.moveToFirst()) {
+            Survey survey = new Survey();
+            survey.setId(Integer.parseInt(cursor.getString(0)));
+            survey.setName(cursor.getString(1));
+            survey.setBeginDate(convertString(cursor.getString(2)));
+            survey.setEndDate(convertString(cursor.getString(3)));
+            survey.setStatus(cursor.getString(4));
+            return survey;
+        }
         return null;
     }
     public Question getQuestionByID(int ID) {
+        String selectQuery = "SELECT * FROM" + TABLE_QUESTION_Q + " WHERE " + ID_Q + " = " + ID;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if(cursor.moveToFirst()) {
+            Question question = new Question();
+            question.setId(Integer.parseInt(cursor.getString(0)));
+            question.setDescription(cursor.getString(1));
+            question.setSequence(Integer.parseInt(cursor.getString(2)));
+            question.setType(cursor.getString(3));
+            return question;
+        }
         return null;
     }
     public Option getOptionByID(int ID) {
+        String selectQuery = "SELECT * FROM" + TABLE_OPTION_O + " WHERE " + ID_O + " = " + ID;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if(cursor.moveToFirst()) {
+            Option option = new Option();
+            option.setID(Integer.parseInt(cursor.getString(0)));
+            option.setCONTENT(cursor.getString(1));
+            option.setVALUE(cursor.getString(2));
+            return option;
+        }
         return null;
     }
+
     public Attachment getAttachmentByID(int ID) {
         String selectQuery = "SELECT * FROM " + TABLE_ATTACHMENT_A + " WHERE " + ID_A + " = " + ID;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -175,5 +226,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             return attachment;
         }
        return null;
+    }
+
+    private Date convertString(String input) {
+        DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+        Date date = null;
+        try {
+            date = format.parse(input);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 }

@@ -39,16 +39,16 @@ public class Research {
         return BEGINDATE;
     }
 
-    public void setBEGINDATE(String BEGINDATE) {
-        this.BEGINDATE = convertString(BEGINDATE);
+    public void setBEGINDATE(Date BEGINDATE) {
+        this.BEGINDATE = BEGINDATE;
     }
 
     public Date getENDDATE() {
         return ENDDATE;
     }
 
-    public void setENDDATE(String ENDDATE) {
-        this.ENDDATE = convertString(ENDDATE);
+    public void setENDDATE(Date ENDDATE) {
+        this.ENDDATE = ENDDATE;
     }
 
     public String getSTATUS() {
@@ -59,14 +59,5 @@ public class Research {
         this.STATUS = STATUS;
     }
 
-    private Date convertString(String input) {
-        DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
-        Date date = null;
-        try {
-            date = format.parse(input);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
-    }
+
 }
