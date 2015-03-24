@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import nl.hu.team.ntrapplication.objects.Attachment;
@@ -226,6 +227,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return null;
     }
+    public ArrayList<Survey> getSurveyByResearch(Research research) {
+        String selectQuery = "SELECT * FROM" + TABLE_SURVEY_S + " WHERE " + FK_ID_R + " = " + research.getID();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        ArrayList<Survey> surveys = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            Survey survey = new Survey();
+            survey.setId(Integer.parseInt(cursor.getString(0)));
+            survey.setName(cursor.getString(1));
+            survey.setBeginDate(convertStringToDate(cursor.getString(2)));
+            survey.setEndDate(convertStringToDate(cursor.getString(3)));
+            survey.setStatus(cursor.getString(4));
+            surveys.add(survey);
+        }
+        return surveys;
+    }
     public Question getQuestionByID(int ID) {
         String selectQuery = "SELECT * FROM" + TABLE_QUESTION_Q + " WHERE " + ID_Q + " = " + ID;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -240,6 +257,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return null;
     }
+    public ArrayList<Question> getQuestionBySurvey(Survey survey) {
+        String selectQuery = "SELECT * FROM" + TABLE_QUESTION_Q + " WHERE " + FK_ID_S + " = " + survey.getID();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        ArrayList<Question> questions = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            Question question = new Question();
+            question.setId(Integer.parseInt(cursor.getString(0)));
+            question.setDescription(cursor.getString(1));
+            question.setSequence(Integer.parseInt(cursor.getString(2)));
+            question.setType(cursor.getString(3));
+            questions.add(question);
+        }
+        return questions;
+    }
     public Option getOptionByID(int ID) {
         String selectQuery = "SELECT * FROM" + TABLE_OPTION_O + " WHERE " + ID_O + " = " + ID;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -253,7 +285,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return null;
     }
-
     public Attachment getAttachmentByID(int ID) {
         String selectQuery = "SELECT * FROM " + TABLE_ATTACHMENT_A + " WHERE " + ID_A + " = " + ID;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -267,6 +298,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
        return null;
     }
+
 
     private Date convertStringToDate(String input) {
         DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
