@@ -1,5 +1,7 @@
 package nl.hu.team.ntrapplication.objects;
 
+import java.util.ArrayList;
+
 /**
  * Created by Milamber on 24-3-2015.
  */
@@ -10,6 +12,8 @@ public class Question {
     private String description;
     private int sequence;
     private String type;
+    private ArrayList<Option> options = new ArrayList<>();
+    private ArrayList<Attachment> attachments = new ArrayList<>();
 
     // Constructor
     public Question() {
@@ -48,4 +52,35 @@ public class Question {
         this.type = type;
     }
 
+    public ArrayList<Option> getOptions() {
+        return options;
+    }
+
+    public void setOptions(ArrayList<Option> options) {
+        this.options = options;
+    }
+
+    public void addOption(Option option) {
+        options.add(option);
+    }
+
+    public void removeOption(Option option) {
+        options.remove(option);
+    }
+
+    public ArrayList<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(ArrayList<Attachment> attachments) {
+        this.attachments = attachments;
+    }
+
+    public void addAttachment(Attachment attachment){
+        attachments.add(attachment);
+    }
+
+    public void removeAttachment(Attachment attachment) {
+        attachments.remove(attachment);
+    }
 }
