@@ -40,20 +40,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * QUESTION
      */
     //TABLE
-    private static final String TABLE_QUESTION = "QUESTION";
+    private static final String TABLE_QUESTION_Q = "QUESTION";
     //COLUMNS
-    private static String DESCRIPTION = "DESCRIPTION";
-    private static String SEQUENCE = "SEQUENCE";
-    private static String TYPE = "TYPE";
+    private static String DESCRIPTION_Q = "description";
+    private static String SEQUENCE_Q = "sequence";
+    private static String TYPE_Q = "type";
 
     /**
      * OPTION
      */
     //TABLE
-    private static final String TABLE_OPTION = "OPTION";
+    private static final String TABLE_OPTION_O = "OPTION";
     //COLUMNS
-    private static String CONTENT = "CONTENT";
-    private static String VALUE = "VALUE";
+    private static String CONTENT_O = "content";
+    private static String VALUE_O = "value";
 
 
 
