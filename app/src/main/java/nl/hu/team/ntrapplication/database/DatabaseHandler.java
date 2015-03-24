@@ -133,16 +133,56 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void addResearch(Research research) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(ID_R, research.getID());
+        values.put(NAME_R, research.getNAME());
+        values.put(STATUS_R, research.getSTATUS());
+        values.put(BEGINDATE_R, convertDateToString(research.getBEGINDATE()));
+        values.put(ENDDATE_R, convertDateToString(research.getENDDATE()));
+
+        db.insert(TABLE_RESEARCH_R,null,values);
+        db.close();
     }
-    public void addSurvey(Survey survey) {
+    public void addSurvey(Survey survey, Research research) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(ID_S, survey.getId());
+        values.put(NAME_S, survey.getName());
+        values.put(BEGINDATE_S, convertDateToString(survey.getBeginDate()));
+        values.put(ENDDATE_S, convertDateToString(survey.getEndDate()));
+        values.put(STATUS_S, survey.getStatus());
+        values.put(FK_ID_R, research.getID());
+
+        db.insert(TABLE_SURVEY_S,null,values);
+        db.close();
     }
-    public void addQuestion(Question question) {
+    public void addQuestion(Question question, Survey survey) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(ID_Q, question.getId());
+        values.put(DESCRIPTION_Q, question.getDescription());
+        values.put(SEQUENCE_Q, question.getSequence());
+        values.put(TYPE_Q, question.getType());
+        values.put(FK_ID_S, survey.getId());
+
+        db.insert(TABLE_QUESTION_Q,null,values);
+        db.close();
     }
-    public void addOption(Option option) {
+    public void addOption(Option option,Question question) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(ID_O, option.getID());
+        values.put(CONTENT_O, option.getCONTENT());
+        values.put(VALUE_O, option.getVALUE());
+        values.put(FK_ID_QQ, question.getId());
+
+        db.insert(TABLE_OPTION_O,null,values);
+        db.close();
     }
     public void addAttachment(Attachment attachment, Question question) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -165,8 +205,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             research.setID(Integer.parseInt(cursor.getString(0)));
             research.setNAME(cursor.getString(1));
             research.setSTATUS(cursor.getString(2));
-            research.setBEGINDATE(convertString(cursor.getString(3)));
-            research.setENDDATE(convertString(cursor.getString(4)));
+            research.setBEGINDATE(convertStringToDate(cursor.getString(3)));
+            research.setENDDATE(convertStringToDate(cursor.getString(4)));
             return research;
         }
         return null;
@@ -179,8 +219,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Survey survey = new Survey();
             survey.setId(Integer.parseInt(cursor.getString(0)));
             survey.setName(cursor.getString(1));
-            survey.setBeginDate(convertString(cursor.getString(2)));
-            survey.setEndDate(convertString(cursor.getString(3)));
+            survey.setBeginDate(convertStringToDate(cursor.getString(2)));
+            survey.setEndDate(convertStringToDate(cursor.getString(3)));
             survey.setStatus(cursor.getString(4));
             return survey;
         }
@@ -228,7 +268,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
        return null;
     }
 
-    private Date convertString(String input) {
+    private Date convertStringToDate(String input) {
         DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
         Date date = null;
         try {
@@ -237,5 +277,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             e.printStackTrace();
         }
         return date;
+    }
+
+    private String convertDateToString(Date input) {
+        DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+        return format.format(input);
     }
 }
