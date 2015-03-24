@@ -114,4 +114,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Create tables again
         onCreate(db);
     }
+
+    public void addResearch() {
+
+    }
+    public void addSurvey() {
+
+    }
+    public void addQuestion() {
+
+    }
+    public void addOption() {
+
+    }
+    public void addAttachment() {
+
+    }
 }
