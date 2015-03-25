@@ -133,6 +133,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    /**
+     * DB CRUD Functions
+     */
+
     public void addResearch(Research research) {
         SQLiteDatabase db = this.getWritableDatabase();
 
