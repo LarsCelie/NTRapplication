@@ -202,7 +202,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
     public Research getResearchByID(int ID) {
-        String selectQuery = "SELECT * FROM" + TABLE_RESEARCH_R + " WHERE " + ID_R  + " = " + ID;
+        String selectQuery = "SELECT * FROM " + TABLE_RESEARCH_R + " WHERE " + ID_R  + " = " + ID;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()) {
