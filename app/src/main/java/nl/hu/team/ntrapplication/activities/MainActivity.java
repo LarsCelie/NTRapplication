@@ -1,15 +1,10 @@
 package nl.hu.team.ntrapplication.activities;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
 
 import nl.hu.team.ntrapplication.R;
 
@@ -44,17 +39,4 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-    public void openFragment(View view){
-        //Intent intent = new Intent(this, VideoFragment.class);
-        //startActivity(intent);
-        Fragment frag = new VideoFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.addToBackStack(null);
-        transaction.replace(R.layout.video_fragment, frag);
-        transaction.addToBackStack(null);
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        transaction.commit();
-    }
 }
-
-

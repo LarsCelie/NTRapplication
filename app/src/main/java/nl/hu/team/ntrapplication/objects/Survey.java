@@ -75,4 +75,8 @@ public class Survey {
     public void removeQuestion(Question question) {
         questions.remove(question);
     }
+
+    public String toString() {
+        return name;
+    }
 }

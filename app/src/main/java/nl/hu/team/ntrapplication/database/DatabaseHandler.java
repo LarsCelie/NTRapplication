@@ -202,7 +202,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
     public Research getResearchByID(int ID) {
-        String selectQuery = "SELECT * FROM" + TABLE_RESEARCH_R + " WHERE " + ID_R  + " = " + ID;
+        String selectQuery = "SELECT * FROM " + TABLE_RESEARCH_R + " WHERE " + ID_R  + " = " + ID;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()) {
@@ -216,8 +216,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return null;
     }
+    public ArrayList<Research> getAllResearch() {
+        ArrayList<Research> researches = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selectQuery = "SELECT * FROM " + TABLE_RESEARCH_R;
+        Cursor cursor = db.rawQuery(selectQuery,null);
+        while(cursor.moveToNext()) {
+            Research research = new Research();
+            research.setID(Integer.parseInt(cursor.getString(0)));
+            research.setNAME(cursor.getString(1));
+            research.setSTATUS(cursor.getString(2));
+            research.setBEGIN_DATE(convertStringToDate(cursor.getString(3)));
+            research.setEND_DATE(convertStringToDate(cursor.getString(4)));
+            researches.add(research);
+        }
+        return researches;
+
+    }
     public Survey getSurveyByID(int ID) {
-        String selectQuery = "SELECT * FROM" + TABLE_SURVEY_S + " WHERE " + ID_S + " = " + ID;
+        String selectQuery = "SELECT * FROM " + TABLE_SURVEY_S + " WHERE " + ID_S + " = " + ID;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()) {
@@ -232,7 +249,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
     public ArrayList<Survey> getSurveyByResearch(Research research) {
-        String selectQuery = "SELECT * FROM" + TABLE_SURVEY_S + " WHERE " + FK_ID_R + " = " + research.getID();
+        String selectQuery = "SELECT * FROM " + TABLE_SURVEY_S + " WHERE " + FK_ID_R + " = " + research.getID();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         ArrayList<Survey> surveys = new ArrayList<>();
@@ -248,7 +265,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return surveys;
     }
     public Question getQuestionByID(int ID) {
-        String selectQuery = "SELECT * FROM" + TABLE_QUESTION_Q + " WHERE " + ID_Q + " = " + ID;
+        String selectQuery = "SELECT * FROM " + TABLE_QUESTION_Q + " WHERE " + ID_Q + " = " + ID;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()) {
@@ -262,7 +279,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
     public ArrayList<Question> getQuestionBySurvey(Survey survey) {
-        String selectQuery = "SELECT * FROM" + TABLE_QUESTION_Q + " WHERE " + FK_ID_S + " = " + survey.getId();
+        String selectQuery = "SELECT * FROM " + TABLE_QUESTION_Q + " WHERE " + FK_ID_S + " = " + survey.getId();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         ArrayList<Question> questions = new ArrayList<>();
@@ -277,7 +294,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return questions;
     }
     public Option getOptionByID(int ID) {
-        String selectQuery = "SELECT * FROM" + TABLE_OPTION_O + " WHERE " + ID_O + " = " + ID;
+        String selectQuery = "SELECT * FROM " + TABLE_OPTION_O + " WHERE " + ID_O + " = " + ID;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()) {
@@ -290,7 +307,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
     public ArrayList<Option> getOptionByQuestion(Question question) {
-        String selectQuery = "SELECT * FROM" + TABLE_OPTION_O + " WHERE " + FK_ID_QQ + " = " + question.getId();
+        String selectQuery = "SELECT * FROM " + TABLE_OPTION_O + " WHERE " + FK_ID_QQ + " = " + question.getId();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         ArrayList<Option> options = new ArrayList<>();
@@ -317,7 +334,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
        return null;
     }
     public ArrayList<Attachment> getAttachmentByQuestion(Question question) {
-        String selectQuery = "SELECT * FROM" + TABLE_ATTACHMENT_A + " WHERE " + FK_ID_Q + " = " + question.getId();
+        String selectQuery = "SELECT * FROM " + TABLE_ATTACHMENT_A + " WHERE " + FK_ID_Q + " = " + question.getId();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         ArrayList<Attachment> attachments = new ArrayList<>();
