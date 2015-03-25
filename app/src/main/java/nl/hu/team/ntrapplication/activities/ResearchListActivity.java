@@ -1,25 +1,28 @@
 package nl.hu.team.ntrapplication.activities;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
+import android.widget.AdapterView.OnItemClickListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import nl.hu.team.ntrapplication.R;
 import nl.hu.team.ntrapplication.database.DatabaseHandler;
 import nl.hu.team.ntrapplication.objects.Research;
+import nl.hu.team.ntrapplication.objects.Survey;
 
-public class ResearchListActivity extends Activity {
+public class ResearchListActivity extends Activity implements OnItemClickListener {
     ListView researchList;
     ArrayAdapter<Research> adapter;
 
@@ -38,12 +41,26 @@ public class ResearchListActivity extends Activity {
         r1.setEND_DATE(convertStringToDate("29-03-2015"));
         r1.setSTATUS("Iets");
         db.addResearch(r1);
+        Survey s1 = new Survey();
+        s1.setId(1);
+        s1.setStatus("InProgress");
+        s1.setName("Survey 1");
+        s1.setBeginDate(convertStringToDate("01-01-2011"));
+        s1.setEndDate(convertStringToDate("02-02-2022"));
+        r1.addSurvey(s1);
+        db.addSurvey(s1,r1);
 
         List<Research> researches = db.getAllResearch();
 
         researchList = (ListView) findViewById(R.id.awesomeListView);
         adapter = new ArrayAdapter<Research>(this, android.R.layout.simple_list_item_1, researches);
         researchList.setAdapter(adapter);
+        researchList.setOnItemClickListener(this);
+    }
+    public void clickResearch(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(this, ResearchListActivity.class);
+        Research research = (Research)parent.getAdapter().getItem(position);
+        startActivity(intent);
     }
 
     private Date convertStringToDate(String input) {
@@ -77,5 +94,10 @@ public class ResearchListActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 }
