@@ -74,4 +74,7 @@ public class Research {
         surveys.remove(survey);
     }
 
+    public String toString() {
+        return NAME;
+    }
 }
