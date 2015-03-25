@@ -57,11 +57,6 @@ public class ResearchListActivity extends Activity implements OnItemClickListene
         researchList.setAdapter(adapter);
         researchList.setOnItemClickListener(this);
     }
-    public void clickResearch(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(this, ResearchListActivity.class);
-        Research research = (Research)parent.getAdapter().getItem(position);
-        startActivity(intent);
-    }
 
     private Date convertStringToDate(String input) {
         DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
