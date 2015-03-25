@@ -10,5 +10,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textviewtje" />
+    <!-- TIJDELIJK -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Video(tijdelijk)"
+        android:onClick="openFragment"/>
 
 </RelativeLayout>
