@@ -231,6 +231,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             researches.add(research);
         }
         return researches;
+
     }
     public Survey getSurveyByID(int ID) {
         String selectQuery = "SELECT * FROM " + TABLE_SURVEY_S + " WHERE " + ID_S + " = " + ID;
