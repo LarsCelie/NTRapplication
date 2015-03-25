@@ -1,10 +1,13 @@
 package nl.hu.team.ntrapplication.activities;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import nl.hu.team.ntrapplication.R;
 
@@ -15,6 +18,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
 
@@ -26,7 +30,7 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    
+
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -40,4 +44,12 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+    public void openFragment(View view){
+        Fragment newFragment = new VideoFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_layout, newFragment);
+        transaction.commit();
+
+    }
 }
+
