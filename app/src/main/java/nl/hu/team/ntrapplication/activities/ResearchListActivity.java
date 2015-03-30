@@ -101,5 +101,8 @@ public class ResearchListActivity extends Activity implements OnItemClickListene
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Research research = (Research)parent.getAdapter().getItem(position);
+        Intent intent = new Intent(this, SurveyListActivity.class);
+        intent.putExtra("selected_research", research);
+        startActivity(intent);
     }
 }

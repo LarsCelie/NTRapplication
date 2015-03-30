@@ -1,12 +1,15 @@
 package nl.hu.team.ntrapplication.objects;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * Created by Milamber on 24-3-2015.
  */
-public class Research {
+public class Research implements Parcelable{
     private int ID;
     private String NAME;
     private Date BEGIN_DATE;
@@ -14,7 +17,7 @@ public class Research {
     private String STATUS;
     private ArrayList<Survey> surveys = new ArrayList<>();
 
-    public Research() {
+    public Research(){
 
     }
 
@@ -76,5 +79,36 @@ public class Research {
 
     public String toString() {
         return NAME;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+    @Override
+    public void writeToParcel(Parcel pc, int flags) {
+        pc.writeInt(ID);
+        pc.writeString(NAME);
+        pc.writeSerializable(BEGIN_DATE);
+        pc.writeSerializable(END_DATE);
+        pc.writeString(STATUS);
+        pc.writeSerializable(surveys);
+    }
+    public static final Creator<Research> CREATOR
+            = new Parcelable.Creator<Research>() {
+        public Research createFromParcel(Parcel in) {
+            return new Research(in);
+        }
+        public Research[] newArray(int size) {
+            return new Research[size];
+        }
+    };
+    private Research(Parcel in) {
+        ID = in.readInt();
+        NAME = in.readString();
+        BEGIN_DATE = (Date) in.readSerializable();
+        END_DATE = (Date) in.readSerializable();
+        STATUS = in.readString();
+        surveys = (ArrayList<Survey>) in.readSerializable();
     }
 }
