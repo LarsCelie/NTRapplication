@@ -78,7 +78,7 @@ public class Research implements Parcelable{
     }
 
     public String toString() {
-        return NAME;
+        return NAME + " has " + surveys.size() + " surveys" ;
     }
 
     @Override
@@ -92,7 +92,7 @@ public class Research implements Parcelable{
         pc.writeSerializable(BEGIN_DATE);
         pc.writeSerializable(END_DATE);
         pc.writeString(STATUS);
-        pc.writeSerializable(surveys);
+        pc.writeTypedList(surveys);
     }
     public static final Creator<Research> CREATOR
             = new Parcelable.Creator<Research>() {
@@ -109,6 +109,6 @@ public class Research implements Parcelable{
         BEGIN_DATE = (Date) in.readSerializable();
         END_DATE = (Date) in.readSerializable();
         STATUS = in.readString();
-        surveys = (ArrayList<Survey>) in.readSerializable();
+        in.readTypedList(surveys, Survey.CREATOR);
     }
 }

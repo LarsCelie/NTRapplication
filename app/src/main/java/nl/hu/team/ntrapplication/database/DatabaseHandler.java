@@ -228,10 +228,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             research.setSTATUS(cursor.getString(2));
             research.setBEGIN_DATE(convertStringToDate(cursor.getString(3)));
             research.setEND_DATE(convertStringToDate(cursor.getString(4)));
+            for(Survey s : getSurveyByResearch(research)) {
+                research.addSurvey(s);
+            }
             researches.add(research);
         }
         return researches;
-
     }
     public Survey getSurveyByID(int ID) {
         String selectQuery = "SELECT * FROM " + TABLE_SURVEY_S + " WHERE " + ID_S + " = " + ID;

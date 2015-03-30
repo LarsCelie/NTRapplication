@@ -30,7 +30,7 @@ public class SurveyListActivity extends Activity {
         adapter = new ArrayAdapter<Survey>(this, android.R.layout.simple_list_item_1, research.getSurveys());
         surveyList.setAdapter(adapter);
         TextView textView = (TextView)findViewById(R.id.textViewSelectedResearch);
-        textView.setText(research.getNAME());
+        textView.setText(research.toString());
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

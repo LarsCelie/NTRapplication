@@ -34,28 +34,28 @@ public class ResearchListActivity extends Activity implements OnItemClickListene
         DatabaseHandler db = new DatabaseHandler(this);
 
         // TEST DATA
-        Research r1 = new Research();
-        r1.setID(1);
-        r1.setNAME("Onderzoek 1");
-        r1.setBEGIN_DATE(convertStringToDate("01-03-2015"));
-        r1.setEND_DATE(convertStringToDate("29-03-2015"));
-        r1.setSTATUS("Iets");
-        db.addResearch(r1);
+//        Research r1 = new Research();
+//        r1.setID(1);
+//        r1.setNAME("Onderzoek 1");
+//        r1.setBEGIN_DATE(convertStringToDate("01-03-2015"));
+//        r1.setEND_DATE(convertStringToDate("29-03-2015"));
+//        r1.setSTATUS("Iets");
+//        db.addResearch(r1);
         Research r2 = new Research();
         r2.setID(2);
         r2.setNAME("Onderzoek 2");
         r2.setBEGIN_DATE(convertStringToDate("01-03-2015"));
         r2.setEND_DATE(convertStringToDate("29-03-2015"));
         r2.setSTATUS("Iets");
-        db.addResearch(r1);
-        Survey s1 = new Survey();
-        s1.setId(1);
-        s1.setStatus("InProgress");
-        s1.setName("Survey 1");
-        s1.setBeginDate(convertStringToDate("01-01-2011"));
-        s1.setEndDate(convertStringToDate("02-02-2022"));
-        r1.addSurvey(s1);
-        db.addSurvey(s1,r1);
+        db.addResearch(r2);
+//        Survey s1 = new Survey();
+//        s1.setId(1);
+//        s1.setStatus("InProgress");
+//        s1.setName("Survey 1");
+//        s1.setBeginDate(convertStringToDate("01-01-2011"));
+//        s1.setEndDate(convertStringToDate("02-02-2022"));
+//        r1.addSurvey(s1);
+//        db.addSurvey(s1,r1);
 
         List<Research> researches = db.getAllResearch();
 
