@@ -34,7 +34,7 @@ public class VideoFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         videoView.setMediaController(new MediaController(getActivity()));
-        //playVideo();
+        playVideo();
     }
 
     public void playVideo() {
