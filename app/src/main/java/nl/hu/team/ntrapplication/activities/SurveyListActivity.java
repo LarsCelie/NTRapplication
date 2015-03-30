@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import nl.hu.team.ntrapplication.R;
 import nl.hu.team.ntrapplication.objects.Research;
@@ -21,13 +22,15 @@ public class SurveyListActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.survey_list);
+        setContentView(R.layout.activity_survey_list);
         Bundle data = getIntent().getExtras();
         Research research = (Research) data.getParcelable("selected_research");
 
         surveyList = (ListView) findViewById(R.id.listViewSurveys);
         adapter = new ArrayAdapter<Survey>(this, android.R.layout.simple_list_item_1, research.getSurveys());
         surveyList.setAdapter(adapter);
+        TextView textView = (TextView)findViewById(R.id.textViewSelectedResearch);
+        textView.setText(research.getNAME());
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -23,6 +23,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nl.hu.team.ntrapplication.activities.MainActivity" />
         </activity>
+        <activity
+            android:name=".activities.SurveyListActivity"
+            android:label="SurveyListActivity"
+            android:parentActivityName=".activities.ResearchListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.hu.team.ntrapplication.activities.ResearchListActivity" />
+        </activity>
     </application>
 
 </manifest>
