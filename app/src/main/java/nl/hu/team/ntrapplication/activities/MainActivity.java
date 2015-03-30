@@ -3,6 +3,7 @@ package nl.hu.team.ntrapplication.activities;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -44,6 +45,12 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void showResearchList(View view) {
+        Intent intent = new Intent(this, ResearchListActivity.class);
+        startActivity(intent);
+    }
+
     public void openFragment(View view){
         Fragment newFragment = new VideoFragment();
         ((VideoFragment)newFragment).playVideo();

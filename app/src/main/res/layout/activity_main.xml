@@ -19,10 +19,11 @@
         android:onClick="openFragment"/>
 
     <Button
+        android:id="@+id/researchListid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="list research"
-        android:onClick="sendMessage"
+        android:onClick="showResearchList"
         android:layout_below="@id/videoknopid"/>
     <LinearLayout
         android:id="@+id/fragment_layout"
