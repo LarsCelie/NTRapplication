@@ -27,13 +27,14 @@ public class VideoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.video_fragment, container, false);
         videoView = (VideoView) root.findViewById(R.id.video_view);
+
         return root;
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         videoView.setMediaController(new MediaController(getActivity()));
-        playVideo();
+        //playVideo();
     }
 
     public void playVideo() {
@@ -44,6 +45,8 @@ public class VideoFragment extends Fragment {
             videoView.start();
         }
     }
+
+
     private void setVideoLocation(Uri uri) {
         try {
             videoView.setVideoURI(uri);

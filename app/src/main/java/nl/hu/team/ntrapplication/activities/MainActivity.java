@@ -46,9 +46,11 @@ public class MainActivity extends Activity {
     }
     public void openFragment(View view){
         Fragment newFragment = new VideoFragment();
+        ((VideoFragment)newFragment).playVideo();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_layout, newFragment);
         transaction.commit();
+
 
     }
 }
