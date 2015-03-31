@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.objects.Research;
+import nl.hu.team.ntrapplication.objects.Survey;
 
 public class QuestionActivity extends Activity {
 
@@ -13,7 +15,8 @@ public class QuestionActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
-
+        Bundle data = getIntent().getExtras();
+        Survey survey = (Survey) data.getParcelable("selected_survey");
     }
 
 
