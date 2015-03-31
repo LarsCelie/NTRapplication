@@ -12,10 +12,14 @@ import android.view.View;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import nl.hu.team.ntrapplication.R;
 import nl.hu.team.ntrapplication.database.DatabaseHandler;
+import nl.hu.team.ntrapplication.objects.Attachment;
+import nl.hu.team.ntrapplication.objects.Option;
+import nl.hu.team.ntrapplication.objects.Question;
 import nl.hu.team.ntrapplication.objects.Research;
 import nl.hu.team.ntrapplication.objects.Survey;
 
@@ -52,6 +56,20 @@ public class MainActivity extends Activity {
         s1.setEndDate(convertStringToDate("02-02-2022"));
         r1.addSurvey(s1);
         db.addSurvey(s1,r1);
+        Question q1 = new Question();
+        q1.setSequence(1);
+        q1.setDescription("Hoe laat is het");
+        Option o = new Option();
+        o.setCONTENT("Open vraag");
+        ArrayList<Option> array = new ArrayList<Option>();
+        array.add(o);
+        q1.setOptions(array)
+        ArrayList<Attachment> attach = new ArrayList<Attachment>();
+        Attachment attachment = new Attachment();
+        attachment.setLOCATION("R.raw.video_test_01");
+        attachment.setID(1);
+        q1.setAttachments(attach);
+        s1.addQuestion(q1);
     }
 
 

@@ -6,13 +6,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.objects.Survey;
 
 public class QuestionActivity extends Activity {
+
+    private Survey s1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
+
+        //set top for video audio or image.
+
+        //set main for question
+
+        //set bottom for answers
 
     }
 
@@ -38,4 +48,6 @@ public class QuestionActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
