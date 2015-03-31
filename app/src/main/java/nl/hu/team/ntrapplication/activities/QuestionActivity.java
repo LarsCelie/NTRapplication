@@ -5,15 +5,25 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.objects.Question;
+import nl.hu.team.ntrapplication.objects.Survey;
 
 public class QuestionActivity extends Activity {
+    private ArrayList<Question> questions;
+    private int sequence = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
+        Bundle data = getIntent().getExtras();
+        Survey survey = (Survey) data.getParcelable("selected_survey");
+        questions = survey.getQuestions();
+        updateView();
     }
 
 
@@ -37,5 +47,23 @@ public class QuestionActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void displayAttachment(){
+
+    }
+
+    public void displayOptions(){
+
+    }
+
+    public void displayQuestion(){
+
+    }
+
+    public void updateView(){
+        displayAttachment();
+        displayOptions();
+        displayQuestion();
     }
 }
