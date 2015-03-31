@@ -1,11 +1,14 @@
 package nl.hu.team.ntrapplication.objects;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 /**
  * Created by Milamber on 24-3-2015.
  */
-public class Question {
+public class Question implements Parcelable {
 
     // Variabels
     private int id;
@@ -82,5 +85,27 @@ public class Question {
 
     public void removeAttachment(Attachment attachment) {
         attachments.remove(attachment);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+    }
+    public static final Creator<Question> CREATOR
+            = new Parcelable.Creator<Question>() {
+        public Question createFromParcel(Parcel in) {
+            return new Question(in);
+        }
+        public Question[] newArray(int size) {
+            return new Question[size];
+        }
+    };
+    private Question(Parcel in) {
+        id = in.readInt();
     }
 }
