@@ -95,6 +95,11 @@ public class Question implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
+        dest.writeString(description);
+        dest.writeInt(sequence);
+        dest.writeString(type);
+//        dest.writeTypedList(options);
+//        dest.writeTypedList(attachments);
     }
     public static final Creator<Question> CREATOR
             = new Parcelable.Creator<Question>() {
@@ -107,5 +112,10 @@ public class Question implements Parcelable {
     };
     private Question(Parcel in) {
         id = in.readInt();
+        description = in.readString();
+        sequence = in.readInt();
+        type = in.readString();
+//        in.readTypedList(options, Option.CREATOR);
+//        in.readTypedList(attachments, Attachment.CREATOR);
     }
 }
