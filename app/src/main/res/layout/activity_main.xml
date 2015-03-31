@@ -30,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/researchListid"
+        android:text="question view"
         android:onClick="showQuestion"/>
     <LinearLayout
         android:id="@+id/fragment_layout"

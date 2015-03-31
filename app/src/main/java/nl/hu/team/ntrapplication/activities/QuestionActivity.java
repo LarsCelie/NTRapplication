@@ -1,13 +1,13 @@
 package nl.hu.team.ntrapplication.activities;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import nl.hu.team.ntrapplication.R;
 
-public class QuestionActivity extends ActionBarActivity {
+public class QuestionActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
