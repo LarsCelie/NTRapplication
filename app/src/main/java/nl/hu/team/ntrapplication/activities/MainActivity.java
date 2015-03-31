@@ -4,13 +4,19 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.database.DatabaseHandler;
+import nl.hu.team.ntrapplication.objects.Research;
 
 
 public class MainActivity extends Activity {
@@ -20,6 +26,31 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DatabaseHandler db = new DatabaseHandler(this);
+
+        // TEST DATA
+//        Research r1 = new Research();
+//        r1.setID(1);
+//        r1.setNAME("Onderzoek 1");
+//        r1.setBEGIN_DATE(convertStringToDate("01-03-2015"));
+//        r1.setEND_DATE(convertStringToDate("29-03-2015"));
+//        r1.setSTATUS("Iets");
+//        db.addResearch(r1);
+        Research r2 = new Research();
+        r2.setID(2);
+        r2.setNAME("Onderzoek 2");
+        r2.setBEGIN_DATE(convertStringToDate("01-03-2015"));
+        r2.setEND_DATE(convertStringToDate("29-03-2015"));
+        r2.setSTATUS("Iets");
+        db.addResearch(r2);
+//        Survey s1 = new Survey();
+//        s1.setId(1);
+//        s1.setStatus("InProgress");
+//        s1.setName("Survey 1");
+//        s1.setBeginDate(convertStringToDate("01-01-2011"));
+//        s1.setEndDate(convertStringToDate("02-02-2022"));
+//        r1.addSurvey(s1);
+//        db.addSurvey(s1,r1);
     }
 
 
@@ -60,6 +91,17 @@ public class MainActivity extends Activity {
         transaction.commit();
 
 
+    }
+
+    private Date convertStringToDate(String input) {
+        DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+        Date date = null;
+        try {
+            date = format.parse(input);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 }
 
