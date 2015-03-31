@@ -1,9 +1,12 @@
 package nl.hu.team.ntrapplication.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,7 +18,7 @@ import nl.hu.team.ntrapplication.objects.Survey;
 /**
  * Created by Milamber on 25-3-2015.
  */
-public class SurveyListActivity extends Activity {
+public class SurveyListActivity extends Activity implements AdapterView.OnItemClickListener {
     ListView surveyList;
     ArrayAdapter<Survey> adapter;
 
@@ -50,5 +53,13 @@ public class SurveyListActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Survey survey = (Survey)parent.getAdapter().getItem(position);
+        Intent intent = new Intent(this, QuestionActivity.class);
+        intent.putExtra("selected_survey", survey);
+        startActivity(intent);
     }
 }

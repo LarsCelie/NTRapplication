@@ -95,6 +95,10 @@ public class Survey implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeString(name);
+        dest.writeSerializable(beginDate);
+        dest.writeSerializable(endDate);
+        dest.writeString(status);
+        dest.writeTypedList(questions);
     }
     public static final Creator<Survey> CREATOR
             = new Parcelable.Creator<Survey>() {
@@ -108,5 +112,9 @@ public class Survey implements Parcelable{
     private Survey(Parcel in) {
         id = in.readInt();
         name = in.readString();
+        beginDate = (Date)in.readSerializable();
+        endDate = (Date)in.readSerializable();
+        status = in.readString();
+        in.readTypedList(questions, Question.CREATOR);
     }
 }
