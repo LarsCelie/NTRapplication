@@ -147,7 +147,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(BEGIN_DATE_R, convertDateToString(research.getBEGIN_DATE()));
         values.put(END_DATE_R, convertDateToString(research.getEND_DATE()));
 
-        db.insert(TABLE_RESEARCH_R,null,values);
+        db.replace(TABLE_RESEARCH_R,null,values);
         db.close();
     }
     public void addSurvey(Survey survey, Research research) {
@@ -161,7 +161,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(STATUS_S, survey.getStatus());
         values.put(FK_ID_R, research.getID());
 
-        db.insert(TABLE_SURVEY_S,null,values);
+        db.replace(TABLE_SURVEY_S,null,values);
         db.close();
     }
     public void addQuestion(Question question, Survey survey) {
@@ -174,7 +174,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(TYPE_Q, question.getType());
         values.put(FK_ID_S, survey.getId());
 
-        db.insert(TABLE_QUESTION_Q,null,values);
+        db.replace(TABLE_QUESTION_Q,null,values);
         db.close();
     }
     public void addOption(Option option,Question question) {
@@ -186,7 +186,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(VALUE_O, option.getVALUE());
         values.put(FK_ID_QQ, question.getId());
 
-        db.insert(TABLE_OPTION_O,null,values);
+        db.replace(TABLE_OPTION_O,null,values);
         db.close();
     }
     public void addAttachment(Attachment attachment, Question question) {
@@ -198,7 +198,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(LOCATION_A, attachment.getLOCATION());
         values.put(FK_ID_Q, question.getId());
 
-        db.insert(TABLE_ATTACHMENT_A,null,values);
+        db.replace(TABLE_ATTACHMENT_A,null,values);
         db.close();
     }
     public Research getResearchByID(int ID) {
