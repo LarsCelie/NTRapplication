@@ -10,6 +10,9 @@ import java.util.Date;
  * Created by Milamber on 24-3-2015.
  */
 public class Survey implements Parcelable{
+
+    //Variables
+    private int id;
     private String name;
     private Date beginDate;
     private Date endDate;
@@ -20,8 +23,7 @@ public class Survey implements Parcelable{
     public Survey() {
 
     }
-    // Variabelen
-    private int id;
+    // Methods
 
     public int getId() {
         return id;
@@ -83,6 +85,7 @@ public class Survey implements Parcelable{
         return name;
     }
 
+    // Parcelable methods
     @Override
     public int describeContents() {
         return 0;
