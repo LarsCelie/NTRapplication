@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
         o.setCONTENT("Open vraag");
         ArrayList<Option> array = new ArrayList<Option>();
         array.add(o);
-        q1.setOptions(array)
+        q1.setOptions(array);
         ArrayList<Attachment> attach = new ArrayList<Attachment>();
         Attachment attachment = new Attachment();
         attachment.setLOCATION("R.raw.video_test_01");
