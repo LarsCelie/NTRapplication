@@ -98,10 +98,10 @@ public class QuestionActivity extends Activity {
         Question question = null;
         ArrayList<Question> questions = survey.getQuestions();
         for (Question q : questions){
-//            if (q.getSequence()==sequence){
+            if (q.getSequence()==sequence){
                 question = q;
                 break;
-//            }
+            }
         }
         return question;
     }
