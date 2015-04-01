@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.database.DatabaseHandler;
 import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Option;
