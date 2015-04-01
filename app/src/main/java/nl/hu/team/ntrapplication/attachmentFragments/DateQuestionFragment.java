@@ -21,7 +21,8 @@ public class DateQuestionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_date_question, container, false);
-
+        name = (TextView) root.findViewById(R.id.dateQuestionName);
+        description = (TextView) root.findViewById(R.id.dateQuestionDescription);
         return root;
     }
     @Override

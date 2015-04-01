@@ -19,6 +19,7 @@ public class InfoscreenFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_infoscreen, container, false);
+        name = (TextView) root.findViewById(R.id.infoscreenName);
         desription = (TextView) root.findViewById(R.id.infoscreenDescription);
 
         return root;
