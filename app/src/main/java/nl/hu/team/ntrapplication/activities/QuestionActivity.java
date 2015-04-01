@@ -63,7 +63,9 @@ public class QuestionActivity extends Activity {
             ArrayList<Attachment> attachments = question.getAttachments();
             Attachment attachment = attachments.get(0);
             Fragment fragment = null;
-            switch (attachment.getTYPE()) {
+
+            String type = attachment.getTYPE();
+            switch (type) {
                 case "video":
                     fragment = new VideoFragment();
                     break;
@@ -74,6 +76,11 @@ public class QuestionActivity extends Activity {
                 default:
                     break; //load default image
             }
+            //Add attachment to attachment fragment
+            Bundle attachmentBundle = new Bundle();
+            attachmentBundle.putParcelable("attachment",attachment);
+            fragment.setArguments(attachmentBundle);
+
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.question_attachment, fragment);
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
@@ -82,7 +89,22 @@ public class QuestionActivity extends Activity {
     }
 
     public void displayQuestion(){
+        Question question = getCurrentQuestion();
+        String type = question.getType();
 
+        Fragment fragment = null;
+        switch(type){
+            case "multiple_choice": break; //do something
+            case "multiple_select": break; //do something
+            case "open": break; //do something
+            case "time": break; //do something
+            case "date": break; //do something
+            case "datetime": break; //do something
+            case "picture": break; //do something
+            case "video": break; //do something
+            case "audio": break; //do something
+            default: break; //default
+        }
     }
 
     public void updateView(){
