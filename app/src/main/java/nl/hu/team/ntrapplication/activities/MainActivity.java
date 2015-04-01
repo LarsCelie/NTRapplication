@@ -72,6 +72,8 @@ public class MainActivity extends Activity {
         attachment.setID(1);
         q1.setAttachments(attach);
         s1.addQuestion(q1);
+        db.addQuestion(q1, db.getSurveyByID(1));
+        db.addAttachment(attachment, q1);
     }
 
 
