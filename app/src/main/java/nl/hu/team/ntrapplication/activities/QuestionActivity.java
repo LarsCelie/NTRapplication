@@ -17,7 +17,7 @@ import nl.hu.team.ntrapplication.objects.Survey;
 
 public class QuestionActivity extends Activity {
     private Survey survey;
-    private int sequence = 0;
+    private int sequence = 1;
     private int max;
 
     @Override
@@ -56,19 +56,29 @@ public class QuestionActivity extends Activity {
 
     public void displayAttachment(){
         Question question = getCurrentQuestion();
-        ArrayList<Attachment> attachments = question.getAttachments();
-        Attachment attachment = attachments.get(0);
-        Fragment fragment = null;
-        switch(attachment.getTYPE()){
-            case "video": fragment = new VideoFragment(); break;
-            case "audio": break; //do something
-            case "picture": break; //do something
-            default: break; //load default image
+
+        if (question.getAttachments()==null){
+            System.out.println("Error! no attachments");
+        } else {
+            ArrayList<Attachment> attachments = question.getAttachments();
+            Attachment attachment = attachments.get(0);
+            Fragment fragment = null;
+            switch (attachment.getTYPE()) {
+                case "video":
+                    fragment = new VideoFragment();
+                    break;
+                case "audio":
+                    break; //do something
+                case "picture":
+                    break; //do something
+                default:
+                    break; //load default image
+            }
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.question_attachment, fragment);
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            transaction.commit();
         }
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.question_attachment, fragment);
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        transaction.commit();
     }
 
     public void displayQuestion(){
@@ -88,10 +98,10 @@ public class QuestionActivity extends Activity {
         Question question = null;
         ArrayList<Question> questions = survey.getQuestions();
         for (Question q : questions){
-            if (q.getSequence()==sequence){
+//            if (q.getSequence()==sequence){
                 question = q;
                 break;
-            }
+//            }
         }
         return question;
     }

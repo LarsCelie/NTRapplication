@@ -47,6 +47,7 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:text="P"
+            android:onClick="updateView"
             android:id="@+id/button2" />
 
         <Button
