@@ -262,6 +262,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             survey.setBeginDate(convertStringToDate(cursor.getString(2)));
             survey.setEndDate(convertStringToDate(cursor.getString(3)));
             survey.setStatus(cursor.getString(4));
+            for(Question q : getQuestionBySurvey(survey)) {
+                survey.addQuestion(q);
+            }
             surveys.add(survey);
         }
         return surveys;
@@ -291,6 +294,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             question.setDescription(cursor.getString(1));
             question.setSequence(Integer.parseInt(cursor.getString(2)));
             question.setType(cursor.getString(3));
+            for(Attachment a : getAttachmentByQuestion(question)) {
+                System.out.println("Attachment met ID: "+a.getID());
+                question.addAttachment(a);
+            }
+            for(Option o : getOptionByQuestion(question)) {
+                question.addOption(o);
+            }
             questions.add(question);
         }
         return questions;

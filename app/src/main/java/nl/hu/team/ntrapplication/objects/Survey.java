@@ -82,7 +82,7 @@ public class Survey implements Parcelable{
     }
 
     public String toString() {
-        return name;
+        return name + " has " + questions.size() + " questions";
     }
 
     // Parcelable methods

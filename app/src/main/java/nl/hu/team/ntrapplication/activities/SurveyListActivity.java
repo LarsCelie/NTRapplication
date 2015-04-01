@@ -34,6 +34,7 @@ public class SurveyListActivity extends Activity implements AdapterView.OnItemCl
         surveyList.setAdapter(adapter);
         TextView textView = (TextView)findViewById(R.id.textViewSelectedResearch);
         textView.setText(research.toString());
+        surveyList.setOnItemClickListener(this);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
