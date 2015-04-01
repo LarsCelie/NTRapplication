@@ -294,6 +294,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             question.setDescription(cursor.getString(1));
             question.setSequence(Integer.parseInt(cursor.getString(2)));
             question.setType(cursor.getString(3));
+            for(Attachment a : getAttachmentByQuestion(question)) {
+                question.addAttachment(a);
+            }
+            for(Option o : getOptionByQuestion(question)) {
+                question.addOption(o);
+            }
             questions.add(question);
         }
         return questions;
