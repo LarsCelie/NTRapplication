@@ -43,7 +43,6 @@ public class MainActivity extends Activity {
         r1.setBEGIN_DATE(convertStringToDate("01-03-2015"));
         r1.setEND_DATE(convertStringToDate("29-03-2015"));
         r1.setSTATUS("Iets");
-        db.addResearch(r1);
 
         //R2
         Research r2 = new Research();
@@ -52,7 +51,6 @@ public class MainActivity extends Activity {
         r2.setBEGIN_DATE(convertStringToDate("01-03-2015"));
         r2.setEND_DATE(convertStringToDate("29-03-2015"));
         r2.setSTATUS("Iets");
-        db.addResearch(r2);
 
         //S1
         Survey s1 = new Survey();
@@ -62,7 +60,7 @@ public class MainActivity extends Activity {
         s1.setBeginDate(convertStringToDate("01-01-2011"));
         s1.setEndDate(convertStringToDate("02-02-2022"));
         r1.addSurvey(s1);
-        db.addSurvey(s1,r1);
+
 
         //Q1
         Question q1 = new Question();
@@ -75,14 +73,22 @@ public class MainActivity extends Activity {
         q1.setOptions(array);
 
         //A1
-        ArrayList<Attachment> attach = new ArrayList<Attachment>();
+
         Attachment attachment = new Attachment();
         attachment.setLOCATION("R.raw.video_test_01");
         attachment.setTYPE("video");
         attachment.setID(1);
+        ArrayList<Attachment> attach = new ArrayList<Attachment>();
         attach.add(attachment);
+
+        //Add attachment to question and question to survey
         q1.setAttachments(attach);
         s1.addQuestion(q1);
+
+        //Put data in the database
+        db.addResearch(r1);
+        db.addResearch(r2);
+        db.addSurvey(s1,r1);
         db.addQuestion(q1, db.getSurveyByID(1));
         db.addAttachment(attachment, q1);
     }
