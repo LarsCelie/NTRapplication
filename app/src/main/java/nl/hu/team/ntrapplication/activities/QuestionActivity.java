@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.attachmentFragments.DateQuestionFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Question;
@@ -63,7 +64,9 @@ public class QuestionActivity extends Activity {
             ArrayList<Attachment> attachments = question.getAttachments();
             Attachment attachment = attachments.get(0);
             Fragment fragment = null;
-            switch (attachment.getTYPE()) {
+
+            String type = attachment.getTYPE();
+            switch (type) {
                 case "video":
                     fragment = new VideoFragment();
                     break;
@@ -74,6 +77,11 @@ public class QuestionActivity extends Activity {
                 default:
                     break; //load default image
             }
+            //Add attachment to attachment fragment
+            Bundle attachmentBundle = new Bundle();
+            attachmentBundle.putParcelable("attachment",attachment);
+            fragment.setArguments(attachmentBundle);
+
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.question_attachment, fragment);
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
@@ -82,7 +90,31 @@ public class QuestionActivity extends Activity {
     }
 
     public void displayQuestion(){
+        Question question = getCurrentQuestion();
+        String type = question.getType();
 
+        Fragment fragment = null;
+        switch(type){
+            case "multiple_choice": break; //do something
+            case "multiple_select": break; //do something
+            case "open": break; //do something
+            case "time": break; //do something
+            case "date":
+                fragment = new DateQuestionFragment(); break;
+            case "datetime": break; //do something
+            case "picture": break; //do something
+            case "video": break; //do something
+            case "audio": break; //do something
+            default: break; //default
+        }
+        Bundle questionBundle = new Bundle();
+        questionBundle.putParcelable("question",question);
+        fragment.setArguments(questionBundle);
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.question_answer, fragment);
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transaction.commit();
     }
 
     public void updateView(){

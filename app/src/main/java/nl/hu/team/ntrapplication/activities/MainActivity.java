@@ -65,7 +65,10 @@ public class MainActivity extends Activity {
         //Q1
         Question q1 = new Question();
         q1.setSequence(1);
-        q1.setDescription("Hoe laat is het");
+        q1.setDescription("Welke datum ben je geboren?");
+        q1.setType("date");
+
+        //O1
         Option o = new Option();
         o.setCONTENT("Open vraag");
         ArrayList<Option> array = new ArrayList<Option>();
