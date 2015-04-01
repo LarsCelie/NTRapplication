@@ -3,12 +3,10 @@ package nl.hu.team.ntrapplication.activities;
 import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -25,7 +23,7 @@ public class VideoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.video_fragment, container, false);
+        View root = inflater.inflate(R.layout.fragment_video, container, false);
         videoView = (VideoView) root.findViewById(R.id.video_view);
 
         return root;
