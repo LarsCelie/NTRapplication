@@ -9,6 +9,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.objects.Question;
 
 /**
  * Created by Milamber on 1-4-2015.
@@ -23,13 +24,14 @@ public class DateQuestionFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_date_question, container, false);
         name = (TextView) root.findViewById(R.id.dateQuestionName);
         description = (TextView) root.findViewById(R.id.dateQuestionDescription);
+        Bundle bundle = this.getArguments();
+        Question question = bundle.getParcelable("question");
+//        name.setText(question.getName());
+        description.setText(question.getDescription());
         return root;
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-    }
-    public void setName(String name) {
-
     }
 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.objects.Question;
 
 /**
  * Created by Milamber on 1-4-2015.
@@ -21,7 +22,10 @@ public class InfoscreenFragment extends Fragment{
         View root = inflater.inflate(R.layout.fragment_infoscreen, container, false);
         name = (TextView) root.findViewById(R.id.infoscreenName);
         desription = (TextView) root.findViewById(R.id.infoscreenDescription);
-
+        Bundle bundle = this.getArguments();
+        Question question = bundle.getParcelable("question");
+//        name.setText(question.getName());
+        desription.setText(question.getDescription());
         return root;
     }
     @Override

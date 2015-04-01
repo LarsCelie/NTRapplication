@@ -27,7 +27,6 @@ public class ResearchListActivity extends Activity implements OnItemClickListene
         setContentView(R.layout.activity_research_list);
 
         DatabaseHandler db = new DatabaseHandler(this);
-
         //Test data moved to main activity
 
         List<Research> researches = db.getAllResearch();
