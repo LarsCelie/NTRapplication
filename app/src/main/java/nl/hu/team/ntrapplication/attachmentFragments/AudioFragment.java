@@ -21,8 +21,8 @@ public class AudioFragment extends Fragment {
         Uri uri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.audio_test_01);
         MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mediaPlayer.setDataSource(getApplicationContext(), myUri);
-        mediaPlayer.prepare();
+        //mediaPlayer.setDataSource(getApplicationContext(), uri);
+        //mediaPlayer.prepare();
         mediaPlayer.start();
         return null;
     }
