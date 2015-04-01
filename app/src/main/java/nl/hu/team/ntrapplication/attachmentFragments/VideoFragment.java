@@ -1,4 +1,4 @@
-package nl.hu.team.ntrapplication.activities;
+package nl.hu.team.ntrapplication.attachmentFragments;
 
 import android.app.Fragment;
 import android.net.Uri;
