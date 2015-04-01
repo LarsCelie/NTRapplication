@@ -1,4 +1,4 @@
-package nl.hu.team.ntrapplication.attachmentFragments;
+package nl.hu.team.ntrapplication.optionFragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
