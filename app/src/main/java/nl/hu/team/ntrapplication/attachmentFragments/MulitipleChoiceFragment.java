@@ -29,6 +29,7 @@ public class MulitipleChoiceFragment extends Fragment {
         name = (TextView) root.findViewById(R.id.multiple_choice_QuestionName);
         description = (TextView) root.findViewById(R.id.multiple_choice_QuestionDescription);
         radioGroup = (RadioGroup) root.findViewById(R.id.radio_group);
+
         LinearLayout.LayoutParams layoutParams = new RadioGroup.LayoutParams(
                 RadioGroup.LayoutParams.WRAP_CONTENT,
                 RadioGroup.LayoutParams.WRAP_CONTENT);
