@@ -37,6 +37,7 @@ public class VideoFragment extends Fragment {
 
     public void playVideo() {
         Uri uri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.video_test_01);
+        //Uri uri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.audio_test_01);
         Log.d(TAG, "Uri is: " + uri);
         setVideoLocation(uri);
         if (!videoView.isPlaying()) {
