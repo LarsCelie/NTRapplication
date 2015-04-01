@@ -6,27 +6,17 @@
     android:orientation="vertical">
     <LinearLayout
         android:id="@+id/question_attachment"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="3"
-        android:text="test"/>
-    </LinearLayout>
+        android:layout_weight="3"/>
 
     <LinearLayout
         android:id="@+id/question_answer"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="test3aaaaa3"/>
-    </LinearLayout>
+        android:layout_weight="6"/>
     <LinearLayout
         android:id="@+id/question_menu"
         android:layout_width="match_parent"
