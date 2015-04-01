@@ -68,6 +68,7 @@ public class MainActivity extends Activity {
         ArrayList<Attachment> attach = new ArrayList<Attachment>();
         Attachment attachment = new Attachment();
         attachment.setLOCATION("R.raw.video_test_01");
+        attachment.setTYPE("video");
         attachment.setID(1);
         q1.setAttachments(attach);
         s1.addQuestion(q1);
