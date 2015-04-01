@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -28,6 +29,11 @@ public class MulitipleChoiceFragment extends Fragment {
         name = (TextView) root.findViewById(R.id.multiple_choice_QuestionName);
         description = (TextView) root.findViewById(R.id.multiple_choice_QuestionDescription);
         radioGroup = (RadioGroup) root.findViewById(R.id.radio_group);
+        LinearLayout.LayoutParams layoutParams = new RadioGroup.LayoutParams(
+                RadioGroup.LayoutParams.WRAP_CONTENT,
+                RadioGroup.LayoutParams.WRAP_CONTENT);
+
+        System.out.println("<(-_-)>");
 
         Bundle bundle = this.getArguments();
         Question question = bundle.getParcelable("question");
@@ -36,7 +42,7 @@ public class MulitipleChoiceFragment extends Fragment {
             RadioButton radioButton = new RadioButton(getActivity());
             radioButton.setText(o.getCONTENT());
             radioButton.setId(o.getID());
-            radioGroup.addView(radioButton);
+            radioGroup.addView(radioButton, layoutParams);
         }
 
 //      name.setText(question.getName());

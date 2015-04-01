@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.attachmentFragments.MulitipleChoiceFragment;
 import nl.hu.team.ntrapplication.optionFragments.DateQuestionFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.objects.Attachment;
@@ -98,7 +99,9 @@ public class QuestionActivity extends Activity {
 
         Fragment fragment = null;
         switch(type){
-            case "multiple_choice": break; //do something
+            case "multiple_choice":
+                fragment = new MulitipleChoiceFragment();
+                break; //do something
             case "multiple_select": break; //do something
             case "open": break; //do something
             case "time": break; //do something
