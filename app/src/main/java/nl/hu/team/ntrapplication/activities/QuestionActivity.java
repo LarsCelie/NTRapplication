@@ -12,7 +12,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 import nl.hu.team.ntrapplication.R;
-import nl.hu.team.ntrapplication.attachmentFragments.MulitipleChoiceFragment;
+import nl.hu.team.ntrapplication.optionFragments.MulitipleChoiceFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Question;
