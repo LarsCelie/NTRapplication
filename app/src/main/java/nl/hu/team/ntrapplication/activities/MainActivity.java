@@ -35,6 +35,8 @@ public class MainActivity extends Activity {
         DatabaseHandler db = new DatabaseHandler(this);
 
         // TEST DATA
+
+        //R1
         Research r1 = new Research();
         r1.setID(1);
         r1.setNAME("Onderzoek 1");
@@ -42,6 +44,8 @@ public class MainActivity extends Activity {
         r1.setEND_DATE(convertStringToDate("29-03-2015"));
         r1.setSTATUS("Iets");
         db.addResearch(r1);
+
+        //R2
         Research r2 = new Research();
         r2.setID(2);
         r2.setNAME("Onderzoek 2");
@@ -49,6 +53,8 @@ public class MainActivity extends Activity {
         r2.setEND_DATE(convertStringToDate("29-03-2015"));
         r2.setSTATUS("Iets");
         db.addResearch(r2);
+
+        //S1
         Survey s1 = new Survey();
         s1.setId(1);
         s1.setStatus("InProgress");
@@ -57,6 +63,8 @@ public class MainActivity extends Activity {
         s1.setEndDate(convertStringToDate("02-02-2022"));
         r1.addSurvey(s1);
         db.addSurvey(s1,r1);
+
+        //Q1
         Question q1 = new Question();
         q1.setSequence(1);
         q1.setDescription("Hoe laat is het");
@@ -65,11 +73,14 @@ public class MainActivity extends Activity {
         ArrayList<Option> array = new ArrayList<Option>();
         array.add(o);
         q1.setOptions(array);
+
+        //A1
         ArrayList<Attachment> attach = new ArrayList<Attachment>();
         Attachment attachment = new Attachment();
         attachment.setLOCATION("R.raw.video_test_01");
         attachment.setTYPE("video");
         attachment.setID(1);
+        attach.add(attachment);
         q1.setAttachments(attach);
         s1.addQuestion(q1);
         db.addQuestion(q1, db.getSurveyByID(1));
