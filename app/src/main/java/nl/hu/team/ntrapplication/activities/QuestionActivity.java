@@ -124,7 +124,7 @@ public class QuestionActivity extends Activity {
 
     public void updateView(){
         if (sequence> maxQuestions){
-            //go to next view
+           finishSurvey();
         } else {
             displayAttachment();
             displayQuestion();
@@ -146,6 +146,7 @@ public class QuestionActivity extends Activity {
 
     //method for the next button
     public void nextQuestion(){
+        saveProgress();
         sequence++;
         updateView();
     }
@@ -153,8 +154,17 @@ public class QuestionActivity extends Activity {
     //method for the previous button
     public void previousQuestion(){
         if (maxQuestions > 1) {
+            saveProgress();
             sequence--;
             updateView();
         }
+    }
+
+    public void finishSurvey(){
+        //send data to server
+    }
+
+    public void saveProgress(){
+        //save progress to SQLite local database
     }
 }
