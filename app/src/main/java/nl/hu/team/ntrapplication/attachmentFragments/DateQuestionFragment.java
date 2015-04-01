@@ -29,4 +29,7 @@ public class DateQuestionFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
+    public void setName(String name) {
+
+    }
 }
