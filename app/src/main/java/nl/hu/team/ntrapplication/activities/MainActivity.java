@@ -12,7 +12,6 @@ import android.view.View;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import nl.hu.team.ntrapplication.R;
@@ -70,22 +69,22 @@ public class MainActivity extends Activity {
 
         //O1
         Option o = new Option();
-        o.setCONTENT("Open vraag");
-        ArrayList<Option> array = new ArrayList<Option>();
-        array.add(o);
-        q1.setOptions(array);
+        o.setCONTENT("Option: Content");
+        o.setVALUE("Option: Value");
+
+        //add option to question
+        q1.addOption(o);
 
         //A1
-
         Attachment attachment = new Attachment();
         attachment.setLOCATION("R.raw.video_test_01");
         attachment.setTYPE("video");
         attachment.setID(1);
-        ArrayList<Attachment> attach = new ArrayList<Attachment>();
-        attach.add(attachment);
 
-        //Add attachment to question and question to survey
-        q1.setAttachments(attach);
+        //add attachment to question
+        q1.addAttachment(attachment);
+
+        //Add question to survey
         s1.addQuestion(q1);
 
         //Put data in the database
