@@ -3,4 +3,6 @@
 
     <string name="hello_world">Hallo wereld!</string>
     <string name="action_settings">Instellingen</string>
+    <string name="previous">vorige</string>
+    <string name="next">volgende</string>
 </resources>

@@ -6,4 +6,7 @@
     <string name="title_activity_research_list" translatable="false">ResearchListActivity</string>
     <string name="title_activity_question" translatable="false">QuestionActivity</string>
     <string name="error_loading_string" translatable="false">An error has occured fetching this value</string>
+    <string name="next">next</string>
+    <string name="previous">previous</string>
+    <string name="pause" translatable="false">||</string>
 </resources>
