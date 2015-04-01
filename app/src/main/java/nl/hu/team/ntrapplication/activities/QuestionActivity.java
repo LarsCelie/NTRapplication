@@ -126,6 +126,7 @@ public class QuestionActivity extends Activity {
         if (sequence> maxQuestions){
            finishSurvey();
         } else {
+            loadProgress();
             displayAttachment();
             displayQuestion();
         }
@@ -164,7 +165,13 @@ public class QuestionActivity extends Activity {
         //send data to server
     }
 
-    public void saveProgress(){
+    public boolean saveProgress(){
         //save progress to SQLite local database
+        return true;
+    }
+
+    public boolean loadProgress(){
+        //load previously committed progress
+        return true;
     }
 }
