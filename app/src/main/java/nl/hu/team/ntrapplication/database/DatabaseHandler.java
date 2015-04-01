@@ -262,6 +262,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             survey.setBeginDate(convertStringToDate(cursor.getString(2)));
             survey.setEndDate(convertStringToDate(cursor.getString(3)));
             survey.setStatus(cursor.getString(4));
+            for(Question q : getQuestionBySurvey(survey)) {
+                survey.addQuestion(q);
+            }
             surveys.add(survey);
         }
         return surveys;
