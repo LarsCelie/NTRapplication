@@ -19,7 +19,7 @@ import nl.hu.team.ntrapplication.objects.Survey;
 public class QuestionActivity extends Activity {
     private Survey survey;
     private int sequence = 1;
-    private int max;
+    private int maxQuestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class QuestionActivity extends Activity {
 
         Bundle data = getIntent().getExtras();
         survey = (Survey) data.getParcelable("selected_survey");
-        max = survey.getQuestions().size()+1;
+        maxQuestions = survey.getQuestions().size();
         updateView();
     }
 
@@ -65,6 +65,7 @@ public class QuestionActivity extends Activity {
             Attachment attachment = attachments.get(0);
             Fragment fragment = null;
 
+            //make a choice
             String type = attachment.getTYPE();
             switch (type) {
                 case "video":
@@ -82,6 +83,7 @@ public class QuestionActivity extends Activity {
             attachmentBundle.putParcelable("attachment",attachment);
             fragment.setArguments(attachmentBundle);
 
+            //place fragment in the layout
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.question_attachment, fragment);
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
@@ -89,6 +91,7 @@ public class QuestionActivity extends Activity {
         }
     }
 
+    //displays the question fragment
     public void displayQuestion(){
         Question question = getCurrentQuestion();
         String type = question.getType();
@@ -107,10 +110,12 @@ public class QuestionActivity extends Activity {
             case "audio": break; //do something
             default: break; //default
         }
+        //add the question object to the fragment object through bundle
         Bundle questionBundle = new Bundle();
         questionBundle.putParcelable("question",question);
         fragment.setArguments(questionBundle);
 
+        //place fragment in the layout
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.question_answer, fragment);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
@@ -118,7 +123,7 @@ public class QuestionActivity extends Activity {
     }
 
     public void updateView(){
-        if (sequence==max){
+        if (sequence> maxQuestions){
             //go to next view
         } else {
             displayAttachment();
@@ -126,6 +131,7 @@ public class QuestionActivity extends Activity {
         }
     }
 
+    //returns current question according to the sequence
     public Question getCurrentQuestion(){
         Question question = null;
         ArrayList<Question> questions = survey.getQuestions();
@@ -146,7 +152,7 @@ public class QuestionActivity extends Activity {
 
     //method for the previous button
     public void previousQuestion(){
-        if (max > 1) {
+        if (maxQuestions > 1) {
             sequence--;
             updateView();
         }
