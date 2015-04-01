@@ -12,8 +12,9 @@ import nl.hu.team.ntrapplication.objects.Question;
 import nl.hu.team.ntrapplication.objects.Survey;
 
 public class QuestionActivity extends Activity {
-    private ArrayList<Question> questions;
-    private int sequence = 1;
+    private Survey survey;
+    private int sequence = 0;
+    private int max;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +22,8 @@ public class QuestionActivity extends Activity {
         setContentView(R.layout.activity_question);
 
         Bundle data = getIntent().getExtras();
-        Survey survey = (Survey) data.getParcelable("selected_survey");
-        questions = survey.getQuestions();
+        survey = (Survey) data.getParcelable("selected_survey");
+        max = survey.getQuestions().size()+1;
         updateView();
     }
 
@@ -53,17 +54,35 @@ public class QuestionActivity extends Activity {
 
     }
 
-    public void displayOptions(){
-
-    }
-
     public void displayQuestion(){
 
     }
 
     public void updateView(){
-        displayAttachment();
-        displayOptions();
-        displayQuestion();
+        if (sequence==max){
+            //go to next view
+        } else {
+            displayAttachment();
+            displayQuestion();
+        }
+    }
+
+    public Question getCurrentQuestion(){
+        Question question = null;
+        ArrayList<Question> questions = survey.getQuestions();
+
+        return
+    }
+
+    public void nextQuestion(){
+        sequence++;
+        updateView();
+    }
+
+    public void previousQuestion(){
+        if (max > 1) {
+            sequence--;
+            updateView();
+        }
     }
 }
