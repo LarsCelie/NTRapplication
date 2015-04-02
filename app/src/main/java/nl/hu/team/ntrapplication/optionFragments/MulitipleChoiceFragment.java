@@ -56,10 +56,10 @@ public class MulitipleChoiceFragment extends Fragment {
 
       //name.setText(question.getName());
         description.setText(question.getDescription());
-   //     onRadioChangeListener(radioGroup);
+   //   onRadioChangeListener(radioGroup);
     }
 
-    public void onRadioChangeListener(RadioGroup radioGroup){
+    /*public void onRadioChangeListener(RadioGroup radioGroup){
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -70,6 +70,6 @@ public class MulitipleChoiceFragment extends Fragment {
                 }
             }
         });
-    }
+    }*/
 
 }
