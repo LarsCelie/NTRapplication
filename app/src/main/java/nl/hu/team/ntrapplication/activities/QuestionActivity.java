@@ -185,7 +185,7 @@ public class QuestionActivity extends Activity {
 
     //method for the previous button
     public void previousQuestion(View view) {
-        if (maxQuestions > 1) {
+        if (sequence > 1) {
             saveProgress();
             sequence--;
             updateView();
