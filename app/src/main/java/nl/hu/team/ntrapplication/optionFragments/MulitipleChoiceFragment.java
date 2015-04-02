@@ -24,7 +24,6 @@ import nl.hu.team.ntrapplication.objects.Question;
 public class MulitipleChoiceFragment extends Fragment {
     private TextView name, description;
     private RadioGroup radioGroup;
-    private RadioButton radioButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
