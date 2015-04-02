@@ -65,7 +65,7 @@ public class QuestionActivity extends Activity {
     public void displayAttachment() {
         Question question = getCurrentQuestion();
         Attachment attachment = null;
-        if (question.getAttachments() == null) {
+        if (question.getAttachments().size() == 0) {
             System.out.println("Error! no attachments");
             attachment = new Attachment();
             attachment.setTYPE("image");
