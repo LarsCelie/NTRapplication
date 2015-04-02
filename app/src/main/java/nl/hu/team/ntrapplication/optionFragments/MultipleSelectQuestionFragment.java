@@ -49,7 +49,6 @@ public class MultipleSelectQuestionFragment extends Fragment {
     }
     private class MyCustomAdapter extends ArrayAdapter<Option> {
         private ArrayList<Option> options;
-
         public MyCustomAdapter(Context context, int textViewResourceId, ArrayList<Option> options) {
             super(context,textViewResourceId,options);
             this.options = new ArrayList<>();
@@ -67,7 +66,7 @@ public class MultipleSelectQuestionFragment extends Fragment {
             Log.v("ConvertView", String.valueOf(position));
 
             if(convertView == null) {
-                LayoutInflater vi = (LayoutInflater)convertView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater vi = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = vi.inflate(R.layout.layout_multiselect, null);
 
                 holder = new ViewHolder();
