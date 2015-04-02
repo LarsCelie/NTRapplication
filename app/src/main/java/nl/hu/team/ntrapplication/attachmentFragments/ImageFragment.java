@@ -27,12 +27,12 @@ public class ImageFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        Bundle bundle = this.getArguments();
         //get the attachment
-        Attachment attachment = savedInstanceState.getParcelable("attachment");
-
+        Attachment attachment = bundle.getParcelable("attachment");
+        image = (ImageView) getView().findViewById(R.id.image_view);
         //check if attachment is an image
         if (attachment.getTYPE().equals("image")){
-            image = (ImageView) getView().findViewById(R.id.image_view);
             if (attachment.getLOCATION().equals("R.drawable.inputlogo")) {
                 image.setImageResource(R.drawable.inputlogo);
             } else {
