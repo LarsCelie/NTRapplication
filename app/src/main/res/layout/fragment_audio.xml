@@ -2,12 +2,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     >
-    <VideoView
-        android:id="@+id/audio_view"
+
+    <MediaController
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        />
+        android:id="@+id/mediaController"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>
