@@ -18,5 +18,8 @@
         android:text="@string/error_loading_string"
         android:id="@+id/multipleSelectQuestionDescription" />
 
-
+    <ListView
+        android:id="@+id/multipleSelectOptions"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"/>
 </LinearLayout>
