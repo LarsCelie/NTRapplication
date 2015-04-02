@@ -1,4 +1,4 @@
-package nl.hu.team.ntrapplication.attachmentFragments;
+package nl.hu.team.ntrapplication.optionFragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -14,16 +14,14 @@ import nl.hu.team.ntrapplication.objects.Question;
 /**
  * Created by Milamber on 1-4-2015.
  */
-public class DateQuestionFragment extends Fragment {
-
+public class MultipleSelectQuestionFragment extends Fragment {
     private TextView name, description;
-    private DatePicker datePicker;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_date_question, container, false);
-        name = (TextView) root.findViewById(R.id.dateQuestionName);
-        description = (TextView) root.findViewById(R.id.dateQuestionDescription);
+        name = (TextView) root.findViewById(R.id.multipleSelectQuestionName);
+        description = (TextView) root.findViewById(R.id.multipleSelectQuestionDescription);
         Bundle bundle = this.getArguments();
         Question question = bundle.getParcelable("question");
 //        name.setText(question.getName());

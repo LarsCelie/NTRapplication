@@ -3,18 +3,21 @@ package nl.hu.team.ntrapplication.activities;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.ArrayList;
 
 import nl.hu.team.ntrapplication.R;
-import nl.hu.team.ntrapplication.attachmentFragments.DateQuestionFragment;
+import nl.hu.team.ntrapplication.optionFragments.MulitipleChoiceFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Question;
 import nl.hu.team.ntrapplication.objects.Survey;
+import nl.hu.team.ntrapplication.optionFragments.DateQuestionFragment;
 
 public class QuestionActivity extends Activity {
     private Survey survey;
@@ -73,7 +76,7 @@ public class QuestionActivity extends Activity {
                     break;
                 case "audio":
                     break; //do something
-                case "picture":
+                case "image":
                     break; //do something
                 default:
                     break; //load default image
@@ -98,7 +101,9 @@ public class QuestionActivity extends Activity {
 
         Fragment fragment = null;
         switch(type){
-            case "multiple_choice": break; //do something
+            case "multiple_choice":
+                fragment = new MulitipleChoiceFragment();
+                break; //do something
             case "multiple_select": break; //do something
             case "open": break; //do something
             case "time": break; //do something
@@ -126,6 +131,7 @@ public class QuestionActivity extends Activity {
         if (sequence> maxQuestions){
            finishSurvey();
         } else {
+            loadProgress();
             displayAttachment();
             displayQuestion();
         }
@@ -145,14 +151,14 @@ public class QuestionActivity extends Activity {
     }
 
     //method for the next button
-    public void nextQuestion(){
+    public void nextQuestion(View view){
         saveProgress();
         sequence++;
         updateView();
     }
 
     //method for the previous button
-    public void previousQuestion(){
+    public void previousQuestion(View view){
         if (maxQuestions > 1) {
             saveProgress();
             sequence--;
@@ -161,10 +167,17 @@ public class QuestionActivity extends Activity {
     }
 
     public void finishSurvey(){
-        //send data to server
+        Intent intent = new Intent(this, SplashScreenActivity.class);
+        startActivity(intent);
     }
 
-    public void saveProgress(){
+    public boolean saveProgress(){
         //save progress to SQLite local database
+        return true;
+    }
+
+    public boolean loadProgress(){
+        //load previously committed progress
+        return true;
     }
 }
