@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.attachmentFragments.AudioFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.database.DatabaseHandler;
 import nl.hu.team.ntrapplication.objects.Attachment;
@@ -65,7 +66,7 @@ public class MainActivity extends Activity {
         Question q1 = new Question();
         q1.setSequence(1);
         q1.setDescription("Welke datum ben je geboren?");
-        q1.setType("multiple_choice");
+        q1.setType("open");
 
         //O1
         Option o = new Option();
@@ -126,7 +127,7 @@ public class MainActivity extends Activity {
     }
 
     public void openFragment(View view){
-        Fragment newFragment = new VideoFragment();
+        Fragment newFragment = new AudioFragment();
        //De volgende regel is waarschijnlijk fout.
         //((VideoFragment)newFragment).playVideo();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
