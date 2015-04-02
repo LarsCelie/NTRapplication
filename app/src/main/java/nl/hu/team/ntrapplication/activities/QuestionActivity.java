@@ -19,6 +19,7 @@ import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Question;
 import nl.hu.team.ntrapplication.objects.Survey;
 import nl.hu.team.ntrapplication.optionFragments.DateQuestionFragment;
+import nl.hu.team.ntrapplication.optionFragments.MultipleSelectQuestionFragment;
 import nl.hu.team.ntrapplication.optionFragments.OpenQuestionFragment;
 
 public class QuestionActivity extends Activity {
@@ -107,18 +108,20 @@ public class QuestionActivity extends Activity {
             case "multiple_choice":
                 fragment = new MulitipleChoiceFragment();
                 break;
-            case "multiple_select": break; //TODO: add class
+            case "multiple_select":
+                fragment = new MultipleSelectQuestionFragment();
+                break;
             case "open":
                 fragment = new OpenQuestionFragment();
                 break;
-            case "time": break; //TODO: add class
+            case "time": break; //TODO: time answer
             case "date":
                 fragment = new DateQuestionFragment();
                 break;
-            case "datetime": break; //TODO: add class
-            case "picture": break; //TODO: add class
-            case "video": break; //TODO: add class
-            case "audio": break; //TODO: add class
+            case "datetime": break; //TODO: datetime answer
+            case "picture": break; //TODO: picture answer
+            case "video": break; //TODO: video answer
+            case "audio": break; //TODO: audio answer
             default: break; ////TODO: add default
         }
         //add the question object to the fragment object through bundle

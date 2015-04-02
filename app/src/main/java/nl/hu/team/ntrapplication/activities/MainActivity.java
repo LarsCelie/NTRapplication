@@ -82,6 +82,13 @@ public class MainActivity extends Activity {
         q3.setDescription("Ik ben een vraag, hihihihi");
         q3.setType("open");
 
+        //Q4
+        Question q4 = new Question();
+        q4.setId(3);
+        q4.setSequence(4);
+        q4.setDescription("Welke van deze apparatuur gebruik je?");
+        q4.setType("multiple_select");
+
 
         //O1
         Option o = new Option();
@@ -90,11 +97,32 @@ public class MainActivity extends Activity {
         o.setID(1);
 
         //O2
+        Option o2 = new Option();
+        o2.setVALUE("A");
+        o2.setCONTENT("Computer");
+        o2.setID(2);
+
+        //O3
+        Option o3 = new Option();
+        o3.setVALUE("B");
+        o3.setCONTENT("Smartphone");
+        o3.setID(3);
+
+        //O3
+        Option o4 = new Option();
+        o4.setVALUE("C");
+        o4.setCONTENT("Printer");
+        o4.setID(4);
 
         //add option to question
         q1.addOption(o);
         q2.addOption(o);
         q3.addOption(o);
+
+        q4.addOption(o2);
+        q4.addOption(o3);
+        q4.addOption(o4);
+
 
         //A1
         Attachment attachment = new Attachment();
@@ -112,11 +140,13 @@ public class MainActivity extends Activity {
         q1.addAttachment(attachment);
         q2.addAttachment(attachment1);
         q3.addAttachment(attachment1);
+        q4.addAttachment(attachment1);
 
         //Add question to survey
         s1.addQuestion(q1);
         s1.addQuestion(q2);
         s1.addQuestion(q3);
+        s1.addQuestion(q4);
 
         //Put data in the database
         db.addResearch(r1);
@@ -125,6 +155,10 @@ public class MainActivity extends Activity {
         db.addQuestion(q1, db.getSurveyByID(1));
         db.addQuestion(q2, db.getSurveyByID(1));
         db.addQuestion(q3, db.getSurveyByID(1));
+        db.addQuestion(q4, db.getSurveyByID(1));
+        db.addOption(o2, q4);
+        db.addOption(o3, q4);
+        db.addOption(o4, q4);
         db.addAttachment(attachment, q1);
         db.addAttachment(attachment1, q2);
         db.addAttachment(attachment1, q3);
