@@ -184,7 +184,7 @@ public class MainActivity extends Activity {
 
         Question tq1 = new Question();
         tq1.setId(10);
-        tq1.setType("infosreen");
+        tq1.setType("infoscreen");
         tq1.setNaam("Appels en peren");
         tq1.setDescription("In het volgende onderzoek zullen wij appels met peren gaan vergelijken");
         tq1.setSequence(1);

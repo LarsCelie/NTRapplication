@@ -22,6 +22,7 @@ import nl.hu.team.ntrapplication.optionFragments.DateQuestionFragment;
 import nl.hu.team.ntrapplication.optionFragments.MulitipleChoiceFragment;
 import nl.hu.team.ntrapplication.optionFragments.MultipleSelectQuestionFragment;
 import nl.hu.team.ntrapplication.optionFragments.OpenQuestionFragment;
+import nl.hu.team.ntrapplication.optionFragments.TimeQuestionFragment;
 
 public class QuestionActivity extends Activity {
     private Survey survey;
@@ -121,7 +122,8 @@ public class QuestionActivity extends Activity {
                 fragment = new OpenQuestionFragment();
                 break;
             case "time":
-                break; //TODO: time answer
+                fragment = new TimeQuestionFragment();
+                break;
             case "date":
                 fragment = new DateQuestionFragment();
                 break;
