@@ -18,6 +18,7 @@ import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Question;
 import nl.hu.team.ntrapplication.objects.Survey;
 import nl.hu.team.ntrapplication.optionFragments.DateQuestionFragment;
+import nl.hu.team.ntrapplication.optionFragments.OpenQuestionFragment;
 
 public class QuestionActivity extends Activity {
     private Survey survey;
@@ -75,11 +76,11 @@ public class QuestionActivity extends Activity {
                     fragment = new VideoFragment();
                     break;
                 case "audio":
-                    break; //do something
+                    break; //TODO: add class
                 case "image":
-                    break; //do something
+                    break; //TODO: add class
                 default:
-                    break; //load default image
+                    break; //TODO: add default image
             }
             //Add attachment to attachment fragment
             Bundle attachmentBundle = new Bundle();
@@ -103,17 +104,20 @@ public class QuestionActivity extends Activity {
         switch(type){
             case "multiple_choice":
                 fragment = new MulitipleChoiceFragment();
-                break; //do something
-            case "multiple_select": break; //do something
-            case "open": break; //do something
-            case "time": break; //do something
+                break;
+            case "multiple_select": break; //TODO: add class
+            case "open":
+                fragment = new OpenQuestionFragment();
+                break;
+            case "time": break; //TODO: add class
             case "date":
-                fragment = new DateQuestionFragment(); break;
-            case "datetime": break; //do something
-            case "picture": break; //do something
-            case "video": break; //do something
-            case "audio": break; //do something
-            default: break; //default
+                fragment = new DateQuestionFragment();
+                break;
+            case "datetime": break; //TODO: add class
+            case "picture": break; //TODO: add class
+            case "video": break; //TODO: add class
+            case "audio": break; //TODO: add class
+            default: break; ////TODO: add default
         }
         //add the question object to the fragment object through bundle
         Bundle questionBundle = new Bundle();
@@ -169,15 +173,16 @@ public class QuestionActivity extends Activity {
     public void finishSurvey(){
         Intent intent = new Intent(this, SplashScreenActivity.class);
         startActivity(intent);
+        //TODO: Finish the survey and continue to next screen
     }
 
     public boolean saveProgress(){
-        //save progress to SQLite local database
+        //TODO: save progress to SQLite local database
         return true;
     }
 
     public boolean loadProgress(){
-        //load previously committed progress
+        //TODO: load previously committed progress
         return true;
     }
 }

@@ -10,16 +10,17 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/error_loading_string"
-        android:id="@+id/multipleSelectQuestionName" />
+        android:id="@+id/openQuestionName" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/error_loading_string"
-        android:id="@+id/multipleSelectQuestionDescription" />
+        android:id="@+id/openQuestionDescription" />
 
-    <ListView
-        android:id="@+id/multipleSelectOptions"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"/>
+    <EditText
+        android:id="@+id/openQuestionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
