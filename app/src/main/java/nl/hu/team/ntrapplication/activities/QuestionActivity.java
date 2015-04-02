@@ -12,6 +12,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.attachmentFragments.ImageFragment;
 import nl.hu.team.ntrapplication.optionFragments.MulitipleChoiceFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.objects.Attachment;
@@ -78,7 +79,8 @@ public class QuestionActivity extends Activity {
                 case "audio":
                     break; //TODO: add class
                 case "image":
-                    break; //TODO: add class
+                    fragment = new ImageFragment();
+                    break;
                 default:
                     break; //TODO: add default image
             }

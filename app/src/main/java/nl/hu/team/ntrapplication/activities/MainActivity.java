@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import nl.hu.team.ntrapplication.R;
-import nl.hu.team.ntrapplication.attachmentFragments.AudioFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.database.DatabaseHandler;
 import nl.hu.team.ntrapplication.objects.Attachment;
@@ -66,7 +65,20 @@ public class MainActivity extends Activity {
         Question q1 = new Question();
         q1.setSequence(1);
         q1.setDescription("Welke datum ben je geboren?");
-        q1.setType("open");
+        q1.setType("date");
+
+        //Q2
+        Question q2 = new Question();
+        q2.setSequence(2);
+        q2.setDescription("Wat is je naam?");
+        q2.setType("open");
+
+        //Q3
+        Question q3 = new Question();
+        q3.setSequence(3);
+        q3.setDescription("Ik ben een vraag, hihihihi");
+        q3.setType("open");
+
 
         //O1
         Option o = new Option();
@@ -74,8 +86,12 @@ public class MainActivity extends Activity {
         o.setVALUE("Option: Value");
         o.setID(1);
 
+        //O2
+
         //add option to question
         q1.addOption(o);
+        q2.addOption(o);
+        q3.addOption(o);
 
         //A1
         Attachment attachment = new Attachment();
@@ -83,19 +99,32 @@ public class MainActivity extends Activity {
         attachment.setTYPE("video");
         attachment.setID(1);
 
+        //A2
+        Attachment attachment1 = new Attachment();
+        attachment1.setLOCATION("R.drawable.inputlogo");
+        attachment1.setTYPE("image");
+        attachment1.setID(1);
+
         //add attachment to question
         q1.addAttachment(attachment);
+        q2.addAttachment(attachment1);
+        q3.addAttachment(attachment1);
 
         //Add question to survey
         s1.addQuestion(q1);
+        s1.addQuestion(q2);
+        s1.addQuestion(q3);
 
         //Put data in the database
         db.addResearch(r1);
         db.addResearch(r2);
         db.addSurvey(s1,r1);
         db.addQuestion(q1, db.getSurveyByID(1));
+        db.addQuestion(q2, db.getSurveyByID(1));
+        db.addQuestion(q3, db.getSurveyByID(1));
         db.addAttachment(attachment, q1);
-        db.addOption(o, q1);
+        db.addAttachment(attachment1, q2);
+        db.addAttachment(attachment1, q3);
     }
 
 
@@ -128,7 +157,7 @@ public class MainActivity extends Activity {
     }
 
     public void openFragment(View view){
-        Fragment newFragment = new AudioFragment();
+        Fragment newFragment = new VideoFragment();
        //De volgende regel is waarschijnlijk fout.
         //((VideoFragment)newFragment).playVideo();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
