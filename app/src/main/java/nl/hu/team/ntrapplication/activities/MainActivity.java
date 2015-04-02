@@ -108,6 +108,7 @@ public class MainActivity extends Activity {
         //add attachment to question
         q1.addAttachment(attachment);
         q2.addAttachment(attachment1);
+        q3.addAttachment(attachment1);
 
         //Add question to survey
         s1.addQuestion(q1);
@@ -123,6 +124,7 @@ public class MainActivity extends Activity {
         db.addQuestion(q3, db.getSurveyByID(1));
         db.addAttachment(attachment, q1);
         db.addAttachment(attachment1, q2);
+        db.addAttachment(attachment1, q3);
     }
 
 
