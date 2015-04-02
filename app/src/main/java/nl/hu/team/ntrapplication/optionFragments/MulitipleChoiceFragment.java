@@ -56,7 +56,7 @@ public class MulitipleChoiceFragment extends Fragment {
 
       //name.setText(question.getName());
         description.setText(question.getDescription());
-        onRadioChangeListener(radioGroup);
+   //     onRadioChangeListener(radioGroup);
     }
 
     public void onRadioChangeListener(RadioGroup radioGroup){
