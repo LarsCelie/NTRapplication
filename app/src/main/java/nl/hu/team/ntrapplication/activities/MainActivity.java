@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
         q1.setId(0);
         q1.setSequence(1);
         q1.setDescription("Welke datum ben je geboren?");
-        q1.setType("multiple_select");
+        q1.setType("date");
 
         //Q2
         Question q2 = new Question();
@@ -128,7 +128,7 @@ public class MainActivity extends Activity {
         Attachment attachment = new Attachment();
         attachment.setLOCATION("R.raw.video_test_01");
         attachment.setTYPE("video");
-        attachment.setID(1);
+        attachment.setID(0);
 
         //A2
         Attachment attachment1 = new Attachment();
@@ -136,10 +136,16 @@ public class MainActivity extends Activity {
         attachment1.setTYPE("image");
         attachment1.setID(1);
 
+        //A3
+        Attachment attachment2 = new Attachment();
+        attachment2.setLOCATION("R.drawable.inputlogo2");
+        attachment2.setTYPE("image");
+        attachment2.setID(2);
+
         //add attachment to question
         q1.addAttachment(attachment);
         q2.addAttachment(attachment1);
-        q3.addAttachment(attachment1);
+        q3.addAttachment(attachment2);
         q4.addAttachment(attachment1);
 
         //Add question to survey
@@ -161,8 +167,8 @@ public class MainActivity extends Activity {
         db.addOption(o4, q4);
         db.addAttachment(attachment, q1);
         db.addAttachment(attachment1, q2);
-        db.addAttachment(attachment1, q3);
-        db.addOption(o,q1);
+        db.addAttachment(attachment2, q3);
+        db.addAttachment(attachment1, q4);
 
         //Test survey with all questions
 

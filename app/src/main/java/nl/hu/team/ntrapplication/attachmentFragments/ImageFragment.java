@@ -28,7 +28,11 @@ public class ImageFragment extends Fragment {
         //check if attachment is an image
         if (attachment.getTYPE().equals("image")){
             image = (ImageView) root.findViewById(R.id.image_view);
-            image.setImageResource(R.drawable.inputlogo);
+            if (attachment.getLOCATION().equals("R.drawable.inputlogo")) {
+                image.setImageResource(R.drawable.inputlogo);
+            } else {
+                image.setImageResource(R.drawable.inputlogo2);
+            }
         }
         return root;
     }

@@ -28,6 +28,8 @@ public class QuestionActivity extends Activity {
     private Survey survey;
     private int sequence = 1;
     private int maxQuestions;
+    private Fragment attachmentFragment;
+    private Fragment optionFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,32 +77,31 @@ public class QuestionActivity extends Activity {
             ArrayList<Attachment> attachments = question.getAttachments();
             attachment = attachments.get(0);
         }
-        Fragment fragment = null;
 
         //make a choice
         String type = attachment.getTYPE();
         switch (type) {
             case "video":
-                fragment = new VideoFragment();
+                attachmentFragment = new VideoFragment();
                 break;
             case "audio":
                 break; //TODO: add class
             case "image":
-                fragment = new ImageFragment();
+                attachmentFragment = new ImageFragment();
                 break;
             default:
-                fragment = new ImageFragment();
+                attachmentFragment = new ImageFragment();
                 //load the default image
                 break;
         }
         //Add attachment to attachment fragment
         Bundle attachmentBundle = new Bundle();
         attachmentBundle.putParcelable("attachment", attachment);
-        fragment.setArguments(attachmentBundle);
+        attachmentFragment.setArguments(attachmentBundle);
 
         //place fragment in the layout
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.question_attachment, fragment);
+        transaction.replace(R.id.question_attachment, attachmentFragment);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         transaction.commit();
     }
@@ -110,22 +111,21 @@ public class QuestionActivity extends Activity {
         Question question = getCurrentQuestion();
         String type = question.getType();
 
-        Fragment fragment = null;
         switch (type) {
             case "multiple_choice":
-                fragment = new MulitipleChoiceFragment();
+                optionFragment = new MulitipleChoiceFragment();
                 break;
             case "multiple_select":
-                fragment = new MultipleSelectQuestionFragment();
+                optionFragment = new MultipleSelectQuestionFragment();
                 break;
             case "open":
-                fragment = new OpenQuestionFragment();
+                optionFragment = new OpenQuestionFragment();
                 break;
             case "time":
-                fragment = new TimeQuestionFragment();
+                optionFragment = new TimeQuestionFragment();
                 break;
             case "date":
-                fragment = new DateQuestionFragment();
+                optionFragment = new DateQuestionFragment();
                 break;
             case "datetime":
                 break; //TODO: datetime answer
@@ -136,7 +136,7 @@ public class QuestionActivity extends Activity {
             case "audio":
                 break; //TODO: audio answer
             case "infoscreen":
-                fragment = new InfoscreenFragment();
+                optionFragment = new InfoscreenFragment();
                 break;
             default:
                 break; ////TODO: add default
@@ -144,11 +144,11 @@ public class QuestionActivity extends Activity {
         //add the question object to the fragment object through bundle
         Bundle questionBundle = new Bundle();
         questionBundle.putParcelable("question", question);
-        fragment.setArguments(questionBundle);
+        optionFragment.setArguments(questionBundle);
 
         //place fragment in the layout
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.question_answer, fragment);
+        transaction.replace(R.id.question_answer, optionFragment);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         transaction.commit();
     }
@@ -167,7 +167,6 @@ public class QuestionActivity extends Activity {
     public Question getCurrentQuestion() {
         Question question = null;
         ArrayList<Question> questions = survey.getQuestions();
-        System.out.println("DEBUG: Number of questions in this survey: " + questions.size());
         for (Question q : questions) {
             if (q.getSequence() == sequence) {
                 question = q;
@@ -201,11 +200,12 @@ public class QuestionActivity extends Activity {
 
     public boolean saveProgress() {
         //TODO: save progress to SQLite local database
+//        optionFragment.getAnswerValue();
         return true;
     }
 
     public boolean loadProgress() {
         //TODO: load previously committed progress
-        return true;
+        return false;
     }
 }
