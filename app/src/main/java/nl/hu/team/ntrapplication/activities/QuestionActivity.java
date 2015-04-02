@@ -122,6 +122,7 @@ public class QuestionActivity extends Activity {
             case "picture": break; //TODO: picture answer
             case "video": break; //TODO: video answer
             case "audio": break; //TODO: audio answer
+            case "infoscreen": break; //TODO
             default: break; ////TODO: add default
         }
         //add the question object to the fragment object through bundle

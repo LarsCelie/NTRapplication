@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
         q1.setId(0);
         q1.setSequence(1);
         q1.setDescription("Welke datum ben je geboren?");
-        q1.setType("date");
+        q1.setType("multiple_select");
 
         //Q2
         Question q2 = new Question();
@@ -162,6 +162,38 @@ public class MainActivity extends Activity {
         db.addAttachment(attachment, q1);
         db.addAttachment(attachment1, q2);
         db.addAttachment(attachment1, q3);
+        db.addOption(o,q1);
+
+        //Test survey with all questions
+
+        Research tr = new Research();
+        tr.setSTATUS("open");
+        tr.setID(9);
+        tr.setNAME("Fruit onderzoek");
+        tr.setBEGIN_DATE(convertStringToDate("01-01-2015"));
+        tr.setEND_DATE(convertStringToDate("10-10-2015"));
+        db.addResearch(tr);
+
+        Survey ts = new Survey();
+        ts.setEndDate(convertStringToDate("10-10-2015"));
+        ts.setBeginDate(convertStringToDate("01-01-2015"));
+        ts.setName("Appels en peren");
+        ts.setStatus("open");
+        ts.setId(9);
+        tr.addSurvey(ts);
+        db.addSurvey(ts,tr);
+
+        Question tq1 = new Question();
+        tq1.setId(10);
+        tq1.setType("infoscherm");
+        tq1.setDescription("In het volgende onderzoek zullen wij appels met peren gaan vergelijken");
+        ts.addQuestion(tq1);
+        db.addQuestion(tq1,ts);
+
+        Question tq2 = new Question();
+        tq2.setId(11);
+        tq2.setType("");
+
     }
 
 
