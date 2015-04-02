@@ -10,6 +10,7 @@ public class Option implements Parcelable{
     private int ID;
     private String CONTENT;
     private String VALUE;
+    private boolean selected = false;
 
     public Option() {
 
@@ -63,5 +64,13 @@ public class Option implements Parcelable{
         ID = in.readInt();
         CONTENT = in.readString();
         VALUE = in.readString();
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }
