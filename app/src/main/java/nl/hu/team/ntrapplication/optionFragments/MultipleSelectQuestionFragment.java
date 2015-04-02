@@ -38,7 +38,7 @@ public class MultipleSelectQuestionFragment extends Fragment {
         Question question = bundle.getParcelable("question");
 //        name.setText(question.getName());
         description.setText(question.getDescription());
-        dataAdapter = new MyCustomAdapter(root.getContext(),R.layout.layout_multiselect,question.getOptions());
+        dataAdapter = new MyCustomAdapter(getActivity(),R.layout.layout_multiselect,question.getOptions());
         listView = (ListView) root.findViewById(R.id.multipleSelectOptions);
         listView.setAdapter(dataAdapter);
         return root;
