@@ -13,12 +13,12 @@ import java.util.ArrayList;
 
 import nl.hu.team.ntrapplication.R;
 import nl.hu.team.ntrapplication.attachmentFragments.ImageFragment;
-import nl.hu.team.ntrapplication.optionFragments.MulitipleChoiceFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Question;
 import nl.hu.team.ntrapplication.objects.Survey;
 import nl.hu.team.ntrapplication.optionFragments.DateQuestionFragment;
+import nl.hu.team.ntrapplication.optionFragments.MulitipleChoiceFragment;
 import nl.hu.team.ntrapplication.optionFragments.MultipleSelectQuestionFragment;
 import nl.hu.team.ntrapplication.optionFragments.OpenQuestionFragment;
 
@@ -63,48 +63,52 @@ public class QuestionActivity extends Activity {
 
     public void displayAttachment() {
         Question question = getCurrentQuestion();
-
-        if (question.getAttachments() == null || question.getAttachments().size()==0) {
+        Attachment attachment = null;
+        if (question.getAttachments() == null || question.getAttachments().size() == 0) {
             System.out.println("Error! no attachments");
-        } else {
-            ArrayList<Attachment> attachments = question.getAttachments();
-            Attachment attachment = attachments.get(0);
-            Fragment fragment = null;
-
-            //make a choice
-            String type = attachment.getTYPE();
-            switch (type) {
-                case "video":
-                    fragment = new VideoFragment();
-                    break;
-                case "audio":
-                    break; //TODO: add class
-                case "image":
-                    fragment = new ImageFragment();
-                    break;
-                default:
-                    break; //TODO: add default image
-            }
-            //Add attachment to attachment fragment
-            Bundle attachmentBundle = new Bundle();
-            attachmentBundle.putParcelable("attachment",attachment);
-            fragment.setArguments(attachmentBundle);
-
-            //place fragment in the layout
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.question_attachment, fragment);
-            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            transaction.commit();
+            attachment = new Attachment();
+            attachment.setTYPE("image");
+            attachment.setLOCATION("R.drawable.inputlogo");
         }
+        ArrayList<Attachment> attachments = question.getAttachments();
+        attachment = attachments.get(0);
+        Fragment fragment = null;
+
+        //make a choice
+        String type = attachment.getTYPE();
+        switch (type) {
+            case "video":
+                fragment = new VideoFragment();
+                break;
+            case "audio":
+                break; //TODO: add class
+            case "image":
+                fragment = new ImageFragment();
+                break;
+            default:
+                fragment = new ImageFragment();
+                //load the default image
+                break;
+        }
+        //Add attachment to attachment fragment
+        Bundle attachmentBundle = new Bundle();
+        attachmentBundle.putParcelable("attachment", attachment);
+        fragment.setArguments(attachmentBundle);
+
+        //place fragment in the layout
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.question_attachment, fragment);
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transaction.commit();
     }
 
     //displays the question fragment
-    public void displayQuestion(){
+    public void displayQuestion() {
         Question question = getCurrentQuestion();
         String type = question.getType();
 
         Fragment fragment = null;
-        switch(type){
+        switch (type) {
             case "multiple_choice":
                 fragment = new MulitipleChoiceFragment();
                 break;
@@ -114,19 +118,25 @@ public class QuestionActivity extends Activity {
             case "open":
                 fragment = new OpenQuestionFragment();
                 break;
-            case "time": break; //TODO: time answer
+            case "time":
+                break; //TODO: time answer
             case "date":
                 fragment = new DateQuestionFragment();
                 break;
-            case "datetime": break; //TODO: datetime answer
-            case "picture": break; //TODO: picture answer
-            case "video": break; //TODO: video answer
-            case "audio": break; //TODO: audio answer
-            default: break; ////TODO: add default
+            case "datetime":
+                break; //TODO: datetime answer
+            case "picture":
+                break; //TODO: picture answer
+            case "video":
+                break; //TODO: video answer
+            case "audio":
+                break; //TODO: audio answer
+            default:
+                break; ////TODO: add default
         }
         //add the question object to the fragment object through bundle
         Bundle questionBundle = new Bundle();
-        questionBundle.putParcelable("question",question);
+        questionBundle.putParcelable("question", question);
         fragment.setArguments(questionBundle);
 
         //place fragment in the layout
@@ -136,9 +146,9 @@ public class QuestionActivity extends Activity {
         transaction.commit();
     }
 
-    public void updateView(){
-        if (sequence> maxQuestions){
-           finishSurvey();
+    public void updateView() {
+        if (sequence > maxQuestions) {
+            finishSurvey();
         } else {
             loadProgress();
             displayAttachment();
@@ -147,12 +157,12 @@ public class QuestionActivity extends Activity {
     }
 
     //returns current question according to the sequence
-    public Question getCurrentQuestion(){
+    public Question getCurrentQuestion() {
         Question question = null;
         ArrayList<Question> questions = survey.getQuestions();
-        System.out.println("DEBUG: Number of questions in this survey: "+questions.size());
-        for (Question q : questions){
-            if (q.getSequence()==sequence){
+        System.out.println("DEBUG: Number of questions in this survey: " + questions.size());
+        for (Question q : questions) {
+            if (q.getSequence() == sequence) {
                 question = q;
                 break;
             }
@@ -161,14 +171,14 @@ public class QuestionActivity extends Activity {
     }
 
     //method for the next button
-    public void nextQuestion(View view){
+    public void nextQuestion(View view) {
         saveProgress();
         sequence++;
         updateView();
     }
 
     //method for the previous button
-    public void previousQuestion(View view){
+    public void previousQuestion(View view) {
         if (maxQuestions > 1) {
             saveProgress();
             sequence--;
@@ -176,18 +186,18 @@ public class QuestionActivity extends Activity {
         }
     }
 
-    public void finishSurvey(){
+    public void finishSurvey() {
         Intent intent = new Intent(this, SplashScreenActivity.class);
         startActivity(intent);
         //TODO: Finish the survey and continue to next screen
     }
 
-    public boolean saveProgress(){
+    public boolean saveProgress() {
         //TODO: save progress to SQLite local database
         return true;
     }
 
-    public boolean loadProgress(){
+    public boolean loadProgress() {
         //TODO: load previously committed progress
         return true;
     }
