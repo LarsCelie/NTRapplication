@@ -63,18 +63,21 @@ public class MainActivity extends Activity {
 
         //Q1
         Question q1 = new Question();
+        q1.setId(0);
         q1.setSequence(1);
         q1.setDescription("Welke datum ben je geboren?");
         q1.setType("date");
 
         //Q2
         Question q2 = new Question();
+        q2.setId(1);
         q2.setSequence(2);
         q2.setDescription("Wat is je naam?");
         q2.setType("open");
 
         //Q3
         Question q3 = new Question();
+        q3.setId(2);
         q3.setSequence(3);
         q3.setDescription("Ik ben een vraag, hihihihi");
         q3.setType("open");
