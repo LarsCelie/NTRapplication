@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -55,6 +56,20 @@ public class MulitipleChoiceFragment extends Fragment {
 
       //name.setText(question.getName());
         description.setText(question.getDescription());
-
+   //     onRadioChangeListener(radioGroup);
     }
+
+    public void onRadioChangeListener(RadioGroup radioGroup){
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case 0 :
+
+                }
+            }
+        });
+    }
+
 }
