@@ -65,14 +65,15 @@ public class QuestionActivity extends Activity {
     public void displayAttachment() {
         Question question = getCurrentQuestion();
         Attachment attachment = null;
-        if (question.getAttachments() == null || question.getAttachments().size() == 0) {
+        if (question.getAttachments() == null) {
             System.out.println("Error! no attachments");
             attachment = new Attachment();
             attachment.setTYPE("image");
             attachment.setLOCATION("R.drawable.inputlogo");
+        } else {
+            ArrayList<Attachment> attachments = question.getAttachments();
+            attachment = attachments.get(0);
         }
-        ArrayList<Attachment> attachments = question.getAttachments();
-        attachment = attachments.get(0);
         Fragment fragment = null;
 
         //make a choice
