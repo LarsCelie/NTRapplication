@@ -95,6 +95,7 @@ public class MainActivity extends Activity {
         db.addSurvey(s1,r1);
         db.addQuestion(q1, db.getSurveyByID(1));
         db.addAttachment(attachment, q1);
+        db.addOption(o, q1);
     }
 
 
