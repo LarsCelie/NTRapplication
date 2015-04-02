@@ -180,19 +180,92 @@ public class MainActivity extends Activity {
         ts.setName("Appels en peren");
         ts.setStatus("open");
         ts.setId(9);
-        tr.addSurvey(ts);
         db.addSurvey(ts,tr);
 
         Question tq1 = new Question();
         tq1.setId(10);
-        tq1.setType("infoscherm");
+        tq1.setType("infosreen");
+        tq1.setNaam("Appels en peren");
         tq1.setDescription("In het volgende onderzoek zullen wij appels met peren gaan vergelijken");
-        ts.addQuestion(tq1);
+        tq1.setSequence(1);
         db.addQuestion(tq1,ts);
 
         Question tq2 = new Question();
         tq2.setId(11);
-        tq2.setType("");
+        tq2.setType("date");
+        tq2.setNaam("Appel/peer gegeten");
+        tq2.setDescription("Vul de datum in op welk u het laatst een appel of peer heeft gegeten");
+        tq2.setSequence(2);
+        db.addQuestion(tq2,ts);
+
+        Question tq3 = new Question();
+        tq3.setId(12);
+        tq3.setType("time");
+        tq3.setNaam("Appel/peer nuttigen");
+        tq3.setDescription("Hoe laat eet u meestal een appel of peer wanneer u dit doet");
+        tq3.setSequence(3);
+        db.addQuestion(tq3,ts);
+
+        Question tq4 = new Question();
+        tq4.setId(13);
+        tq4.setType("multiple_choice");
+        tq4.setNaam("Appel of peer");
+        tq4.setDescription("Eet u meer appels of peren");
+        tq4.setSequence(4);
+        db.addQuestion(tq4,ts);
+
+        Option tq4o1 = new Option();
+        tq4o1.setID(10);
+        tq4o1.setVALUE("A");
+        tq4o1.setCONTENT("Appels");
+        db.addOption(tq4o1,tq4);
+
+        Option tq4o2 = new Option();
+        tq4o2.setID(11);
+        tq4o2.setVALUE("B");
+        tq4o2.setCONTENT("Peren");
+        db.addOption(tq4o2,tq4);
+
+        Question tq5 = new Question();
+        tq5.setId(14);
+        tq5.setType("multiple_select");
+        tq5.setNaam("Hoeveel appels/peren");
+        tq5.setDescription("Hoeveel appels en/of peren eet u per week");
+        tq5.setSequence(5);
+        db.addQuestion(tq5,ts);
+
+        Option tq5o1 = new Option();
+        tq5o1.setID(20);
+        tq5o1.setVALUE("A");
+        tq5o1.setCONTENT("Geen");
+        db.addOption(tq5o1,tq5);
+
+        Option tq5o2 = new Option();
+        tq5o2.setID(21);
+        tq5o2.setVALUE("B");
+        tq5o2.setCONTENT("1 tot 7");
+        db.addOption(tq5o2,tq5);
+
+        Option tq5o3 = new Option();
+        tq5o3.setID(22);
+        tq5o3.setVALUE("C");
+        tq5o3.setCONTENT("8 tot 14");
+        db.addOption(tq5o3,tq5);
+
+        Option tq5o4 = new Option();
+        tq5o4.setID(23);
+        tq5o4.setVALUE("D");
+        tq5o4.setCONTENT("Meer dan 14");
+        db.addOption(tq5o4,tq5);
+
+        Question tq6 = new Question();
+        tq6.setId(15);
+        tq6.setType("open");
+        tq6.setNaam("Ervaringen appels/peren");
+        tq6.setDescription("Geef aan waarom u wel (of niet) van appels en/of peren houd");
+        tq6.setSequence(6);
+        db.addQuestion(tq6,ts);
+
 
     }
 

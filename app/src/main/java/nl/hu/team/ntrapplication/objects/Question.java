@@ -15,6 +15,16 @@ public class Question implements Parcelable {
     private String description;
     private int sequence;
     private String type;
+    private String naam;
+
+    public String getNaam() {
+        return naam;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
     private ArrayList<Option> options = new ArrayList<>();
     private ArrayList<Attachment> attachments = new ArrayList<>();
 
