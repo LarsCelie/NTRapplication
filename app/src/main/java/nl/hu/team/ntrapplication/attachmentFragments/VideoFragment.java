@@ -33,6 +33,7 @@ public class VideoFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         videoView.setMediaController(new MediaController(getActivity()));
         playVideo();
+        pauseVideo();
     }
 
     public void playVideo() {

@@ -12,24 +12,27 @@ import nl.hu.team.ntrapplication.R;
 import nl.hu.team.ntrapplication.objects.Question;
 
 /**
- * Created by Milamber on 1-4-2015.
+ * Created by Lars on 4/2/2015.
  */
-public class MultipleSelectQuestionFragment extends Fragment {
+public class OpenQuestionFragment extends Fragment {
 
     private TextView name, description;
     private DatePicker datePicker;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_multiple_select, container, false);
-        name = (TextView) root.findViewById(R.id.multipleSelectQuestionName);
-        description = (TextView) root.findViewById(R.id.multipleSelectQuestionDescription);
+        View root = inflater.inflate(R.layout.fragment_open_question, container, false);
+        name = (TextView) root.findViewById(R.id.openQuestionName);
+        description = (TextView) root.findViewById(R.id.openQuestionDescription);
+
         Bundle bundle = this.getArguments();
         Question question = bundle.getParcelable("question");
 //        name.setText(question.getName());
         description.setText(question.getDescription());
+
         return root;
     }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

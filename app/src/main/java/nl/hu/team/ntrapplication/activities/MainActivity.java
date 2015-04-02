@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
         Question q1 = new Question();
         q1.setSequence(1);
         q1.setDescription("Welke datum ben je geboren?");
-        q1.setType("multiple_choice");
+        q1.setType("open");
 
         //O1
         Option o = new Option();
