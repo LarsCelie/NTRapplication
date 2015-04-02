@@ -12,18 +12,24 @@ import android.view.View;
 import java.util.ArrayList;
 
 import nl.hu.team.ntrapplication.R;
-import nl.hu.team.ntrapplication.optionFragments.MulitipleChoiceFragment;
+import nl.hu.team.ntrapplication.attachmentFragments.ImageFragment;
+import nl.hu.team.ntrapplication.attachmentFragments.InfoscreenFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Question;
 import nl.hu.team.ntrapplication.objects.Survey;
 import nl.hu.team.ntrapplication.optionFragments.DateQuestionFragment;
+import nl.hu.team.ntrapplication.optionFragments.MulitipleChoiceFragment;
+import nl.hu.team.ntrapplication.optionFragments.MultipleSelectQuestionFragment;
 import nl.hu.team.ntrapplication.optionFragments.OpenQuestionFragment;
+import nl.hu.team.ntrapplication.optionFragments.TimeQuestionFragment;
 
 public class QuestionActivity extends Activity {
     private Survey survey;
     private int sequence = 1;
     private int maxQuestions;
+    private Fragment attachmentFragment;
+    private Fragment optionFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,81 +65,97 @@ public class QuestionActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void displayAttachment(){
+    public void displayAttachment() {
         Question question = getCurrentQuestion();
-
-        if (question.getAttachments()==null){
+        Attachment attachment = null;
+        if (question.getAttachments().size() == 0) {
             System.out.println("Error! no attachments");
+            attachment = new Attachment();
+            attachment.setTYPE("image");
+            attachment.setLOCATION("R.drawable.inputlogo");
         } else {
             ArrayList<Attachment> attachments = question.getAttachments();
-            Attachment attachment = attachments.get(0);
-            Fragment fragment = null;
-
-            //make a choice
-            String type = attachment.getTYPE();
-            switch (type) {
-                case "video":
-                    fragment = new VideoFragment();
-                    break;
-                case "audio":
-                    break; //TODO: add class
-                case "image":
-                    break; //TODO: add class
-                default:
-                    break; //TODO: add default image
-            }
-            //Add attachment to attachment fragment
-            Bundle attachmentBundle = new Bundle();
-            attachmentBundle.putParcelable("attachment",attachment);
-            fragment.setArguments(attachmentBundle);
-
-            //place fragment in the layout
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.question_attachment, fragment);
-            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            transaction.commit();
+            attachment = attachments.get(0);
         }
-    }
 
-    //displays the question fragment
-    public void displayQuestion(){
-        Question question = getCurrentQuestion();
-        String type = question.getType();
-
-        Fragment fragment = null;
-        switch(type){
-            case "multiple_choice":
-                fragment = new MulitipleChoiceFragment();
+        //make a choice
+        String type = attachment.getTYPE();
+        switch (type) {
+            case "video":
+                attachmentFragment = new VideoFragment();
                 break;
-            case "multiple_select": break; //TODO: add class
-            case "open":
-                fragment = new OpenQuestionFragment();
+            case "audio":
+                break; //TODO: add class
+            case "image":
+                attachmentFragment = new ImageFragment();
                 break;
-            case "time": break; //TODO: add class
-            case "date":
-                fragment = new DateQuestionFragment();
+            default:
+                attachmentFragment = new ImageFragment();
+                //load the default image
                 break;
-            case "datetime": break; //TODO: add class
-            case "picture": break; //TODO: add class
-            case "video": break; //TODO: add class
-            case "audio": break; //TODO: add class
-            default: break; ////TODO: add default
         }
-        //add the question object to the fragment object through bundle
-        Bundle questionBundle = new Bundle();
-        questionBundle.putParcelable("question",question);
-        fragment.setArguments(questionBundle);
+        //Add attachment to attachment fragment
+        Bundle attachmentBundle = new Bundle();
+        attachmentBundle.putParcelable("attachment", attachment);
+        attachmentFragment.setArguments(attachmentBundle);
 
         //place fragment in the layout
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.question_answer, fragment);
+        transaction.replace(R.id.question_attachment, attachmentFragment);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         transaction.commit();
     }
 
-    public void updateView(){
-        if (sequence> maxQuestions){
-           finishSurvey();
+    //displays the question fragment
+    public void displayQuestion() {
+        Question question = getCurrentQuestion();
+        String type = question.getType();
+
+        switch (type) {
+            case "multiple_choice":
+                optionFragment = new MulitipleChoiceFragment();
+                break;
+            case "multiple_select":
+                optionFragment = new MultipleSelectQuestionFragment();
+                break;
+            case "open":
+                optionFragment = new OpenQuestionFragment();
+                break;
+            case "time":
+                optionFragment = new TimeQuestionFragment();
+                break;
+            case "date":
+                optionFragment = new DateQuestionFragment();
+                break;
+            case "datetime":
+                break; //TODO: datetime answer
+            case "picture":
+                break; //TODO: picture answer
+            case "video":
+                break; //TODO: video answer
+            case "audio":
+                break; //TODO: audio answer
+            case "infoscreen":
+                optionFragment = new InfoscreenFragment();
+                break;
+            default:
+                break; ////TODO: add default
+        }
+        //add the question object to the fragment object through bundle
+        Bundle questionBundle = new Bundle();
+        questionBundle.putParcelable("question", question);
+        optionFragment.setArguments(questionBundle);
+
+        //place fragment in the layout
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.question_answer, optionFragment);
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transaction.commit();
+    }
+
+    public void updateView() {
+        if (sequence > maxQuestions) {
+            finishSurvey();
         } else {
             loadProgress();
             displayAttachment();
@@ -142,11 +164,11 @@ public class QuestionActivity extends Activity {
     }
 
     //returns current question according to the sequence
-    public Question getCurrentQuestion(){
+    public Question getCurrentQuestion() {
         Question question = null;
         ArrayList<Question> questions = survey.getQuestions();
-        for (Question q : questions){
-            if (q.getSequence()==sequence){
+        for (Question q : questions) {
+            if (q.getSequence() == sequence) {
                 question = q;
                 break;
             }
@@ -155,14 +177,14 @@ public class QuestionActivity extends Activity {
     }
 
     //method for the next button
-    public void nextQuestion(View view){
+    public void nextQuestion(View view) {
         saveProgress();
         sequence++;
         updateView();
     }
 
     //method for the previous button
-    public void previousQuestion(View view){
+    public void previousQuestion(View view) {
         if (maxQuestions > 1) {
             saveProgress();
             sequence--;
@@ -170,19 +192,20 @@ public class QuestionActivity extends Activity {
         }
     }
 
-    public void finishSurvey(){
+    public void finishSurvey() {
         Intent intent = new Intent(this, SplashScreenActivity.class);
         startActivity(intent);
         //TODO: Finish the survey and continue to next screen
     }
 
-    public boolean saveProgress(){
+    public boolean saveProgress() {
         //TODO: save progress to SQLite local database
+//        optionFragment.getAnswerValue();
         return true;
     }
 
-    public boolean loadProgress(){
+    public boolean loadProgress() {
         //TODO: load previously committed progress
-        return true;
+        return false;
     }
 }
