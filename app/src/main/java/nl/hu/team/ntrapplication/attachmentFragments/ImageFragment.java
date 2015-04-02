@@ -20,25 +20,24 @@ public class ImageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //get question activity view
         View root = inflater.inflate(R.layout.fragment_image, container, false);
-
-        //get attachment from bundle
-        Bundle bundle = this.getArguments();
-        Attachment attachment = bundle.getParcelable("attachment");
-
-        //check if attachment is an image
-        if (attachment.getTYPE().equals("image")){
-            image = (ImageView) root.findViewById(R.id.image_view);
-            if (attachment.getLOCATION().equals("R.drawable.inputlogo")) {
-                image.setImageResource(R.drawable.inputlogo);
-            } else {
-                image.setImageResource(R.drawable.inputlogo2);
-            }
-        }
         return root;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        //get the attachment
+        Attachment attachment = savedInstanceState.getParcelable("attachment");
+
+        //check if attachment is an image
+        if (attachment.getTYPE().equals("image")){
+            image = (ImageView) getView().findViewById(R.id.image_view);
+            if (attachment.getLOCATION().equals("R.drawable.inputlogo")) {
+                image.setImageResource(R.drawable.inputlogo);
+            } else {
+                image.setImageResource(R.drawable.inputlogo2);
+            }
+        }
     }
 }
