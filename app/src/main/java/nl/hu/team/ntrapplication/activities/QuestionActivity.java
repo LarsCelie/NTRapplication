@@ -60,10 +60,10 @@ public class QuestionActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void displayAttachment(){
+    public void displayAttachment() {
         Question question = getCurrentQuestion();
 
-        if (question.getAttachments()==null){
+        if (question.getAttachments() == null || question.getAttachments().size()==0) {
             System.out.println("Error! no attachments");
         } else {
             ArrayList<Attachment> attachments = question.getAttachments();
@@ -147,6 +147,7 @@ public class QuestionActivity extends Activity {
     public Question getCurrentQuestion(){
         Question question = null;
         ArrayList<Question> questions = survey.getQuestions();
+        System.out.println("DEBUG: Number of questions in this survey: "+questions.size());
         for (Question q : questions){
             if (q.getSequence()==sequence){
                 question = q;

@@ -19,7 +19,7 @@ public class ImageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //get question activity view
-        View root = inflater.inflate(R.layout.fragment_multiple_choice_question, container, false);
+        View root = inflater.inflate(R.layout.fragment_image, container, false);
 
         //get attachment from bundle
         Bundle bundle = this.getArguments();
