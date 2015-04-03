@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -36,9 +37,18 @@ public class QuestionActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
+        //Get survey object
         Bundle data = getIntent().getExtras();
         survey = (Survey) data.getParcelable("selected_survey");
+
+        //set initial attributes
         maxQuestions = survey.getQuestions().size();
+
+        //disable the previous button
+        Button b = (Button) findViewById(R.id.question_button_previous);
+        b.setEnabled(false);
+
+        //call update
         updateView();
     }
 
@@ -178,6 +188,10 @@ public class QuestionActivity extends Activity {
 
     //method for the next button
     public void nextQuestion(View view) {
+        Button button = (Button) findViewById(R.id.question_button_previous);
+        if (!button.isEnabled()){
+            button.setEnabled(true);
+        }
         saveProgress();
         sequence++;
         updateView();
@@ -188,6 +202,10 @@ public class QuestionActivity extends Activity {
         if (sequence > 1) {
             saveProgress();
             sequence--;
+            if (sequence <=1){
+                Button button = (Button) findViewById(R.id.question_button_previous);
+                button.setEnabled(false);
+            }
             updateView();
         }
     }
@@ -205,7 +223,7 @@ public class QuestionActivity extends Activity {
     }
 
     public boolean loadProgress() {
-        //TODO: load previously committed progress
+        //TODO: load previously committed progress from SQLite local database
         return false;
     }
 }

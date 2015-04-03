@@ -27,8 +27,8 @@
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="match_parent"
-            android:text="@string/previous"
-            android:id="@+id/button"
+            android:text="@string/question_button_previous"
+            android:id="@+id/question_button_previous"
             android:onClick="previousQuestion" />
 
         <Button
@@ -36,15 +36,15 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="@string/pause"
-            android:id="@+id/button2" />
+            android:text="@string/question_button_pause"
+            android:id="@+id/question_button_pause" />
 
         <Button
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="match_parent"
-            android:text="@string/next"
-            android:id="@+id/button3"
+            android:text="@string/question_button_next"
+            android:id="@+id/question_button_next"
             android:onClick="nextQuestion" />
     </LinearLayout>
 </LinearLayout>
