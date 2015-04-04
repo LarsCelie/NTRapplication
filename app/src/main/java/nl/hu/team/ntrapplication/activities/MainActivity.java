@@ -88,7 +88,7 @@ public class MainActivity extends Activity {
         q4.setId(3);
         q4.setSequence(4);
         q4.setDescription("Welke van deze apparatuur gebruik je?");
-        q4.setType("multiple_select");
+        q4.setType("video");
 
 
         //O1
