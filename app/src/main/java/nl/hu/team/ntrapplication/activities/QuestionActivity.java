@@ -23,6 +23,7 @@ import nl.hu.team.ntrapplication.optionFragments.DateQuestionFragment;
 import nl.hu.team.ntrapplication.optionFragments.MulitipleChoiceFragment;
 import nl.hu.team.ntrapplication.optionFragments.MultipleSelectQuestionFragment;
 import nl.hu.team.ntrapplication.optionFragments.OpenQuestionFragment;
+import nl.hu.team.ntrapplication.optionFragments.TakePhotoFragment;
 import nl.hu.team.ntrapplication.optionFragments.TimeQuestionFragment;
 
 public class QuestionActivity extends Activity {
@@ -140,7 +141,8 @@ public class QuestionActivity extends Activity {
             case "datetime":
                 break; //TODO: datetime answer
             case "picture":
-                break; //TODO: picture answer
+                optionFragment = new TakePhotoFragment();
+                break;
             case "video":
                 break; //TODO: video answer
             case "audio":

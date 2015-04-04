@@ -81,7 +81,7 @@ public class MainActivity extends Activity {
         q3.setId(2);
         q3.setSequence(3);
         q3.setDescription("Ik ben een vraag, hihihihi");
-        q3.setType("open");
+        q3.setType("picture");
 
         //Q4
         Question q4 = new Question();
