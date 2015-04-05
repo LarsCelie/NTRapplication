@@ -5,6 +5,8 @@
     <uses-feature android:name="android.hardware.camera"
         android:required="true" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -52,6 +54,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nl.hu.team.ntrapplication.activities.SurveyListActivity"/>
         </activity>
+        <service
+            android:name=".services.FetchAddressIntentService"
+            android:exported="false"/>
     </application>
 
 </manifest>
