@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.attachmentFragments.AudioFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.database.DatabaseHandler;
 import nl.hu.team.ntrapplication.objects.Attachment;
@@ -273,6 +274,13 @@ public class MainActivity extends Activity {
         tq6.setSequence(6);
         db.addQuestion(tq6,ts);
 
+        Attachment ta1 = new Attachment();
+        ta1.setLOCATION("http://www.offertise.nl/wp-content/uploads/appels_peren1.jpg");
+        ta1.setTYPE("image");
+        ta1.setID(2);
+
+        db.addAttachment(ta1, tq2);
+
 
     }
 
@@ -306,7 +314,7 @@ public class MainActivity extends Activity {
     }
 
     public void openFragment(View view){
-        Fragment newFragment = new VideoFragment();
+        Fragment newFragment = new AudioFragment();
        //De volgende regel is waarschijnlijk fout.
         //((VideoFragment)newFragment).playVideo();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
