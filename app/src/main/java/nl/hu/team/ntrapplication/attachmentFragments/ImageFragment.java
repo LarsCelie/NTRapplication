@@ -61,7 +61,7 @@ public class ImageFragment extends Fragment {
             return mybitmap;
 
         } catch (Exception ex) {
-
+            System.out.println("null image bitmap");
             return null;
         }
     }
