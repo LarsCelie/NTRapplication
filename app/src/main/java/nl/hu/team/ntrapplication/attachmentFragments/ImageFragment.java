@@ -42,22 +42,8 @@ public class ImageFragment extends Fragment {
         image = (ImageView) getView().findViewById(R.id.image_view);
         //check if attachment is an image
         if (attachment.getTYPE().equals("image")){
-            if (attachment.getLOCATION().equals("R.drawable.inputlogo")) {
-                image.setImageResource(R.drawable.inputlogo);
-            } else {
-                try {
-                    URL url = new URL(attachment.getLOCATION());
-                    InputStream content = (InputStream)url.getContent();
-                    Drawable d = Drawable.createFromStream(content, "src");
-                    image.setImageDrawable(d);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-//                Bitmap bmp=getBitmapFromURL(attachment.getLOCATION());
-//                image.setImageBitmap(bmp);
-            }
+                int resID = getResources().getIdentifier("inputlogo", "drawable", getActivity().getPackageName());
+                image.setImageResource(resID);
         }
     }
 //    public static Bitmap getBitmapFromURL(String src) {

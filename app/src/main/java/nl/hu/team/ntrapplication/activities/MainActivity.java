@@ -275,9 +275,9 @@ public class MainActivity extends Activity {
         db.addQuestion(tq6,ts);
 
         Attachment ta1 = new Attachment();
-        ta1.setLOCATION("http://www.offertise.nl/wp-content/uploads/appels_peren1.jpg");
+        ta1.setLOCATION("http://bloksmakeukens.nl/wp-content/uploads/dreamstime_l_27678321-300x235.jpg");
         ta1.setTYPE("image");
-        ta1.setID(2);
+        ta1.setID(10);
 
         db.addAttachment(ta1, tq2);
 

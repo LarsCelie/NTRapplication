@@ -84,7 +84,7 @@ public class QuestionActivity extends Activity {
             System.out.println("Error! no attachments");
             attachment = new Attachment();
             attachment.setTYPE("image");
-            attachment.setLOCATION("R.drawable.inputlogo");
+            attachment.setLOCATION("inputlogo");
         } else {
             ArrayList<Attachment> attachments = question.getAttachments();
             attachment = attachments.get(0);
