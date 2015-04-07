@@ -8,6 +8,8 @@
     <string name="next">volgende</string>
     <string name="question_button_next">next</string>
     <string name="question_button_previous">previous</string>
+
+    <string name="has">heeft</string>
 </resources>
 
 
