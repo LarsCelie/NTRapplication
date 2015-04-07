@@ -177,7 +177,7 @@ public class MainActivity extends Activity {
         Research tr = new Research();
         tr.setSTATUS("open");
         tr.setID(9);
-        tr.setNAME("Fruit onderzoek");
+        tr.setNAME("Fruitonderzoek");
         tr.setBEGIN_DATE(convertStringToDate("01-01-2015"));
         tr.setEND_DATE(convertStringToDate("10-10-2015"));
         db.addResearch(tr);
