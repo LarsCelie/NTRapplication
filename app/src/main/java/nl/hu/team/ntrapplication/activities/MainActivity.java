@@ -134,13 +134,13 @@ public class MainActivity extends Activity {
 
         //A2
         Attachment attachment1 = new Attachment();
-        attachment1.setLOCATION("R.drawable.inputlogo");
+        attachment1.setLOCATION("inputlogo");
         attachment1.setTYPE("image");
         attachment1.setID(1);
 
         //A3
         Attachment attachment2 = new Attachment();
-        attachment2.setLOCATION("R.drawable.inputlogo2");
+        attachment2.setLOCATION("inputlogo2");
         attachment2.setTYPE("image");
         attachment2.setID(2);
 
@@ -279,7 +279,7 @@ public class MainActivity extends Activity {
         ta1.setTYPE("image");
         ta1.setID(10);
 
-        db.addAttachment(ta1, tq2);
+       // db.addAttachment(ta1, tq2);
 
 
     }
