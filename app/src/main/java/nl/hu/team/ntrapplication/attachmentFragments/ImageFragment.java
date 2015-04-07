@@ -42,7 +42,7 @@ public class ImageFragment extends Fragment {
         image = (ImageView) getView().findViewById(R.id.image_view);
         //check if attachment is an image
         if (attachment.getTYPE().equals("image")){
-                int resID = getResources().getIdentifier("inputlogo", "drawable", getActivity().getPackageName());
+                int resID = getResources().getIdentifier(attachment.getLOCATION(), "drawable", getActivity().getPackageName());
                 image.setImageResource(resID);
         }
     }

@@ -275,11 +275,11 @@ public class MainActivity extends Activity {
         db.addQuestion(tq6,ts);
 
         Attachment ta1 = new Attachment();
-        ta1.setLOCATION("http://bloksmakeukens.nl/wp-content/uploads/dreamstime_l_27678321-300x235.jpg");
+        ta1.setLOCATION("appels_en_peer");
         ta1.setTYPE("image");
         ta1.setID(10);
 
-       // db.addAttachment(ta1, tq2);
+        db.addAttachment(ta1, tq2);
 
 
     }
