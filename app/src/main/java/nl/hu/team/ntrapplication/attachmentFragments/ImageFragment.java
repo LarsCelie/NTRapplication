@@ -3,14 +3,17 @@ package nl.hu.team.ntrapplication.attachmentFragments;
 import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import nl.hu.team.ntrapplication.R;
@@ -42,27 +45,37 @@ public class ImageFragment extends Fragment {
             if (attachment.getLOCATION().equals("R.drawable.inputlogo")) {
                 image.setImageResource(R.drawable.inputlogo);
             } else {
-                Bitmap bmp=getBitmapFromURL(attachment.getLOCATION());
-                image.setImageBitmap(bmp);
+                try {
+                    URL url = new URL(attachment.getLOCATION());
+                    InputStream content = (InputStream)url.getContent();
+                    Drawable d = Drawable.createFromStream(content, "src");
+                    image.setImageDrawable(d);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+//                Bitmap bmp=getBitmapFromURL(attachment.getLOCATION());
+//                image.setImageBitmap(bmp);
             }
         }
     }
-    public static Bitmap getBitmapFromURL(String src) {
-        try {
-
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url
-                    .openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap mybitmap = BitmapFactory.decodeStream(input);
-
-            return mybitmap;
-
-        } catch (Exception ex) {
-            System.out.println("null image bitmap");
-            return null;
-        }
-    }
+//    public static Bitmap getBitmapFromURL(String src) {
+//        try {
+//
+//            URL url = new URL(src);
+//            HttpURLConnection connection = (HttpURLConnection) url
+//                    .openConnection();
+//            connection.setDoInput(true);
+//            connection.connect();
+//            InputStream input = connection.getInputStream();
+//            Bitmap mybitmap = BitmapFactory.decodeStream(input);
+//
+//            return mybitmap;
+//
+//        } catch (Exception ex) {
+//            System.out.println("null image bitmap");
+//            return null;
+//        }
+//    }
 }
