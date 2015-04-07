@@ -64,6 +64,7 @@ public class AudioFragment extends Fragment implements MediaController.MediaPlay
 
     public void onPrepared(MediaPlayer mediaPlayer) {
         mediaController.setMediaPlayer(this);
+        mediaController.setAnchorView((MediaController)getActivity().findViewById(R.id.mediaController));
 
         handler.post(new Runnable() {
             public void run() {
