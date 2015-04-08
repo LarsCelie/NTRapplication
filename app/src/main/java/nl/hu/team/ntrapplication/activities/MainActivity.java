@@ -24,6 +24,7 @@ import nl.hu.team.ntrapplication.objects.Option;
 import nl.hu.team.ntrapplication.objects.Question;
 import nl.hu.team.ntrapplication.objects.Research;
 import nl.hu.team.ntrapplication.objects.Survey;
+import nl.hu.team.ntrapplication.optionFragments.AccelerometerFragment;
 
 
 public class MainActivity extends Activity {
@@ -270,9 +271,17 @@ public class MainActivity extends Activity {
         tq6.setId(15);
         tq6.setType("open");
         tq6.setNaam("Ervaringen appels/peren");
-        tq6.setDescription("Geef aan waarom u wel (of niet) van appels en/of peren houd");
+        tq6.setDescription("Geef aan waarom u wel (of niet) van appels en/of peren houdt");
         tq6.setSequence(6);
         db.addQuestion(tq6,ts);
+
+        Question tq7 = new Question();
+        tq7.setId(30);
+        tq7.setType("accelerometer");
+        tq7.setNaam("Beweging");
+        tq7.setDescription("Beweeg uw telefoon alsof u fruit eet.");
+        tq7.setSequence(7);
+        db.addQuestion(tq7,ts);
 
         Attachment ta1 = new Attachment();
         ta1.setLOCATION("appels_en_peer");
@@ -280,8 +289,8 @@ public class MainActivity extends Activity {
         ta1.setID(10);
 
         db.addAttachment(ta1, tq2);
-        Intent intent = new Intent(this, ResearchListActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, ResearchListActivity.class);
+        //startActivity(intent);
 
     }
 
@@ -315,9 +324,8 @@ public class MainActivity extends Activity {
     }
 
     public void openFragment(View view){
-        Fragment newFragment = new AudioFragment();
-       //De volgende regel is waarschijnlijk fout.
-        //((VideoFragment)newFragment).playVideo();
+        Fragment newFragment = new AccelerometerFragment();
+
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_layout, newFragment);
         transaction.commit();
