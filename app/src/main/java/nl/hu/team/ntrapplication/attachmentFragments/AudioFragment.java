@@ -47,6 +47,22 @@ public class AudioFragment extends Fragment{
         textShown = (TextView) view.findViewById(R.id.text_shown);
         player = MediaPlayer.create(getActivity(), R.raw.audio_test_01);
         seekBar.setMax(player.getDuration());
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                player.seekTo(progress);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                if(player.isPlaying()) {
+                    player.pause();
+                }
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                player.start();
+            }
+        });
         play_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
