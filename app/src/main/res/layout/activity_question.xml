@@ -37,7 +37,8 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:text="@string/question_button_pause"
-            android:id="@+id/question_button_pause" />
+            android:id="@+id/question_button_pause"
+            android:onClick="pauseSurvey"/>
 
         <Button
             android:layout_width="0dp"

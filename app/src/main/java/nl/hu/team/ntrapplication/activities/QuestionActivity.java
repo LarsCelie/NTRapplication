@@ -1,8 +1,10 @@
 package nl.hu.team.ntrapplication.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -227,6 +229,37 @@ public class QuestionActivity extends Activity {
             }
             updateView();
         }
+    }
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    //Yes button clicked
+                    break;
+
+                case DialogInterface.BUTTON_NEGATIVE:
+                    //No button clicked
+                    break;
+            }
+        }
+    };
+    public void pauseSurvey(View view) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.pause);
+        builder.setMessage(R.string.pause_message);
+        builder.setPositiveButton(getString(R.string.yes), dialogClickListener);
+        builder.setNegativeButton(getString(R.string.no), dialogClickListener);
+        builder.show();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     public void finishSurvey() {
