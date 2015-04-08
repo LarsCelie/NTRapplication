@@ -9,6 +9,7 @@ import android.media.session.MediaController;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,8 @@ public class RecordAudioFragment extends Fragment {
     private Button start, play;
     final static int RECORD_REQUEST = 1;
     Uri savedUri;
+    Handler seekHandler = new Handler();
+    MediaPlayer mediaPlayer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,12 +63,25 @@ public class RecordAudioFragment extends Fragment {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MediaPlayer mediaPlayer = MediaPlayer.create(getActivity(), savedUri);
+                mediaPlayer = MediaPlayer.create(getActivity(), savedUri);
                 seekBar.setMax(mediaPlayer.getDuration());
                 mediaPlayer.start();
+                seekUpdation();
             }
         });
 
+    }
+
+    Runnable run = new Runnable() {
+        @Override
+        public void run() {
+            seekUpdation();
+        }
+    };
+
+    public void seekUpdation() {
+        seekBar.setProgress(mediaPlayer.getCurrentPosition());
+        seekHandler.postDelayed(run, 1000);
     }
 
     @Override
