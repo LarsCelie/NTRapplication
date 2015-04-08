@@ -9,11 +9,13 @@ import android.media.session.MediaController;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -26,10 +28,12 @@ import nl.hu.team.ntrapplication.R;
  */
 public class RecordAudioFragment extends Fragment {
 
-    MediaController mediaController;
+    SeekBar seekBar;
     private Button start, play;
     final static int RECORD_REQUEST = 1;
     Uri savedUri;
+    Handler seekHandler = new Handler();
+    MediaPlayer mediaPlayer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class RecordAudioFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        seekBar = (SeekBar) getView().findViewById(R.id.seekBar);
         start = (Button) getView().findViewById(R.id.recordbutton);
         play = (Button) getView().findViewById(R.id.playbutton);
         play.setEnabled(false);
@@ -58,16 +63,29 @@ public class RecordAudioFragment extends Fragment {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MediaPlayer mediaPlayer = MediaPlayer.create(getActivity(), savedUri);
+                mediaPlayer = MediaPlayer.create(getActivity(), savedUri);
+                seekBar.setMax(mediaPlayer.getDuration());
                 mediaPlayer.start();
+                seekUpdation();
             }
         });
 
     }
 
+    Runnable run = new Runnable() {
+        @Override
+        public void run() {
+            seekUpdation();
+        }
+    };
+
+    public void seekUpdation() {
+        seekBar.setProgress(mediaPlayer.getCurrentPosition());
+        seekHandler.postDelayed(run, 1000);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
         if(requestCode == RECORD_REQUEST && resultCode == Activity.RESULT_OK){
             savedUri = data.getData();
         }
