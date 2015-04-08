@@ -22,6 +22,7 @@ import nl.hu.team.ntrapplication.objects.Question;
 import nl.hu.team.ntrapplication.objects.Survey;
 import nl.hu.team.ntrapplication.optionFragments.AccelerometerFragment;
 import nl.hu.team.ntrapplication.optionFragments.DateQuestionFragment;
+import nl.hu.team.ntrapplication.optionFragments.GlobalPositioningSystemFragment;
 import nl.hu.team.ntrapplication.optionFragments.MulitipleChoiceFragment;
 import nl.hu.team.ntrapplication.optionFragments.MultipleSelectQuestionFragment;
 import nl.hu.team.ntrapplication.optionFragments.OpenQuestionFragment;
@@ -159,6 +160,9 @@ public class QuestionActivity extends Activity {
                 break;
             case "accelerometer":
                 optionFragment = new AccelerometerFragment();
+                break;
+            case "gps":
+                optionFragment = new GlobalPositioningSystemFragment();
                 break;
             default:
                 break; ////TODO: add default
