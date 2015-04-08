@@ -35,16 +35,16 @@ public class AudioFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_audio, container, false);
-        getInit();
+        getInit(root);
         seekUpdation();
         return root;
     }
 
-    public void getInit() {
-        seekBar = (SeekBar) getView().findViewById(R.id.seek_bar);
-        play_button = (Button) getView().findViewById(R.id.play_button);
-        pause_button = (Button) getView().findViewById(R.id.pause_button);
-        textShown = (TextView) getView().findViewById(R.id.text_shown);
+    public void getInit(View view) {
+        seekBar = (SeekBar) view.findViewById(R.id.seek_bar);
+        play_button = (Button) view.findViewById(R.id.play_button);
+        pause_button = (Button) view.findViewById(R.id.pause_button);
+        textShown = (TextView) view.findViewById(R.id.text_shown);
         player = MediaPlayer.create(getActivity(), R.raw.audio_test_01);
         seekBar.setMax(player.getDuration());
         play_button.setOnClickListener(new View.OnClickListener() {
