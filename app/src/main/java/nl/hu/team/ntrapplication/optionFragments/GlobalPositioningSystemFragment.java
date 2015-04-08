@@ -23,7 +23,7 @@ public class GlobalPositioningSystemFragment extends Fragment {
     private TextView name, description, answer;
     private DatePicker datePicker;
     private LocationManager locationManager;
-    String locationProvider = LocationManager.GPS_PROVIDER;
+    String locationProvider = LocationManager.NETWORK_PROVIDER;
     private Location latestlocation;
 
     @Override
@@ -64,7 +64,7 @@ public class GlobalPositioningSystemFragment extends Fragment {
 
             }
         };
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
+        locationManager.requestLocationUpdates(locationProvider, 0, 0, listener);
 
         name = (TextView) getView().findViewById(R.id.dateQuestionName);
         description = (TextView) getView().findViewById(R.id.dateQuestionDescription);
