@@ -2,6 +2,8 @@ package nl.hu.team.ntrapplication.optionFragments;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +14,6 @@ import android.widget.TextView;
 
 import nl.hu.team.ntrapplication.R;
 import nl.hu.team.ntrapplication.objects.Question;
-import nl.hu.team.ntrapplication.services.MyLocationListener;
 
 /**
  * Created by Lars on 4/8/2015.
@@ -21,7 +22,9 @@ public class GlobalPositioningSystemFragment extends Fragment {
 
     private TextView name, description, answer;
     private DatePicker datePicker;
-    private MyLocationListener listener;
+    private LocationManager locationManager;
+    String locationProvider = LocationManager.GPS_PROVIDER;
+    private Location latestlocation;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,8 +38,32 @@ public class GlobalPositioningSystemFragment extends Fragment {
 
         //get location
         Context context = getView().getContext();
-        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        listener = new MyLocationListener();
+        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        latestlocation = locationManager.getLastKnownLocation(locationProvider);
+
+        //make a locationlistener
+        LocationListener listener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                latestlocation = location;
+                updateText();
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
 
         name = (TextView) getView().findViewById(R.id.dateQuestionName);
@@ -48,15 +75,17 @@ public class GlobalPositioningSystemFragment extends Fragment {
 //        name.setText(question.getName());
         description.setText(question.getDescription());
 
+       updateText();
+
     }
 
     public String getValue() {
         return datePicker.toString();
     }
 
-    public void updateLocation(){
-        double lat = listener.getLat();
-        double lon = listener.getLon();
-        answer.setText("long: "+lon + "  ||  lat: "+lat);
+    public void updateText(){
+        double lat = latestlocation.getLatitude();
+        double lon = latestlocation.getLongitude();
+        answer.setText("lat = " + lat + " ## lon = " + lon);
     }
 }
