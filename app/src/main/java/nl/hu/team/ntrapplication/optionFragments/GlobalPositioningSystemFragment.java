@@ -46,6 +46,7 @@ public class GlobalPositioningSystemFragment extends Fragment {
             @Override
             public void onLocationChanged(Location location) {
                 latestlocation = location;
+                System.out.println("KDJFKLJFKLDJKFLDJKLFJKLDFJKLDJFKDJFKLDJFKLDJFKFJKDJFKLDJFKDFJKLDJFLKDFJKDLF");
                 updateText();
             }
 
