@@ -11,7 +11,14 @@
     <string name="question_button_previous">previous</string>
     <string name="question_button_pause" translatable="false">||</string>
 
-
+    <string name="audio_start">Record</string>
+    <string name="audio_stop">Stop</string>
+    <string name="audio_play">Play</string>
+    
     <string name="has">has</string>
     <string name="research_more">Read more about this research</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
 </resources>
