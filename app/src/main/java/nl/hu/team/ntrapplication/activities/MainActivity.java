@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
         q2.setId(1);
         q2.setSequence(2);
         q2.setDescription("Wat is je naam?");
-        q2.setType("open");
+        q2.setType("audio");
 
         //Q3
         Question q3 = new Question();

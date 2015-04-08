@@ -25,17 +25,16 @@
         android:layout_height="wrap_content"
         android:text="@string/audio_play"
         android:id="@+id/playbutton"
-        android:layout_alignTop="@+id/mediaController2"
-        android:layout_toRightOf="@+id/mediaController2"
-        android:layout_toEndOf="@+id/mediaController2"
         android:layout_marginLeft="51dp"
-        android:layout_marginStart="51dp" />
+        android:layout_marginStart="51dp"
+        android:layout_alignTop="@+id/recordbutton"
+        android:layout_toRightOf="@+id/recordbutton"
+        android:layout_toEndOf="@+id/recordbutton" />
 
-    <MediaController
+    <SeekBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/mediaController2"
-        android:layout_toEndOf="@+id/recordbutton"
-        android:layout_alignTop="@+id/recordbutton"
-        android:layout_toRightOf="@+id/recordbutton" />
+        android:id="@+id/seekBar"
+        android:layout_above="@+id/recordbutton"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

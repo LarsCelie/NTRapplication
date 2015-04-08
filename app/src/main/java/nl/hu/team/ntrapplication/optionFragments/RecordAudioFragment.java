@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -26,7 +27,7 @@ import nl.hu.team.ntrapplication.R;
  */
 public class RecordAudioFragment extends Fragment {
 
-    MediaController mediaController;
+    SeekBar seekBar;
     private Button start, play;
     final static int RECORD_REQUEST = 1;
     Uri savedUri;
@@ -41,6 +42,7 @@ public class RecordAudioFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        seekBar = (SeekBar) getView().findViewById(R.id.seekBar);
         start = (Button) getView().findViewById(R.id.recordbutton);
         play = (Button) getView().findViewById(R.id.playbutton);
         play.setEnabled(false);
@@ -59,6 +61,7 @@ public class RecordAudioFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 MediaPlayer mediaPlayer = MediaPlayer.create(getActivity(), savedUri);
+                seekBar.setMax(mediaPlayer.getDuration());
                 mediaPlayer.start();
             }
         });
@@ -67,7 +70,6 @@ public class RecordAudioFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
         if(requestCode == RECORD_REQUEST && resultCode == Activity.RESULT_OK){
             savedUri = data.getData();
         }

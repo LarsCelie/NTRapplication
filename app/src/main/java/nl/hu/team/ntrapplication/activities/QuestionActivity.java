@@ -24,6 +24,7 @@ import nl.hu.team.ntrapplication.optionFragments.DateQuestionFragment;
 import nl.hu.team.ntrapplication.optionFragments.MulitipleChoiceFragment;
 import nl.hu.team.ntrapplication.optionFragments.MultipleSelectQuestionFragment;
 import nl.hu.team.ntrapplication.optionFragments.OpenQuestionFragment;
+import nl.hu.team.ntrapplication.optionFragments.RecordAudioFragment;
 import nl.hu.team.ntrapplication.optionFragments.RecordVideoFragment;
 import nl.hu.team.ntrapplication.optionFragments.TakePhotoFragment;
 import nl.hu.team.ntrapplication.optionFragments.TimeQuestionFragment;
@@ -150,7 +151,8 @@ public class QuestionActivity extends Activity {
                 optionFragment = new RecordVideoFragment();
                 break;
             case "audio":
-                break; //TODO: audio answer
+                optionFragment = new RecordAudioFragment();
+                break;
             case "infoscreen":
                 optionFragment = new InfoscreenFragment();
                 break;
