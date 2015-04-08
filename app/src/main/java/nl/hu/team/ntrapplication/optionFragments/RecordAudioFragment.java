@@ -4,11 +4,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.media.MediaRecorder;
-import android.media.session.MediaController;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -16,10 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SeekBar;
-import android.widget.Toast;
-import android.widget.VideoView;
-
-import java.io.IOException;
 
 import nl.hu.team.ntrapplication.R;
 
@@ -65,6 +58,24 @@ public class RecordAudioFragment extends Fragment {
             public void onClick(View view) {
                 mediaPlayer = MediaPlayer.create(getActivity(), savedUri);
                 seekBar.setMax(mediaPlayer.getDuration());
+                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        mediaPlayer.seekTo(i);
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                        if(mediaPlayer.isPlaying()) {
+                            mediaPlayer.pause();
+                        }
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        mediaPlayer.start();
+                    }
+                });
                 mediaPlayer.start();
                 seekUpdation();
             }

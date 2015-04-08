@@ -1,24 +1,15 @@
 package nl.hu.team.ntrapplication.attachmentFragments;
 
 import android.app.Fragment;
-import android.content.Context;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
-
-import java.io.IOException;
-
 
 import nl.hu.team.ntrapplication.R;
 
@@ -47,6 +38,27 @@ public class AudioFragment extends Fragment{
         textShown = (TextView) view.findViewById(R.id.text_shown);
         player = MediaPlayer.create(getActivity(), R.raw.audio_test_01);
         seekBar.setMax(player.getDuration());
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            Boolean wasPaused;
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                player.seekTo(progress);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                if(player.isPlaying()) {
+                    wasPaused = false;
+                    player.pause();
+                }
+                wasPaused = true;
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                if(!wasPaused) {
+                    player.start();
+                }
+            }
+        });
         play_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -278,7 +278,7 @@ public class MainActivity extends Activity {
         tq7.setNaam("Beweging");
         tq7.setDescription("Beweeg uw telefoon alsof u fruit eet.");
         tq7.setSequence(7);
-        db.addQuestion(tq7,ts);
+        db.addQuestion(tq7, ts);
 
         Question tq8 = new Question();
         tq8.setId(31);
