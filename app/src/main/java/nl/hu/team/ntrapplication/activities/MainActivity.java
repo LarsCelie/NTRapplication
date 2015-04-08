@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
         q2.setId(1);
         q2.setSequence(2);
         q2.setDescription("Wat is je naam?");
-        q2.setType("open");
+        q2.setType("audio");
 
         //Q3
         Question q3 = new Question();
@@ -288,9 +288,16 @@ public class MainActivity extends Activity {
         ta1.setTYPE("image");
         ta1.setID(10);
 
+        Attachment ta2 = new Attachment();
+        ta2.setLOCATION("");
+        ta2.setTYPE("audio");
+        ta2.setID(11);
+
+        db.addAttachment(ta2,tq3);
         db.addAttachment(ta1, tq2);
         //Intent intent = new Intent(this, ResearchListActivity.class);
         //startActivity(intent);
+
 
     }
 
