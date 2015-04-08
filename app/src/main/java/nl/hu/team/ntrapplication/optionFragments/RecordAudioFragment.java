@@ -65,6 +65,24 @@ public class RecordAudioFragment extends Fragment {
             public void onClick(View view) {
                 mediaPlayer = MediaPlayer.create(getActivity(), savedUri);
                 seekBar.setMax(mediaPlayer.getDuration());
+                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        mediaPlayer.seekTo(i);
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                        if(mediaPlayer.isPlaying()) {
+                            mediaPlayer.pause();
+                        }
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        mediaPlayer.start();
+                    }
+                });
                 mediaPlayer.start();
                 seekUpdation();
             }
