@@ -18,7 +18,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import nl.hu.team.ntrapplication.R;
 import nl.hu.team.ntrapplication.database.DatabaseHandler;

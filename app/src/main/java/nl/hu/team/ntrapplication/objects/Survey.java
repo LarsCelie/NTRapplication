@@ -6,8 +6,6 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.Date;
 
-import nl.hu.team.ntrapplication.R;
-
 /**
  * Created by Milamber on 24-3-2015.
  */

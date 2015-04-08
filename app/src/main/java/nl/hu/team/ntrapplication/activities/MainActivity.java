@@ -3,7 +3,6 @@ package nl.hu.team.ntrapplication.activities;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,8 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import nl.hu.team.ntrapplication.R;
-import nl.hu.team.ntrapplication.attachmentFragments.AudioFragment;
-import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.database.DatabaseHandler;
 import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Option;
@@ -281,7 +278,7 @@ public class MainActivity extends Activity {
         tq7.setNaam("Beweging");
         tq7.setDescription("Beweeg uw telefoon alsof u fruit eet.");
         tq7.setSequence(7);
-        db.addQuestion(tq7,ts);
+        db.addQuestion(tq7, ts);
 
         Attachment ta1 = new Attachment();
         ta1.setLOCATION("appels_en_peer");
