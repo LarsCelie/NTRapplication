@@ -4,11 +4,11 @@
     android:layout_height="275dp"
     android:orientation="vertical"
     android:paddingBottom="20dp">
+
     <ImageView
         android:layout_width="355dp"
         android:layout_height="225dp"
-
-        android:id="@+id/research_element_image"
+        android:id="@+id/tiles_image"
         android:layout_alignParentRight="true"
         android:layout_alignParentLeft="true"
         android:background="@color/black"
@@ -19,18 +19,18 @@
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/error_loading_string"
-        android:layout_alignLeft="@id/research_element_image"
-        android:layout_alignTop="@id/research_element_image"
+        android:layout_alignLeft="@id/tiles_image"
+        android:layout_alignTop="@id/tiles_image"
         android:background="@drawable/background_text"
         android:gravity="center_vertical"
-        android:id="@+id/research_element_name"/>
+        android:id="@+id/tiles_title"/>
 
     <TextView
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="@string/error_loading_string"
-        android:id="@+id/research_element_days_left"
-        android:layout_below="@id/research_element_image"
+        android:id="@+id/tiles_secondary_info"
+        android:layout_below="@id/tiles_image"
         android:layout_alignParentLeft="true"
         android:background="@drawable/background_text"
         android:layout_alignParentStart="true" />
@@ -38,9 +38,9 @@
     <TextView
         android:layout_width="255dp"
         android:layout_height="50dp"
-        android:text="@string/research_more"
-        android:id="@+id/research_element_more"
-        android:layout_below="@id/research_element_image"
+        android:text="@string/error_loading_string"
+        android:id="@+id/tiles_more_info"
+        android:layout_below="@id/tiles_image"
         android:layout_alignParentRight="true"
         android:background="@drawable/background_text"
         android:gravity="center"
