@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
         Survey s1 = new Survey();
         s1.setId(1);
         s1.setStatus("InProgress");
-        s1.setName("Survey 1");
+        s1.setName("Onderzoek 1");
         s1.setBeginDate(convertStringToDate("01-01-2011"));
         s1.setEndDate(convertStringToDate("02-02-2022"));
         r1.addSurvey(s1);
@@ -280,7 +280,8 @@ public class MainActivity extends Activity {
         ta1.setID(10);
 
         db.addAttachment(ta1, tq2);
-
+        Intent intent = new Intent(this, ResearchListActivity.class);
+        startActivity(intent);
 
     }
 

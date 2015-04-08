@@ -78,7 +78,7 @@ public class Research implements Parcelable{
     }
 
     public String toString() {
-        return NAME + " heeft " + surveys.size() + " vragenlijsten" ;
+        return NAME + " heeft " + surveys.size() + " vragenlijst(en)" ;
     }
 
     @Override
