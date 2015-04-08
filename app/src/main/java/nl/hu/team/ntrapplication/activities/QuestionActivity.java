@@ -20,6 +20,7 @@ import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Question;
 import nl.hu.team.ntrapplication.objects.Survey;
+import nl.hu.team.ntrapplication.optionFragments.AccelerometerFragment;
 import nl.hu.team.ntrapplication.optionFragments.DateQuestionFragment;
 import nl.hu.team.ntrapplication.optionFragments.MulitipleChoiceFragment;
 import nl.hu.team.ntrapplication.optionFragments.MultipleSelectQuestionFragment;
@@ -155,6 +156,9 @@ public class QuestionActivity extends Activity {
                 break;
             case "infoscreen":
                 optionFragment = new InfoscreenFragment();
+                break;
+            case "accelerometer":
+                optionFragment = new AccelerometerFragment();
                 break;
             default:
                 break; ////TODO: add default
