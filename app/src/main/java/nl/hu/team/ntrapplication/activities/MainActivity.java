@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.attachmentFragments.AudioFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.database.DatabaseHandler;
 import nl.hu.team.ntrapplication.objects.Attachment;
@@ -56,7 +57,7 @@ public class MainActivity extends Activity {
         Survey s1 = new Survey();
         s1.setId(1);
         s1.setStatus("InProgress");
-        s1.setName("Survey 1");
+        s1.setName("Onderzoek 1");
         s1.setBeginDate(convertStringToDate("01-01-2011"));
         s1.setEndDate(convertStringToDate("02-02-2022"));
         r1.addSurvey(s1);
@@ -133,13 +134,13 @@ public class MainActivity extends Activity {
 
         //A2
         Attachment attachment1 = new Attachment();
-        attachment1.setLOCATION("R.drawable.inputlogo");
+        attachment1.setLOCATION("inputlogo");
         attachment1.setTYPE("image");
         attachment1.setID(1);
 
         //A3
         Attachment attachment2 = new Attachment();
-        attachment2.setLOCATION("R.drawable.inputlogo2");
+        attachment2.setLOCATION("inputlogo2");
         attachment2.setTYPE("image");
         attachment2.setID(2);
 
@@ -176,7 +177,7 @@ public class MainActivity extends Activity {
         Research tr = new Research();
         tr.setSTATUS("open");
         tr.setID(9);
-        tr.setNAME("Fruit onderzoek");
+        tr.setNAME("Fruitonderzoek");
         tr.setBEGIN_DATE(convertStringToDate("01-01-2015"));
         tr.setEND_DATE(convertStringToDate("10-10-2015"));
         db.addResearch(tr);
@@ -273,6 +274,14 @@ public class MainActivity extends Activity {
         tq6.setSequence(6);
         db.addQuestion(tq6,ts);
 
+        Attachment ta1 = new Attachment();
+        ta1.setLOCATION("appels_en_peer");
+        ta1.setTYPE("image");
+        ta1.setID(10);
+
+        db.addAttachment(ta1, tq2);
+        Intent intent = new Intent(this, ResearchListActivity.class);
+        startActivity(intent);
 
     }
 
@@ -306,7 +315,7 @@ public class MainActivity extends Activity {
     }
 
     public void openFragment(View view){
-        Fragment newFragment = new VideoFragment();
+        Fragment newFragment = new AudioFragment();
        //De volgende regel is waarschijnlijk fout.
         //((VideoFragment)newFragment).playVideo();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();

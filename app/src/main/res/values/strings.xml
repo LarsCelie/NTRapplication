@@ -3,10 +3,15 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
     <string name="title_activity_research_list" translatable="false">ResearchListActivity</string>
     <string name="title_activity_question" translatable="false">QuestionActivity</string>
-    <string name="error_loading_string" translatable="false">An error has occured fetching this value</string>
+    <string name="error_loading_string" translatable="false"></string>
     <string name="question_button_next">next</string>
     <string name="question_button_previous">previous</string>
     <string name="question_button_pause" translatable="false">||</string>
+
+
+    <string name="has">has</string>
+    <string name="research_more">Read more about this research</string>
 </resources>

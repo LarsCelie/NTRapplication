@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.Date;
 
+import nl.hu.team.ntrapplication.R;
+
 /**
  * Created by Milamber on 24-3-2015.
  */
@@ -81,8 +83,9 @@ public class Survey implements Parcelable{
         questions.remove(question);
     }
 
+
     public String toString() {
-        return name + " has " + questions.size() + " questions";
+        return name + " heeft "  +  questions.size() + " vragen";
     }
 
     // Parcelable methods

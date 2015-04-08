@@ -79,12 +79,12 @@ public class QuestionActivity extends Activity {
 
     public void displayAttachment() {
         Question question = getCurrentQuestion();
-        Attachment attachment = null;
+        Attachment attachment;
         if (question.getAttachments().size() == 0) {
             System.out.println("Error! no attachments");
             attachment = new Attachment();
             attachment.setTYPE("image");
-            attachment.setLOCATION("R.drawable.inputlogo");
+            attachment.setLOCATION("inputlogo");
         } else {
             ArrayList<Attachment> attachments = question.getAttachments();
             attachment = attachments.get(0);
