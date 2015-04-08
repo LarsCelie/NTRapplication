@@ -14,4 +14,8 @@
 
     <string name="has">has</string>
     <string name="research_more">Read more about this research</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
 </resources>

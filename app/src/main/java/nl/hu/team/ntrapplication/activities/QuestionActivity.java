@@ -13,6 +13,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.attachmentFragments.AudioFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.ImageFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.InfoscreenFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
@@ -97,7 +98,8 @@ public class QuestionActivity extends Activity {
                 attachmentFragment = new VideoFragment();
                 break;
             case "audio":
-                break; //TODO: add class
+                attachmentFragment = new AudioFragment();
+                break;
             case "image":
                 attachmentFragment = new ImageFragment();
                 break;

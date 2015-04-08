@@ -4,13 +4,15 @@
 
     <string name="hello_world">Hallo wereld!</string>
     <string name="action_settings">Instellingen</string>
-    <string name="previous">vorige</string>
-    <string name="next">volgende</string>
+    <string name="previous">Vorige</string>
+    <string name="next">Volgende</string>
     <string name="question_button_next">next</string>
     <string name="question_button_previous">previous</string>
 
     <string name="has">heeft</string>
     <string name="research_more">Meer lezen over dit onderzoek</string>
+    <string name="pause">Pauze</string>
+    <string name="play">Speel</string>
 </resources>
 
 
