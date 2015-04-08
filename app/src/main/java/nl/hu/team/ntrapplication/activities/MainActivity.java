@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
         q1.setId(0);
         q1.setSequence(1);
         q1.setDescription("Welke datum ben je geboren?");
-        q1.setType("date");
+        q1.setType("lightsensor");
 
         //Q2
         Question q2 = new Question();
@@ -279,6 +279,14 @@ public class MainActivity extends Activity {
         tq7.setDescription("Beweeg uw telefoon alsof u fruit eet.");
         tq7.setSequence(7);
         db.addQuestion(tq7, ts);
+
+        Question tq8 = new Question();
+        tq8.setId(31);
+        tq8.setType("gps");
+        tq8.setNaam("GPS");
+        tq8.setDescription("Bepaal u locatie met GPS");
+        tq8.setSequence(8);
+        db.addQuestion(tq8,ts);
 
         Attachment ta1 = new Attachment();
         ta1.setLOCATION("appels_en_peer");
