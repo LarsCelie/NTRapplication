@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,7 +35,6 @@ public class ResearchListActivity extends Activity implements OnItemClickListene
         setContentView(R.layout.activity_research_list);
 
         DatabaseHandler db = new DatabaseHandler(this);
-        //Test data moved to main activity
 
         ArrayList<Research> researches = db.getAllResearch();
 
@@ -43,8 +43,6 @@ public class ResearchListActivity extends Activity implements OnItemClickListene
 
         researchList = (ListView) findViewById(R.id.awesomeListView);
         researchList.setAdapter(dataAdapter);
-//        adapter = new ArrayAdapter<Research>(this, android.R.layout.simple_list_item_1, researches);
-//        researchList.setAdapter(adapter);
         researchList.setOnItemClickListener(this);
     }
     private class MyCustomAdapter extends ArrayAdapter<Research> {
@@ -55,9 +53,12 @@ public class ResearchListActivity extends Activity implements OnItemClickListene
             this.researches = researches;
         }
 
-        //Contains the elemnts of layout_research_element
+        //Contains the elements of layout_research_element
         private class ViewHolder {
-            TextView naam;
+            TextView name;
+            ImageView background;
+            TextView days_left;
+            TextView more;
         }
 
         @Override
@@ -70,14 +71,20 @@ public class ResearchListActivity extends Activity implements OnItemClickListene
                 convertView = vi.inflate(R.layout.layout_research_element, null);
 
                 holder = new ViewHolder();
-                holder.naam = (TextView) convertView.findViewById(R.id.research_element_name);
+                holder.name = (TextView) convertView.findViewById(R.id.research_element_name);
+                holder.background = (ImageView) convertView.findViewById(R.id.research_element_image);
+                holder.days_left = (TextView) convertView.findViewById(R.id.research_element_days_left);
+                holder.more = (TextView) convertView.findViewById(R.id.research_element_more);
                 convertView.setTag(holder);
+
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
             Research research = researches.get(position);
-            holder.naam.setText(research.toString());
-            holder.naam.setTag(research);
+            holder.name.setText(research.toString());
+            int resID = getResources().getIdentifier("test_research_background", "drawable", getPackageName());
+            holder.background.setImageResource(resID);
+            holder.name.setTag(research);
             return convertView;
         }
     }
