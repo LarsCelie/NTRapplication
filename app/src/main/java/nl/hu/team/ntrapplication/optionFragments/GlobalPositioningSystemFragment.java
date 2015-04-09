@@ -23,6 +23,7 @@ public class GlobalPositioningSystemFragment extends Fragment {
     private TextView name, description, answer;
     private DatePicker datePicker;
     private LocationManager locationManager;
+    private LocationListener listener;
     String locationProvider = LocationManager.NETWORK_PROVIDER;
     private Location latestlocation;
 
@@ -42,7 +43,7 @@ public class GlobalPositioningSystemFragment extends Fragment {
         latestlocation = locationManager.getLastKnownLocation(locationProvider);
 
         //make a locationlistener
-        LocationListener listener = new LocationListener() {
+        listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 latestlocation = location;
@@ -69,7 +70,7 @@ public class GlobalPositioningSystemFragment extends Fragment {
                 }
             }
         };
-        locationManager.requestLocationUpdates(locationProvider, 0, 0, listener);
+        locationManager.requestLocationUpdates(locationProvider, 1000, 0, listener);
 
         name = (TextView) getView().findViewById(R.id.dateQuestionName);
         description = (TextView) getView().findViewById(R.id.dateQuestionDescription);
@@ -82,6 +83,18 @@ public class GlobalPositioningSystemFragment extends Fragment {
 
        updateText();
 
+    }
+
+    @Override
+    public void onPause(){
+        locationManager.removeUpdates(listener);
+        super.onPause();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        locationManager.requestLocationUpdates(locationProvider, 300, 0, listener);
     }
 
     public String getValue() {
