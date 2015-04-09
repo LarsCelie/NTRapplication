@@ -43,14 +43,15 @@
         <activity
             android:name=".activities.SurveyListActivity"
             android:label="SurveyListActivity"
-            android:parentActivityName=".activities.ResearchListActivity" >
+             >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nl.hu.team.ntrapplication.activities.ResearchListActivity" />
         </activity>
         <activity
             android:name=".activities.QuestionActivity"
-            android:label="@string/title_activity_question" >
+            android:label="@string/title_activity_question"
+            android:parentActivityName=".activities.SurveyListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nl.hu.team.ntrapplication.activities.SurveyListActivity"/>

@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
         q1.setId(0);
         q1.setSequence(1);
         q1.setDescription("Welke datum ben je geboren?");
-        q1.setType("date");
+        q1.setType("lightsensor");
 
         //Q2
         Question q2 = new Question();
@@ -300,8 +300,8 @@ public class MainActivity extends Activity {
 
         db.addAttachment(ta2,tq3);
         db.addAttachment(ta1, tq2);
-        //Intent intent = new Intent(this, ResearchListActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, ResearchListActivity.class);
+        startActivity(intent);
 
 
     }

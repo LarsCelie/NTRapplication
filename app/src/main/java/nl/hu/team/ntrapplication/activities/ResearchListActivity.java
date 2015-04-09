@@ -37,7 +37,7 @@ public class ResearchListActivity extends Activity implements OnItemClickListene
 
         ArrayList<Research> researches = db.getAllResearch();
 
-        dataAdapter = new MyCustomAdapter(this,R.layout.layout_research_element,researches);
+        dataAdapter = new MyCustomAdapter(this,R.layout.layout_tiles,researches);
 
 
         researchList = (ListView) findViewById(R.id.awesomeListView);
@@ -54,7 +54,7 @@ public class ResearchListActivity extends Activity implements OnItemClickListene
 
         //Contains the elements of layout_research_element
         private class ViewHolder {
-            TextView name;
+            TextView title;
             ImageView background;
             TextView days_left;
             TextView more;
@@ -67,23 +67,24 @@ public class ResearchListActivity extends Activity implements OnItemClickListene
 
             if(convertView == null) {
                 LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = vi.inflate(R.layout.layout_research_element, null);
+                convertView = vi.inflate(R.layout.layout_tiles, null);
 
                 holder = new ViewHolder();
-                holder.name = (TextView) convertView.findViewById(R.id.research_element_name);
-                holder.background = (ImageView) convertView.findViewById(R.id.research_element_image);
-                holder.days_left = (TextView) convertView.findViewById(R.id.research_element_days_left);
-                holder.more = (TextView) convertView.findViewById(R.id.research_element_more);
+                holder.title = (TextView) convertView.findViewById(R.id.tiles_title);
+                holder.background = (ImageView) convertView.findViewById(R.id.tiles_image);
+                holder.days_left = (TextView) convertView.findViewById(R.id.tiles_secondary_info);
+                holder.more = (TextView) convertView.findViewById(R.id.tiles_more_info);
                 convertView.setTag(holder);
 
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
             Research research = researches.get(position);
-            holder.name.setText(research.toString());
+            holder.title.setText(" "+research.toString());
             int resID = getResources().getIdentifier("test_research_background", "drawable", getPackageName());
             holder.background.setImageResource(resID);
-            holder.name.setTag(research);
+            holder.title.setTag(research);
+            holder.more.setText(R.string.research_more);
             return convertView;
         }
     }

@@ -49,8 +49,9 @@ public class AudioFragment extends Fragment{
                 if(player.isPlaying()) {
                     wasPaused = false;
                     player.pause();
+                } else {
+                    wasPaused = true;
                 }
-                wasPaused = true;
             }
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
