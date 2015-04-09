@@ -300,8 +300,8 @@ public class MainActivity extends Activity {
 
         db.addAttachment(ta2,tq3);
         db.addAttachment(ta1, tq2);
-        //Intent intent = new Intent(this, ResearchListActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, ResearchListActivity.class);
+        startActivity(intent);
 
 
     }
