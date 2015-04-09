@@ -192,6 +192,7 @@ public class QuestionActivity extends Activity {
         if (sequence > maxQuestions) {
             finishSurvey();
         } else {
+//            optionFragment.onPause();
             loadProgress();
             displayAttachment();
             displayQuestion();
