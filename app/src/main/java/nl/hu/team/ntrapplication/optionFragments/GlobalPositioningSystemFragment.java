@@ -57,12 +57,16 @@ public class GlobalPositioningSystemFragment extends Fragment {
 
             @Override
             public void onProviderEnabled(String provider) {
-
+                if (!locationProvider.equals(LocationManager.GPS_PROVIDER)){
+                    locationProvider = LocationManager.GPS_PROVIDER;
+                }
             }
 
             @Override
             public void onProviderDisabled(String provider) {
-
+                if (!locationProvider.equals(LocationManager.NETWORK_PROVIDER)){
+                    locationProvider = LocationManager.NETWORK_PROVIDER;
+                }
             }
         };
         locationManager.requestLocationUpdates(locationProvider, 0, 0, listener);
