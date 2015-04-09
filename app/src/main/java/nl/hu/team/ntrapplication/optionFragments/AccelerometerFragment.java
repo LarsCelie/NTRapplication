@@ -58,6 +58,11 @@ public class AccelerometerFragment extends Fragment implements SensorEventListen
         super.onResume();
         mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_UI);
     }
+
+    @Override
+    public String getValue() {
+        return null;
+    }
 }
 
 

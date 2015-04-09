@@ -17,7 +17,7 @@ import nl.hu.team.ntrapplication.R;
 /**
  * Created by jiry on 8-4-2015.
  */
-public class LightSensorFragment extends Fragment, AnswerOption {
+public class LightSensorFragment extends Fragment implements AnswerOption {
 
     private TextView textView, textView2;
 
@@ -66,4 +66,8 @@ public class LightSensorFragment extends Fragment, AnswerOption {
 
     };
 
+    @Override
+    public String getValue() {
+        return null;
+    }
 }

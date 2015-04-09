@@ -58,4 +58,9 @@ public class GyroscopeFragment extends Fragment implements SensorEventListener, 
         super.onResume();
         mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_UI);
     }
+
+    @Override
+    public String getValue() {
+        return null;
+    }
 }

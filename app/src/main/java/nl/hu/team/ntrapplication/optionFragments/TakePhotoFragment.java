@@ -67,4 +67,8 @@ public class TakePhotoFragment extends Fragment implements AnswerOption{
         }
     }
 
+    @Override
+    public String getValue() {
+        return null;
+    }
 }

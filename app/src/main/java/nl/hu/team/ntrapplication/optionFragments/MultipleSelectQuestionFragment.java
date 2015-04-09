@@ -22,7 +22,7 @@ import nl.hu.team.ntrapplication.objects.Question;
 /**
  * Created by Milamber on 1-4-2015.
  */
-public class MultipleSelectQuestionFragment extends Fragment, AnswerOption {
+public class MultipleSelectQuestionFragment extends Fragment implements AnswerOption {
 
     private TextView name, description;
     private DatePicker datePicker;
@@ -47,6 +47,12 @@ public class MultipleSelectQuestionFragment extends Fragment, AnswerOption {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
+
+    @Override
+    public String getValue() {
+        return null;
+    }
+
     private class MyCustomAdapter extends ArrayAdapter<Option> {
         private ArrayList<Option> options;
         public MyCustomAdapter(Context context, int textViewResourceId, ArrayList<Option> options) {

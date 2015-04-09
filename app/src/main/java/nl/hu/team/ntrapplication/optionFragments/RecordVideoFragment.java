@@ -56,4 +56,9 @@ public class RecordVideoFragment extends Fragment implements AnswerOption {
             awesomeVideoView.start();
         }
     }
+
+    @Override
+    public String getValue() {
+        return null;
+    }
 }

@@ -37,4 +37,9 @@ public class OpenQuestionFragment extends Fragment implements AnswerOption {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
+
+    @Override
+    public String getValue() {
+        return null;
+    }
 }

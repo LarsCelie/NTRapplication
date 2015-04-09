@@ -101,4 +101,9 @@ public class RecordAudioFragment extends Fragment implements AnswerOption{
             savedUri = data.getData();
         }
     }
+
+    @Override
+    public String getValue() {
+        return null;
+    }
 }

@@ -19,7 +19,7 @@ import nl.hu.team.ntrapplication.objects.Question;
 /**
  * Created by jiry on 1-4-2015.
  */
-public class MulitipleChoiceFragment extends Fragment, AnswerOption {
+public class MulitipleChoiceFragment extends Fragment implements AnswerOption {
     private TextView name, description;
     private RadioGroup radioGroup;
 
@@ -54,6 +54,11 @@ public class MulitipleChoiceFragment extends Fragment, AnswerOption {
       //name.setText(question.getName());
         description.setText(question.getDescription());
    //   onRadioChangeListener(radioGroup);
+    }
+
+    @Override
+    public String getValue() {
+        return null;
     }
 
     /*public void onRadioChangeListener(RadioGroup radioGroup){
