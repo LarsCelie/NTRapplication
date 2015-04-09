@@ -87,8 +87,9 @@ public class GlobalPositioningSystemFragment extends Fragment {
 
     @Override
     public void onPause(){
-        locationManager.removeUpdates(listener);
         super.onPause();
+        locationManager.removeUpdates(listener);
+
     }
 
     @Override
