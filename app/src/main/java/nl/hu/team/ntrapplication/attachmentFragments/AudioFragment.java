@@ -30,6 +30,13 @@ public class AudioFragment extends Fragment{
         seekUpdation();
         return root;
     }
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(player.isPlaying()) {
+            player.pause();
+        }
+    }
 
     public void getInit(View view) {
         seekBar = (SeekBar) view.findViewById(R.id.seek_bar);

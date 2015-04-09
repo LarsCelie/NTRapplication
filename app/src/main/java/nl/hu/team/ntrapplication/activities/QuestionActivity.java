@@ -245,7 +245,7 @@ public class QuestionActivity extends Activity {
         public void onClick(DialogInterface dialog, int which) {
             switch (which){
                 case DialogInterface.BUTTON_POSITIVE:
-                    //Yes button clicked
+                    saveProgress();
                     break;
 
                 case DialogInterface.BUTTON_NEGATIVE:
