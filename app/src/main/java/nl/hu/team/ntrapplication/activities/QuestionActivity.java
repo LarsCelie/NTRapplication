@@ -23,6 +23,7 @@ import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Question;
 import nl.hu.team.ntrapplication.objects.Survey;
 import nl.hu.team.ntrapplication.optionFragments.AccelerometerFragment;
+import nl.hu.team.ntrapplication.optionFragments.CompasSensorFragment;
 import nl.hu.team.ntrapplication.optionFragments.DateQuestionFragment;
 import nl.hu.team.ntrapplication.optionFragments.GlobalPositioningSystemFragment;
 import nl.hu.team.ntrapplication.optionFragments.LightSensorFragment;
@@ -169,6 +170,10 @@ public class QuestionActivity extends Activity {
                 break;
             case "lightsensor":
                 optionFragment = new LightSensorFragment();
+                break;
+            case "compassensor":
+                optionFragment = new CompasSensorFragment();
+                break;
             default:
                 break; ////TODO: add default
         }
