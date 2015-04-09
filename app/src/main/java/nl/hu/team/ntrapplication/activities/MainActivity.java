@@ -285,8 +285,16 @@ public class MainActivity extends Activity {
         tq8.setType("gps");
         tq8.setNaam("GPS");
         tq8.setDescription("Bepaal u locatie met GPS");
-        tq8.setSequence(8);
+        tq8.setSequence(9);
         db.addQuestion(tq8,ts);
+
+        Question tq9 = new Question();
+        tq9.setId(32);
+        tq9.setType("gyroscope");
+        tq9.setNaam("Gyro");
+        tq9.setDescription("Dit is een gyroscope");
+        tq9.setSequence(8);
+        db.addQuestion(tq9,ts);
 
         Attachment ta1 = new Attachment();
         ta1.setLOCATION("appels_en_peer");

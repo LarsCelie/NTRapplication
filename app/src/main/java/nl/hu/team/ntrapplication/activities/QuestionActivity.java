@@ -26,6 +26,7 @@ import nl.hu.team.ntrapplication.optionFragments.AccelerometerFragment;
 import nl.hu.team.ntrapplication.optionFragments.CompasSensorFragment;
 import nl.hu.team.ntrapplication.optionFragments.DateQuestionFragment;
 import nl.hu.team.ntrapplication.optionFragments.GlobalPositioningSystemFragment;
+import nl.hu.team.ntrapplication.optionFragments.GyroscopeFragment;
 import nl.hu.team.ntrapplication.optionFragments.LightSensorFragment;
 import nl.hu.team.ntrapplication.optionFragments.MulitipleChoiceFragment;
 import nl.hu.team.ntrapplication.optionFragments.MultipleSelectQuestionFragment;
@@ -173,6 +174,9 @@ public class QuestionActivity extends Activity {
                 break;
             case "compassensor":
                 optionFragment = new CompasSensorFragment();
+                break;
+            case "gyroscope":
+                optionFragment = new GyroscopeFragment();
                 break;
             default:
                 break; ////TODO: add default
