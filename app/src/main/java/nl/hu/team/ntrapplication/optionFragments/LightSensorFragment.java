@@ -17,7 +17,7 @@ import nl.hu.team.ntrapplication.R;
 /**
  * Created by jiry on 8-4-2015.
  */
-public class LightSensorFragment extends Fragment {
+public class LightSensorFragment extends Fragment, AnswerOption {
 
     private TextView textView, textView2;
 

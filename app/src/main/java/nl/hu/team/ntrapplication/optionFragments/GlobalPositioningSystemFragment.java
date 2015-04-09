@@ -18,7 +18,7 @@ import nl.hu.team.ntrapplication.objects.Question;
 /**
  * Created by Lars on 4/8/2015.
  */
-public class GlobalPositioningSystemFragment extends Fragment {
+public class GlobalPositioningSystemFragment extends Fragment implements AnswerOption{
 
     private TextView name, description, answer;
     private DatePicker datePicker;

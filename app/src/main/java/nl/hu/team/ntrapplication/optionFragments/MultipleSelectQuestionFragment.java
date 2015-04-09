@@ -22,7 +22,7 @@ import nl.hu.team.ntrapplication.objects.Question;
 /**
  * Created by Milamber on 1-4-2015.
  */
-public class MultipleSelectQuestionFragment extends Fragment {
+public class MultipleSelectQuestionFragment extends Fragment, AnswerOption {
 
     private TextView name, description;
     private DatePicker datePicker;

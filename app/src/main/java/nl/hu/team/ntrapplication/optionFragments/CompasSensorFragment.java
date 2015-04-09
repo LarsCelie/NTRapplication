@@ -21,7 +21,7 @@ import nl.hu.team.ntrapplication.R;
 /**
  * Created by jiry on 9-4-2015.
  */
-public class CompasSensorFragment extends Fragment implements SensorEventListener{
+public class CompasSensorFragment extends Fragment implements SensorEventListener,AnswerOption{
 
     private ImageView compasImage;
     private float currentDegree = 0f;

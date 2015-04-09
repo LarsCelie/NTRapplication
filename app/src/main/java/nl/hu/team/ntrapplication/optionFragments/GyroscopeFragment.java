@@ -17,7 +17,7 @@ import nl.hu.team.ntrapplication.R;
 /**
  * Created by Tinus on 9-4-2015.
  */
-public class GyroscopeFragment extends Fragment implements SensorEventListener {
+public class GyroscopeFragment extends Fragment implements SensorEventListener, AnswerOption {
     private SensorManager mSensorManager;
     private Sensor mSensor;
     private TextView textView;

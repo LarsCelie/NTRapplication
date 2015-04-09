@@ -19,7 +19,7 @@ import nl.hu.team.ntrapplication.R;
 /**
  * Created by jiry on 4-4-2015.
  */
-public class TakePhotoFragment extends Fragment {
+public class TakePhotoFragment extends Fragment implements AnswerOption{
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView awesomeImage;

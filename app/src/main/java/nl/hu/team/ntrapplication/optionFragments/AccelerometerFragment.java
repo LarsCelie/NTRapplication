@@ -17,7 +17,7 @@ import nl.hu.team.ntrapplication.R;
 /**
  * Created by Tinus on 8-4-2015.
  */
-public class AccelerometerFragment extends Fragment implements SensorEventListener{
+public class AccelerometerFragment extends Fragment implements SensorEventListener,AnswerOption{
     private SensorManager mSensorManager;
     private Sensor mSensor;
     private TextView textView;
