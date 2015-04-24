@@ -12,14 +12,14 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/gebruikersnaam"
         android:id="@+id/gebruikersnaam"
-        android:layout_above="@+id/editText"
+        android:layout_above="@+id/gebruikersnaamtext"
         android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/gebruikersnaamtext"
-        android:layout_above="@+id/textView4"
+        android:layout_above="@+id/wachtwoord"
         android:layout_centerHorizontal="true" />
 
     <TextView

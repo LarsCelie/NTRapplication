@@ -34,7 +34,7 @@ public class InlogActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_inlog, menu);
         return true;
     }
-
+//
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
