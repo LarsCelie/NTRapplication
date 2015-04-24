@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="nl.hu.team.ntrapplication" >
 
-    <uses-feature android:name="android.hardware.camera"
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -13,12 +15,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Holo.Light"
-        >
+        android:theme="@android:style/Theme.Holo.Light" >
         <activity
             android:name=".activities.SplashScreenActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,18 +29,20 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+            android:screenOrientation="portrait" >
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".activities.ResearchListActivity"
             android:label="@string/title_activity_research_list"
             android:parentActivityName=".activities.MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nl.hu.team.ntrapplication.activities.MainActivity" />
@@ -47,8 +50,7 @@
         <activity
             android:name=".activities.SurveyListActivity"
             android:label="SurveyListActivity"
-            android:screenOrientation="portrait"
-             >
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nl.hu.team.ntrapplication.activities.ResearchListActivity" />
@@ -57,11 +59,14 @@
             android:name=".activities.QuestionActivity"
             android:label="@string/title_activity_question"
             android:parentActivityName=".activities.SurveyListActivity"
-            android:screenOrientation="portrait">
-
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nl.hu.team.ntrapplication.activities.SurveyListActivity"/>
+                android:value="nl.hu.team.ntrapplication.activities.SurveyListActivity" />
+        </activity>
+        <activity
+            android:name=".activities.InlogActivity"
+            android:label="@string/title_activity_inlog" >
         </activity>
     </application>
 
