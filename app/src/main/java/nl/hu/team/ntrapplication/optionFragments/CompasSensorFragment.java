@@ -89,7 +89,6 @@ public class CompasSensorFragment extends Fragment implements SensorEventListene
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
-
     }
 
     @Override
