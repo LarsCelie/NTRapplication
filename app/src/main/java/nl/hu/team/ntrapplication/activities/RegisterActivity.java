@@ -6,32 +6,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import nl.hu.team.ntrapplication.R;
 
-public class InlogActivity extends ActionBarActivity {
+public class RegisterActivity extends ActionBarActivity {
 
-    private EditText usernameEdit, passwordEdit;
-    private Button login;
+    private EditText name, email, username, password;
+    private Button register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inlog);
+        setContentView(R.layout.activity_register);
 
-        usernameEdit = (EditText) findViewById(R.id.gebruikersnaamtext);
-        passwordEdit = (EditText) findViewById(R.id.wachtwoortext);
-        login = (Button) findViewById(R.id.loginbutton);
+        name = (EditText) findViewById(R.id.naam);
+        email = (EditText) findViewById(R.id.emailaddress);
+        username = (EditText) findViewById(R.id.gebruikersnaam_register);
+        password = (EditText) findViewById(R.id.wachtwoord_register);
+        register = (Button) findViewById(R.id.registerbutton);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_inlog, menu);
+        getMenuInflater().inflate(R.menu.menu_register, menu);
         return true;
     }
-//
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
