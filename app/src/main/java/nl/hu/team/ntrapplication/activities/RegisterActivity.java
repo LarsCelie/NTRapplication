@@ -11,7 +11,7 @@ import nl.hu.team.ntrapplication.R;
 
 public class RegisterActivity extends ActionBarActivity {
 
-    private EditText name, email, username, password;
+    private EditText voornaam, achternaam, email, username, password, passwordcheck;
     private Button register;
 
     @Override
@@ -19,18 +19,21 @@ public class RegisterActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        name = (EditText) findViewById(R.id.naam);
-        email = (EditText) findViewById(R.id.emailaddress);
-        username = (EditText) findViewById(R.id.gebruikersnaam_register);
-        password = (EditText) findViewById(R.id.wachtwoord_register);
-        register = (Button) findViewById(R.id.registerbutton);
+        voornaam = (EditText) findViewById(R.id.voornaamEditText);
+        achternaam = (EditText) findViewById(R.id.achternaamEditText);
+        email = (EditText) findViewById(R.id.emailEditText);
+        username = (EditText) findViewById(R.id.gebruikersnaamEditText);
+        password = (EditText) findViewById(R.id.wachtwoordEditText);
+        passwordcheck = (EditText) findViewById(R.id.controleWachtwoordEditText);
+
+        register = (Button) findViewById(R.id.registerButton);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_register, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
