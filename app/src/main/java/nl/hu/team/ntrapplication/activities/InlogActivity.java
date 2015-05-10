@@ -1,14 +1,13 @@
 package nl.hu.team.ntrapplication.activities;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -19,7 +18,7 @@ import org.apache.http.Header;
 
 import nl.hu.team.ntrapplication.R;
 
-public class InlogActivity extends ActionBarActivity {
+public class InlogActivity extends Activity {
 
     private EditText usernameEdit, passwordEdit;
     private Button login;
@@ -70,6 +69,7 @@ public class InlogActivity extends ActionBarActivity {
         // Http parameters
         params.put("username", username);
         params.put("password", password);
+        invokeWS(params);
     }
 
     // Method that performs RESTful webservice invocations
@@ -77,7 +77,7 @@ public class InlogActivity extends ActionBarActivity {
 
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://10.0.2.2:8080/NTR_application/rest/session", params, new AsyncHttpResponseHandler() {
+        client.get("http://localhost:8080/NTR_application/rest/session", params, new AsyncHttpResponseHandler() {
 
             // When the response returned by REST has Http response code '200'
             @Override
