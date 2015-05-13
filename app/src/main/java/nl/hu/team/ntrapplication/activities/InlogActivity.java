@@ -77,20 +77,22 @@ public class InlogActivity extends Activity {
 
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://localhost:8080/NTR_application/rest/session", params, new AsyncHttpResponseHandler() {
+
+        client.get("http://10.0.2.2:8080/NTR_application/rest/session", params, new AsyncHttpResponseHandler() {
 
             // When the response returned by REST has Http response code '200'
             @Override
-            public void onSuccess(int statuscode, Header[] headers, byte[] response) {
-                Toast.makeText(getApplicationContext(), "You are successfully logged in!", Toast.LENGTH_LONG).show();
+            public void onSuccess(String response) {
+                Toast.makeText(getApplicationContext(), "You are successfully logged in!" + response, Toast.LENGTH_LONG).show();
                 // Navigate to Home screen
                 navigatetoHomeActivity();
             }
 
             // When the response returned by REST has Http response code other than '200'
             @Override
-            public void onFailure(int statuscode, Header[] headers, byte[] errorResponse, Throwable throwable) {
-                Toast.makeText(getApplicationContext(), "ERROR!", Toast.LENGTH_LONG).show();
+            public void onFailure(int statusCode, Throwable error,
+                                  String content) {
+                Toast.makeText(getApplicationContext(), "ERROR!" + content + error + statusCode, Toast.LENGTH_LONG).show();
             }
         });
 

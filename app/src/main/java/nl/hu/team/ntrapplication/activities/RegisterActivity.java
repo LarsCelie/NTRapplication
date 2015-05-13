@@ -91,6 +91,7 @@ public class RegisterActivity extends Activity {
 
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
+
         client.get("http://localhost:8080/NTR_application/rest/session/create", params, new AsyncHttpResponseHandler() {
 
             // When the response returned by REST has Http response code '200'
