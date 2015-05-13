@@ -63,4 +63,9 @@ public class GyroscopeFragment extends Fragment implements SensorEventListener, 
     public String getValue() {
         return null;
     }
+
+    @Override
+    public boolean setValue() {
+        return false;
+    }
 }

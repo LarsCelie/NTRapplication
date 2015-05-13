@@ -6,4 +6,6 @@ package nl.hu.team.ntrapplication.optionFragments;
 public interface AnswerOption {
 
     public String getValue();
+
+    public boolean setValue();
 }

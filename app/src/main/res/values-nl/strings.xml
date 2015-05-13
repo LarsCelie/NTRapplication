@@ -6,8 +6,12 @@
     <string name="action_settings">Instellingen</string>
     <string name="previous">Vorige</string>
     <string name="next">Volgende</string>
-    <string name="question_button_next">next</string>
-    <string name="question_button_previous">previous</string>
+    <string name="question_button_next">Volgende</string>
+    <string name="question_button_previous">Vorige</string>
+
+    <string name="audio_start">Neem op</string>
+    <string name="audio_stop">Stop</string>
+    <string name="audio_play">Start</string>
 
     <string name="has">heeft</string>
     <string name="research_more">Meer lezen over dit onderzoek</string>
