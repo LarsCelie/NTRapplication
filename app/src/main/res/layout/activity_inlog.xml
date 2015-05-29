@@ -20,7 +20,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/gebruikersnaamtext"
         android:layout_above="@+id/wachtwoord"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/wachtwoortext"
+        android:layout_alignStart="@+id/wachtwoortext"
+        android:layout_alignRight="@+id/wachtwoortext"
+        android:layout_alignEnd="@+id/wachtwoortext" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,9 +48,28 @@
         android:layout_height="wrap_content"
         android:text="@string/inloggen"
         android:id="@+id/loginbutton"
+        android:onClick="loginUser"
         android:layout_below="@+id/wachtwoortext"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registreren"
+        android:id="@+id/button2"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="59dp"
-        android:onClick="loginUser" />
+        android:onClick="navigateToRegisterActivity" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Nog geen Account?"
+        android:id="@+id/textView4"
+        android:layout_above="@+id/button2"
+        android:layout_alignRight="@+id/gebruikersnaam"
+        android:layout_alignEnd="@+id/gebruikersnaam" />
 
 </RelativeLayout>

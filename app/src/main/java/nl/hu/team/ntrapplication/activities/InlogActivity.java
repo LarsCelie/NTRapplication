@@ -10,18 +10,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import org.apache.http.Header;
-
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.database.DatabaseHandler;
+import nl.hu.team.ntrapplication.objects.User;
+import nl.hu.team.ntrapplication.services.Utility;
 
 public class InlogActivity extends Activity {
 
     private EditText usernameEdit, passwordEdit;
     private Button login;
+    DatabaseHandler db = new DatabaseHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +69,20 @@ public class InlogActivity extends Activity {
         // Instantiate Http Request Param Object
         RequestParams params = new RequestParams();
 
-        // Http parameters
-        params.put("username", username);
-        params.put("password", password);
-        invokeWS(params);
+        // Check if username & password is not null
+        if(Utility.isNotNull(username) && Utility.isNotNull(password)) {
+
+            // Http parameters
+            params.put("username", username);
+            params.put("password", password);
+            invokeWS(params);
+
+        } else {
+            Toast.makeText(getApplicationContext(), "Vul een gebruikersnaam en of " +
+                    "wachtwoord in", Toast.LENGTH_LONG).show();
+        }
+
+
     }
 
     // Method that performs RESTful webservice invocations
@@ -78,12 +91,18 @@ public class InlogActivity extends Activity {
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
 
-        client.get("http://10.0.2.2:8080/NTR_application/rest/session", params, new AsyncHttpResponseHandler() {
+        client.post("http://62.45.47.22:8080/NTR_application/rest/session", params, new AsyncHttpResponseHandler() {
 
             // When the response returned by REST has Http response code '200'
             @Override
             public void onSuccess(String response) {
                 Toast.makeText(getApplicationContext(), "You are successfully logged in!" + response, Toast.LENGTH_LONG).show();
+
+                // Gets an JSON object with user Data
+                // Write user Data to SQLite
+                User user = new Gson().fromJson(response, User.class);
+                db.addUser(user);
+
                 // Navigate to Home screen
                 navigatetoHomeActivity();
             }
@@ -100,8 +119,16 @@ public class InlogActivity extends Activity {
     }
 
 
+    // Method gets triggered when register button is clicked
+    public void navigateToRegisterActivity(View view) {
+        Intent registerIntent = new Intent(getApplicationContext(), RegisterActivity.class);
+        registerIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(registerIntent);
+    }
+
+
     // Method which navigates from Login Activity to Home Activity
-    public void navigatetoHomeActivity(){
+    public void navigatetoHomeActivity() {
         Intent homeIntent = new Intent(getApplicationContext(),MainActivity.class);
         homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(homeIntent);
