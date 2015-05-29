@@ -17,6 +17,7 @@ import nl.hu.team.ntrapplication.objects.Option;
 import nl.hu.team.ntrapplication.objects.Question;
 import nl.hu.team.ntrapplication.objects.Research;
 import nl.hu.team.ntrapplication.objects.Survey;
+import nl.hu.team.ntrapplication.objects.User;
 
 /**
  * Created by jiry on 24-3-2015.
@@ -26,6 +27,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Static variables
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "NTRApplicationDB";
+
+    /**
+     * USER
+     */
+    // USER
+    private static final String TABLE_USER_U = "USER";
+    private static final String ID_U = "id";
+    private static final String VOORNAAM_U = "voornaam";
+    private static final String ACHTERNAAM_U = "achternaam";
+    private static final String EMAIL_U = "email";
+    private static final String USERNAME_U = "username";
+    private static final String WACHTWOORD_U = "wachtwoord";
 
     /**
      * RESEARCH
@@ -93,25 +106,34 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER_U + "("
+                + ID_U + " INTEGER PRIMARY KEY, " + VOORNAAM_U + " TEXT, "
+                + ACHTERNAAM_U + " TEXT, " + EMAIL_U + " TEXT, "
+                + USERNAME_U + " TEXT, " + WACHTWOORD_U + " TEXT " + ");";
+
         String CREATE_RESEARCH_TABLE = "CREATE TABLE " + TABLE_RESEARCH_R + "("
                 + ID_R + " INTEGER PRIMARY KEY, " + NAME_R + " TEXT, "
                 + STATUS_R + " TEXT, " + BEGIN_DATE_R + " TEXT, "
                 + END_DATE_R + " TEXT " + ");";
+
         String CREATE_SURVEY_TABLE = "CREATE TABLE " + TABLE_SURVEY_S + "("
                 + ID_S + " INTEGER PRIMARY KEY, " + NAME_S + " TEXT, "
                 + BEGIN_DATE_S + " TEXT, " + END_DATE_S + " TEXT, "
                 + STATUS_S + " TEXT, " + FK_ID_R + " TEXT," + " FOREIGN KEY(" + FK_ID_R + ") REFERENCES " + TABLE_RESEARCH_R + "("+ ID_R +")" + ");";
+
         String CREATE_QUESTION_TABLE = "CREATE TABLE " + TABLE_QUESTION_Q + "("
                 + ID_Q + " INTEGER PRIMARY KEY, " + DESCRIPTION_Q + " TEXT, "
                 + SEQUENCE_Q + " INTEGER, " + TYPE_Q + " TEXT, " + FK_ID_S + " TEXT," + " FOREIGN KEY(" + FK_ID_S + ") REFERENCES " + TABLE_SURVEY_S + "("+ ID_S +")" + ");";
+
         String CREATE_OPTION_TABLE = "CREATE TABLE " + TABLE_OPTION_O + "("
                 + ID_O + " INTEGER PRIMARY KEY, " + CONTENT_O + " TEXT, "
                 + VALUE_O + " TEXT, " + FK_ID_QQ + " TEXT," + " FOREIGN KEY(" + FK_ID_QQ + ") REFERENCES " + TABLE_QUESTION_Q + "("+ID_Q+")" + ");";
+
         String CREATE_ATTACHMENT_TABLE = "CREATE TABLE " + TABLE_ATTACHMENT_A + "("
                 + ID_A + " INTEGER PRIMARY KEY, " + TYPE_A + " TEXT, "
                 + LOCATION_A + " TEXT, " + FK_ID_Q + " TEXT, " + "FOREIGN KEY(" + FK_ID_Q + ") REFERENCES " + TABLE_QUESTION_Q + "(" + ID_Q + ")" + ");";
 
-
+        db.execSQL(CREATE_USER_TABLE);
         db.execSQL(CREATE_RESEARCH_TABLE);
         db.execSQL(CREATE_SURVEY_TABLE);
         db.execSQL(CREATE_QUESTION_TABLE);
@@ -123,6 +145,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_U);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESEARCH_R);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SURVEY_S);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTION_Q);
@@ -136,6 +159,39 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /**
      * DB CRUD Functions
      */
+    public void addUser(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(ID_U, user.getId());
+        values.put(VOORNAAM_U, user.getFirstname());
+        values.put(ACHTERNAAM_U, user.getLastname());
+        values.put(EMAIL_U, user.getEmail());
+        values.put(USERNAME_U, user.getUsername());
+        values.put(WACHTWOORD_U, user.getPassword());
+
+        db.replace(TABLE_USER_U, null, values);
+        db.close();
+    }
+
+    public User getUser() {
+        String selectQuery = "SELECT * FROM " + TABLE_USER_U;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if(cursor.moveToFirst()) {
+            User user = new User();
+            user.setId(Integer.parseInt(cursor.getString(0)));
+            user.setFirstname(cursor.getString(1));
+            user.setLastname(cursor.getString(2));
+            user.setEmail(cursor.getString(3));
+            user.setUsername(cursor.getString(4));
+            user.setPassword(cursor.getString(5));
+            return user;
+        }
+        return null;
+    }
+
 
     public void addResearch(Research research) {
         SQLiteDatabase db = this.getWritableDatabase();

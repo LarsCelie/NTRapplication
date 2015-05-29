@@ -106,4 +106,9 @@ public class RecordAudioFragment extends Fragment implements AnswerOption{
     public String getValue() {
         return null;
     }
+
+    @Override
+    public boolean setValue() {
+        return false;
+    }
 }

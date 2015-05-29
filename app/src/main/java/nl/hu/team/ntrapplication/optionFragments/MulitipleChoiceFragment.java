@@ -74,4 +74,9 @@ public class MulitipleChoiceFragment extends Fragment implements AnswerOption {
         });
     }*/
 
+    @Override
+    public boolean setValue() {
+        return false;
+    }
+
 }

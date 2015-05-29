@@ -17,6 +17,7 @@ import com.loopj.android.http.RequestParams;
 import org.apache.http.Header;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.services.Utility;
 
 public class RegisterActivity extends Activity {
 
@@ -65,24 +66,48 @@ public class RegisterActivity extends Activity {
     public void registerUser(View view) {
 
         // Get all values
-        //String Vfirstname = voornaam.getText().toString();
-       // String Vlastname = achternaam.getText().toString();
-        //String Vemail = email.getText().toString();
+        String Vfirstname = voornaam.getText().toString();
+        String Vlastname = achternaam.getText().toString();
+        String Vemail = email.getText().toString();
         String Vusername = username.getText().toString();
         String Vpassword = password.getText().toString();
-       // String Vpasswordcheck = passwordcheck.getText().toString();
+        String Vpasswordcheck = passwordcheck.getText().toString();
 
         // Instantiate Http Request Param Object
         RequestParams params = new RequestParams();
 
-        // Http parameters
-      //  params.put("voornaam", Vfirstname);
-      //  params.put("achternaam", Vlastname);
-      //  params.put("email", Vemail);
-        params.put("username", Vusername);
-        params.put("password", Vpassword);
-       // params.put("passwordcheck", Vpasswordcheck);
-        invokeWS(params);
+        // Check on null input
+        if(Utility.isNotNull(Vfirstname) && Utility.isNotNull(Vlastname) &&
+                Utility.isNotNull(Vemail) && Utility.isNotNull(Vusername) &&
+                Utility.isNotNull(Vpassword) && Utility.isNotNull(Vpasswordcheck)) {
+
+            // Check if email is an valid email
+            if(Utility.validate(Vemail)) {
+
+                // Password control
+                if(Vpassword.equals(Vpasswordcheck)) {
+
+                    // Http parameters
+                    params.put("voornaam", Vfirstname);
+                    params.put("achternaam", Vlastname);
+                    params.put("email", Vemail);
+                    params.put("username", Vusername);
+                    params.put("password", Vpassword);
+                    params.put("passwordcheck", Vpasswordcheck);
+                    invokeWS(params);
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Wachtwoorden komen niet overeen", Toast.LENGTH_LONG).show();
+                }
+
+            } else {
+                Toast.makeText(getApplicationContext(), "Vul een geldig email adres in", Toast.LENGTH_LONG).show();
+            }
+
+        } else {
+            Toast.makeText(getApplicationContext(), "Vul alle velden in", Toast.LENGTH_LONG).show();
+        }
+
     }
 
 
@@ -92,11 +117,11 @@ public class RegisterActivity extends Activity {
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
 
-        client.get("http://localhost:8080/NTR_application/rest/session/create", params, new AsyncHttpResponseHandler() {
+        client.post("http://62.45.47.22:8080/NTR_application/rest/session/create", params, new AsyncHttpResponseHandler() {
 
             // When the response returned by REST has Http response code '200'
             @Override
-            public void onSuccess(int statuscode, Header[] headers, byte[] response) {
+            public void onSuccess(String response) {
                 Toast.makeText(getApplicationContext(), "You are successfully registered!", Toast.LENGTH_LONG).show();
                 // Navigate to Home screen
                 navigatetoLoginActivity();
@@ -104,9 +129,10 @@ public class RegisterActivity extends Activity {
 
             // When the response returned by REST has Http response code other than '200'
             @Override
-            public void onFailure(int statuscode, Header[] headers, byte[] errorResponse, Throwable throwable) {
+            public void onFailure(int statusCode, Throwable error,
+                                  String content) {
 
-                Toast.makeText(getApplicationContext(), "ERROR!" + statuscode, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ERROR!" + content + error + statusCode, Toast.LENGTH_LONG).show();
             }
         });
 

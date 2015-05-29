@@ -5,12 +5,14 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -23,6 +25,7 @@ import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Question;
 import nl.hu.team.ntrapplication.objects.Survey;
 import nl.hu.team.ntrapplication.optionFragments.AccelerometerFragment;
+import nl.hu.team.ntrapplication.optionFragments.AnswerOption;
 import nl.hu.team.ntrapplication.optionFragments.CompasSensorFragment;
 import nl.hu.team.ntrapplication.optionFragments.DateQuestionFragment;
 import nl.hu.team.ntrapplication.optionFragments.GlobalPositioningSystemFragment;
@@ -37,6 +40,7 @@ import nl.hu.team.ntrapplication.optionFragments.TakePhotoFragment;
 import nl.hu.team.ntrapplication.optionFragments.TimeQuestionFragment;
 
 public class QuestionActivity extends Activity {
+    private JSONObject result;
     private Survey survey;
     private int sequence = 1;
     private int maxQuestions;
@@ -58,6 +62,9 @@ public class QuestionActivity extends Activity {
         //disable the previous button
         Button b = (Button) findViewById(R.id.question_button_previous);
         b.setEnabled(false);
+
+        //initialize JSON
+        result = new JSONObject();
 
         //call update
         updateView();
@@ -179,7 +186,7 @@ public class QuestionActivity extends Activity {
                 optionFragment = new GyroscopeFragment();
                 break;
             default:
-                break; ////TODO: add default
+                break; //TODO: add default
         }
         //add the question object to the fragment object through bundle
         Bundle questionBundle = new Bundle();
@@ -273,15 +280,22 @@ public class QuestionActivity extends Activity {
     }
 
     public void finishSurvey() {
-        Intent intent = new Intent(this, SplashScreenActivity.class);
-        startActivity(intent);
+
+        //Intent intent = new Intent(this, SplashScreenActivity.class);
+        //startActivity(intent);
         //TODO: Finish the survey and continue to next screen
     }
 
     public boolean saveProgress() {
+        try {
+            String key = String.valueOf(getCurrentQuestion().getId());
+            String value = ((AnswerOption)optionFragment).getValue();
+            result.put(key, value);
+            return true;
+        } catch (JSONException e){
+            return false;
+        }
         //TODO: save progress to SQLite local database
-//        optionFragment.getAnswerValue();
-        return true;
     }
 
     public boolean loadProgress() {
