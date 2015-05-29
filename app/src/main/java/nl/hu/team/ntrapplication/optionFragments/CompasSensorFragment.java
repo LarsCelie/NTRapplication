@@ -95,4 +95,9 @@ public class CompasSensorFragment extends Fragment implements SensorEventListene
     public String getValue() {
         return null;
     }
+
+    @Override
+    public boolean setValue() {
+        return false;
+    }
 }

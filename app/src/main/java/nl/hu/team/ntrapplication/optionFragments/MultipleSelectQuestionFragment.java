@@ -97,4 +97,9 @@ public class MultipleSelectQuestionFragment extends Fragment implements AnswerOp
             return convertView;
         }
     }
+
+    @Override
+    public boolean setValue() {
+        return false;
+    }
 }

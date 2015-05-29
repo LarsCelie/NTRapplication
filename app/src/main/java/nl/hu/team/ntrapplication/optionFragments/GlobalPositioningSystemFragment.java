@@ -107,4 +107,9 @@ public class GlobalPositioningSystemFragment extends Fragment implements AnswerO
         double lon = latestlocation.getLongitude();
         answer.setText("lat = " + lat + " ## lon = " + lon);
     }
+
+    @Override
+    public boolean setValue() {
+        return false;
+    }
 }

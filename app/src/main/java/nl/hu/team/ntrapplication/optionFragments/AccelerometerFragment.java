@@ -63,6 +63,11 @@ public class AccelerometerFragment extends Fragment implements SensorEventListen
     public String getValue() {
         return null;
     }
+
+    @Override
+    public boolean setValue() {
+        return false;
+    }
 }
 
 
