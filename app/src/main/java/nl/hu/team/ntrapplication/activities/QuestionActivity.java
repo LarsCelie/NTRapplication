@@ -273,6 +273,7 @@ public class QuestionActivity extends Activity {
     @Override
     public void onPause() {
         super.onPause();
+
     }
     @Override
     public void onResume() {
