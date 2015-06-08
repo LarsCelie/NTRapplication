@@ -10,13 +10,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
+import org.apache.http.entity.StringEntity;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.objects.User;
 import nl.hu.team.ntrapplication.services.Utility;
 
 public class RegisterActivity extends Activity {
@@ -73,8 +81,6 @@ public class RegisterActivity extends Activity {
         String Vpassword = password.getText().toString();
         String Vpasswordcheck = passwordcheck.getText().toString();
 
-        // Instantiate Http Request Param Object
-        RequestParams params = new RequestParams();
 
         // Check on null input
         if(Utility.isNotNull(Vfirstname) && Utility.isNotNull(Vlastname) &&
@@ -88,13 +94,26 @@ public class RegisterActivity extends Activity {
                 if(Vpassword.equals(Vpasswordcheck)) {
 
                     // Http parameters
-                    params.put("voornaam", Vfirstname);
-                    params.put("achternaam", Vlastname);
-                    params.put("email", Vemail);
-                    params.put("username", Vusername);
-                    params.put("password", Vpassword);
-                    params.put("passwordcheck", Vpasswordcheck);
-                    invokeWS(params);
+                    User u = new User();
+                    u.setFirstname(Vfirstname);
+                    u.setLastname(Vlastname);
+                    u.setEmail(Vemail);
+                    u.setUsername(Vusername);
+                    u.setPassword(Vpassword);
+                    JSONObject jsonParams = new JSONObject();
+                    try {
+                        jsonParams.put("voornaam", Vfirstname);
+                        jsonParams.put("achternaam", Vlastname);
+                        jsonParams.put("email", Vemail);
+                        jsonParams.put("username", Vusername);
+                        jsonParams.put("password", Vpassword);
+                        StringEntity entity = new StringEntity(jsonParams.toString());
+                        invokeWS(entity);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Wachtwoorden komen niet overeen", Toast.LENGTH_LONG).show();
@@ -112,12 +131,13 @@ public class RegisterActivity extends Activity {
 
 
     // Method that performs RESTful webservice invocations
-    public void invokeWS(RequestParams params) {
+    public void invokeWS(StringEntity entity) {
 
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
 
-        client.post("http://62.45.47.22:8080/NTR_application/rest/session/create", params, new AsyncHttpResponseHandler() {
+        client.post(this.getApplicationContext(),"http://62.45.47.22:8080/NTR_application/rest/session/create",
+                entity,"application/json", new JsonHttpResponseHandler() {
 
             // When the response returned by REST has Http response code '200'
             @Override
