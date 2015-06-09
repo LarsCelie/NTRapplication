@@ -100,17 +100,10 @@ public class RegisterActivity extends Activity {
                     u.setEmail(Vemail);
                     u.setUsername(Vusername);
                     u.setPassword(Vpassword);
-                    JSONObject jsonParams = new JSONObject();
                     try {
-                        jsonParams.put("voornaam", Vfirstname);
-                        jsonParams.put("achternaam", Vlastname);
-                        jsonParams.put("email", Vemail);
-                        jsonParams.put("username", Vusername);
-                        jsonParams.put("password", Vpassword);
-                        StringEntity entity = new StringEntity(jsonParams.toString());
+                        String s = new Gson().toJson(u);
+                        StringEntity entity = new StringEntity(s);
                         invokeWS(entity);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -136,7 +129,7 @@ public class RegisterActivity extends Activity {
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
 
-        client.post(this.getApplicationContext(),"http://62.45.47.22:8080/NTR_application/rest/session/create",
+        client.post(this.getApplicationContext(),"http://10.0.2.2:8080/NTR_application/rest/session/create",
                 entity,"application/json", new JsonHttpResponseHandler() {
 
             // When the response returned by REST has Http response code '200'
