@@ -10,13 +10,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
+import org.apache.http.entity.StringEntity;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.objects.User;
+import nl.hu.team.ntrapplication.services.Utility;
 
 public class RegisterActivity extends Activity {
 
@@ -65,38 +74,74 @@ public class RegisterActivity extends Activity {
     public void registerUser(View view) {
 
         // Get all values
-        //String Vfirstname = voornaam.getText().toString();
-       // String Vlastname = achternaam.getText().toString();
-        //String Vemail = email.getText().toString();
+        String Vfirstname = voornaam.getText().toString();
+        String Vlastname = achternaam.getText().toString();
+        String Vemail = email.getText().toString();
         String Vusername = username.getText().toString();
         String Vpassword = password.getText().toString();
-       // String Vpasswordcheck = passwordcheck.getText().toString();
+        String Vpasswordcheck = passwordcheck.getText().toString();
 
-        // Instantiate Http Request Param Object
-        RequestParams params = new RequestParams();
 
-        // Http parameters
-      //  params.put("voornaam", Vfirstname);
-      //  params.put("achternaam", Vlastname);
-      //  params.put("email", Vemail);
-        params.put("username", Vusername);
-        params.put("password", Vpassword);
-       // params.put("passwordcheck", Vpasswordcheck);
-        invokeWS(params);
+        // Check on null input
+        if(Utility.isNotNull(Vfirstname) && Utility.isNotNull(Vlastname) &&
+                Utility.isNotNull(Vemail) && Utility.isNotNull(Vusername) &&
+                Utility.isNotNull(Vpassword) && Utility.isNotNull(Vpasswordcheck)) {
+
+            // Check if email is an valid email
+            if(Utility.validate(Vemail)) {
+
+                // Password control
+                if(Vpassword.equals(Vpasswordcheck)) {
+
+                    // Http parameters
+                    User u = new User();
+                    u.setFirstname(Vfirstname);
+                    u.setLastname(Vlastname);
+                    u.setEmail(Vemail);
+                    u.setUsername(Vusername);
+                    u.setPassword(Vpassword);
+                    JSONObject jsonParams = new JSONObject();
+                    try {
+                        jsonParams.put("voornaam", Vfirstname);
+                        jsonParams.put("achternaam", Vlastname);
+                        jsonParams.put("email", Vemail);
+                        jsonParams.put("username", Vusername);
+                        jsonParams.put("password", Vpassword);
+                        StringEntity entity = new StringEntity(jsonParams.toString());
+                        invokeWS(entity);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Wachtwoorden komen niet overeen", Toast.LENGTH_LONG).show();
+                }
+
+            } else {
+                Toast.makeText(getApplicationContext(), "Vul een geldig email adres in", Toast.LENGTH_LONG).show();
+            }
+
+        } else {
+            Toast.makeText(getApplicationContext(), "Vul alle velden in", Toast.LENGTH_LONG).show();
+        }
+
     }
 
 
     // Method that performs RESTful webservice invocations
-    public void invokeWS(RequestParams params) {
+    public void invokeWS(StringEntity entity) {
 
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
 
-        client.get("http://localhost:8080/NTR_application/rest/session/create", params, new AsyncHttpResponseHandler() {
+        client.post(this.getApplicationContext(),"http://62.45.47.22:8080/NTR_application/rest/session/create",
+                entity,"application/json", new JsonHttpResponseHandler() {
 
             // When the response returned by REST has Http response code '200'
             @Override
-            public void onSuccess(int statuscode, Header[] headers, byte[] response) {
+            public void onSuccess(String response) {
                 Toast.makeText(getApplicationContext(), "You are successfully registered!", Toast.LENGTH_LONG).show();
                 // Navigate to Home screen
                 navigatetoLoginActivity();
@@ -104,9 +149,10 @@ public class RegisterActivity extends Activity {
 
             // When the response returned by REST has Http response code other than '200'
             @Override
-            public void onFailure(int statuscode, Header[] headers, byte[] errorResponse, Throwable throwable) {
+            public void onFailure(int statusCode, Throwable error,
+                                  String content) {
 
-                Toast.makeText(getApplicationContext(), "ERROR!" + statuscode, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ERROR!" + content + error + statusCode, Toast.LENGTH_LONG).show();
             }
         });
 
