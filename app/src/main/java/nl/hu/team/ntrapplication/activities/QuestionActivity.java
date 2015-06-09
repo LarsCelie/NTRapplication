@@ -273,6 +273,7 @@ public class QuestionActivity extends Activity {
     @Override
     public void onPause() {
         super.onPause();
+
     }
     @Override
     public void onResume() {
@@ -280,9 +281,9 @@ public class QuestionActivity extends Activity {
     }
 
     public void finishSurvey() {
-
         //Intent intent = new Intent(this, SplashScreenActivity.class);
         //startActivity(intent);
+        //TODO: service aanroepen de JSON-Object met antwoorden verstuurd naar REST-server
         //TODO: Finish the survey and continue to next screen
     }
 

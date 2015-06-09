@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import nl.hu.team.ntrapplication.R;
 import nl.hu.team.ntrapplication.objects.Question;
 
@@ -18,6 +21,7 @@ public class OpenQuestionFragment extends Fragment implements AnswerOption {
 
     private TextView name, description;
     private DatePicker datePicker;
+    private Question question;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -26,7 +30,7 @@ public class OpenQuestionFragment extends Fragment implements AnswerOption {
         description = (TextView) root.findViewById(R.id.openQuestionDescription);
 
         Bundle bundle = this.getArguments();
-        Question question = bundle.getParcelable("question");
+        question = bundle.getParcelable("question");
 //        name.setText(question.getName());
         description.setText(question.getDescription());
 
@@ -36,6 +40,18 @@ public class OpenQuestionFragment extends Fragment implements AnswerOption {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+    }
+
+   //JSON dingetje
+    @Override
+    public void onPause(){
+        String questionString = question.toString();
+        try {
+            JSONObject json = new JSONObject(questionString);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
