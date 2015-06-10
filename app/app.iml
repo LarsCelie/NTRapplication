@@ -113,7 +113,6 @@
     <orderEntry type="library" exported="" name="validation-api-1.1.0.Final" level="project" />
     <orderEntry type="library" exported="" name="jersey-container-servlet-core" level="project" />
     <orderEntry type="library" exported="" name="android-async-http-1.4.4" level="project" />
-    <orderEntry type="library" exported="" name="1_android-async-http-1.4.4" level="project" />
     <orderEntry type="library" exported="" name="javax.servlet-api-3.0.1" level="project" />
     <orderEntry type="library" exported="" name="jersey-common" level="project" />
     <orderEntry type="library" exported="" name="hk2-utils-2.4.0-b10" level="project" />
