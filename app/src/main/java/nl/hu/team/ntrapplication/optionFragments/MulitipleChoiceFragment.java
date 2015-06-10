@@ -57,21 +57,12 @@ public class MulitipleChoiceFragment extends AnswerOption {
 
     @Override
     public String getValue() {
-        return null;
+        RadioGroup radioGroup = (RadioGroup)getView().findViewById(R.id.radio_group);
+        int selected = radioGroup.getCheckedRadioButtonId();
+        RadioButton radioButton = (RadioButton)getView().findViewById(selected);
+        return radioButton.getText().toString();
     }
 
-    /*public void onRadioChangeListener(RadioGroup radioGroup){
-
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case 0 :
-
-                }
-            }
-        });
-    }*/
 
     @Override
     public boolean setValue() {
