@@ -81,8 +81,6 @@ public class InlogActivity extends Activity {
             Toast.makeText(getApplicationContext(), "Vul een gebruikersnaam en of " +
                     "wachtwoord in", Toast.LENGTH_LONG).show();
         }
-
-
     }
 
     // Method that performs RESTful webservice invocations
