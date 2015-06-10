@@ -12,8 +12,9 @@
         <option name="SELECTED_TEST_ARTIFACT" value="_android_test_" />
         <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
         <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
-        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleDebugAndroidTest" />
         <option name="SOURCE_GEN_TASK_NAME" value="generateDebugSources" />
+        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleDebugAndroidTest" />
+        <option name="COMPILE_JAVA_TEST_TASK_NAME" value="compileDebugAndroidTestSources" />
         <option name="TEST_SOURCE_GEN_TASK_NAME" value="generateDebugAndroidTestSources" />
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
@@ -88,6 +89,7 @@
     <orderEntry type="library" exported="" name="persistence-api-1.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.0.0" level="project" />
     <orderEntry type="library" exported="" name="gson-2.3.1" level="project" />
+    <orderEntry type="library" exported="" name="1_gson-2.3.1" level="project" />
     <orderEntry type="library" exported="" name="commons-io-2.4" level="project" />
     <orderEntry type="library" exported="" name="osgi-resource-locator-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="hk2-api-2.4.0-b10" level="project" />
@@ -98,9 +100,9 @@
     <orderEntry type="library" exported="" name="jaxb-api-2.2.7" level="project" />
     <orderEntry type="library" exported="" name="jersey-container-servlet" level="project" />
     <orderEntry type="library" exported="" name="jersey-media-jaxb" level="project" />
-    <orderEntry type="library" exported="" name="javassist-3.18.1-GA" level="project" />
-    <orderEntry type="library" exported="" name="javax.inject-2.4.0-b10" level="project" />
     <orderEntry type="library" exported="" name="aopalliance-repackaged-2.4.0-b10" level="project" />
+    <orderEntry type="library" exported="" name="javax.inject-2.4.0-b10" level="project" />
+    <orderEntry type="library" exported="" name="javassist-3.18.1-GA" level="project" />
     <orderEntry type="library" exported="" name="jersey-guava-2.17" level="project" />
     <orderEntry type="library" exported="" name="asm-debug-all-5.0.2" level="project" />
     <orderEntry type="library" exported="" name="javax.annotation-api-1.2" level="project" />
@@ -117,4 +119,3 @@
     <orderEntry type="library" exported="" name="hk2-utils-2.4.0-b10" level="project" />
   </component>
 </module>
-
