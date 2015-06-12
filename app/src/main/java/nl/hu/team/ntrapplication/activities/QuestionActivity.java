@@ -373,12 +373,12 @@ public class QuestionActivity extends Activity {
         //Get userId from SQL lite database
         DatabaseHandler db = new DatabaseHandler(this);
         User user = db.getUser();
-        int userId = user.getId();
+        String username_fk = user.getUsername();
         //getSurveyId
         int surveyId = survey.getId();
         //get Answer JSON object and turn it into an JSON-Array
         try {
-            finalJson.put("userId",userId);
+            finalJson.put("username_fk",username_fk);
             finalJson.put("surveyId", surveyId);
             finalJson.put("answers",result);
         } catch (JSONException e) {
