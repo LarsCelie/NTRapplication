@@ -46,6 +46,7 @@ public class OpenQuestionFragment extends AnswerOption {
    //JSON dingetje
     @Override
     public void onPause(){
+        super.onPause();
         String questionString = question.toString();
         try {
             JSONObject json = new JSONObject(questionString);

@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -292,14 +293,13 @@ public class QuestionActivity extends Activity {
         //Intent intent = new Intent(this, SplashScreenActivity.class);
         //startActivity(intent);
         //TODO: Finish the survey and continue to next screen
-        String s = result.toString();
+        String s = createFinalJson().toString();
+        Toast.makeText(this.getApplicationContext(),"bla",Toast.LENGTH_LONG).show();
         try{StringEntity entity = new StringEntity(s);
             invokeWS(entity);
-
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        createFinalJson();
     }
 
     public boolean saveProgress() {
@@ -339,28 +339,13 @@ public class QuestionActivity extends Activity {
     public void invokeWS(StringEntity entity) {
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
-        client.post(this.getApplicationContext(), "http://10.0.2.2:8080/NTR_application/rest/session/create",
+        client.post(this.getApplicationContext(), "http://10.0.2.2:8080/NTR_application/rest/answer",
                 entity, "application/json", new JsonHttpResponseHandler() {
 
                     // When the response returned by REST has Http response code '200'
                     @Override
                     public void onSuccess(String response) {
-                        try {
-                            // JSON Object
-                            JSONObject obj = new JSONObject(response);
-                            // When the JSON response has status boolean value assigned with true
-                            if (obj.getBoolean("status")) {
-                                // TODO melding maken voor succesvol inloggen
-                            }
-                            // Else display error message
-                            else {
-                                //TODO foutmelding weergeven
-                            }
-                        } catch (JSONException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-
-                        }
+                        Toast.makeText(getApplicationContext(), "Succesfully posted answers", Toast.LENGTH_LONG).show();
                     }
 
                     // When the response returned by REST has Http response code other than '200'

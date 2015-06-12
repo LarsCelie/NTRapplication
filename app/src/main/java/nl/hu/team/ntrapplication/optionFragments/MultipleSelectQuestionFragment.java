@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,7 +23,6 @@ import nl.hu.team.ntrapplication.objects.Question;
 public class MultipleSelectQuestionFragment extends AnswerOption {
 
     private TextView name, description;
-    private DatePicker datePicker;
     private MyCustomAdapter dataAdapter;
     private ListView listView;
 
@@ -77,7 +75,7 @@ public class MultipleSelectQuestionFragment extends AnswerOption {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder = null;
+            ViewHolder holder;
             Log.v("ConvertView", String.valueOf(position));
 
             if(convertView == null) {
