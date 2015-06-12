@@ -170,6 +170,36 @@ public class MainActivity extends Activity {
         db.addAttachment(attachment2, q3);
         db.addAttachment(attachment1, q4);
 
+        /*
+        * Hier komt een survey met dingen
+        * */
+
+        //S1
+        Survey dingen = new Survey();
+        dingen.setId(1000);
+        dingen.setStatus("InProgress");
+        dingen.setName("Dingensurvey");
+        dingen.setBeginDate(convertStringToDate("01-01-2011"));
+        dingen.setEndDate(convertStringToDate("02-02-2022"));
+        r1.addSurvey(dingen);
+        db.addSurvey(dingen,r1);
+
+        Question dingenVraag1 = new Question();
+        dingenVraag1.setId(1001);
+        dingenVraag1.setType("open");
+        dingenVraag1.setNaam("Vraag 1");
+        dingenVraag1.setDescription("Deze vraag is open");
+        dingenVraag1.setSequence(1);
+        db.addQuestion(dingenVraag1, dingen);
+
+        Question dingenVraag2 = new Question();
+        dingenVraag2.setId(1002);
+        dingenVraag2.setType("time");
+        dingenVraag2.setNaam("Vraag 2");
+        dingenVraag2.setDescription("Dit is de tweede vraag");
+        dingenVraag2.setSequence(2);
+        db.addQuestion(dingenVraag2, dingen);
+
         //Test survey with all questions
 
         Research tr = new Research();

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -58,6 +59,7 @@ public class OpenQuestionFragment extends AnswerOption {
     public String getValue() {
         EditText editText = (EditText)getView().findViewById(R.id.openQuestionEditText);
         return editText.getText().toString();
+
     }
 
     @Override
