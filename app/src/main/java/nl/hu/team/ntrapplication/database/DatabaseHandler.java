@@ -428,6 +428,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return date;
     }
 
+
     private String convertDateToString(Date input) {
         DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
         return format.format(input);
