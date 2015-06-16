@@ -10,55 +10,55 @@ import java.util.Date;
  * Created by Milamber on 24-3-2015.
  */
 public class Research implements Parcelable{
-    private int ID;
-    private String NAME;
-    private Date BEGIN_DATE;
-    private Date END_DATE;
-    private String STATUS;
+    private int id;
+    private String name;
+    private Date beginDate;
+    private Date endDate;
+    private String status;
     private ArrayList<Survey> surveys = new ArrayList<>();
 
     public Research(){
 
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNAME() {
-        return NAME;
+    public String getName() {
+        return name;
     }
 
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Date getBEGIN_DATE() {
-        return BEGIN_DATE;
+    public Date getBeginDate() {
+        return beginDate;
     }
 
-    public void setBEGIN_DATE(Date BEGIN_DATE) {
-        this.BEGIN_DATE = BEGIN_DATE;
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
     }
 
-    public Date getEND_DATE() {
-        return END_DATE;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEND_DATE(Date END_DATE) {
-        this.END_DATE = END_DATE;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public String getSTATUS() {
-        return STATUS;
+    public String getStatus() {
+        return status;
     }
 
-    public void setSTATUS(String STATUS) {
-        this.STATUS = STATUS;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public ArrayList<Survey> getSurveys() {
@@ -78,7 +78,7 @@ public class Research implements Parcelable{
     }
 
     public String toString() {
-        return NAME ;
+        return name;
     }
     //De volgende regel hoort in de toString
     //+ " heeft " + surveys.size() + " vragenlijst(en)"
@@ -89,11 +89,11 @@ public class Research implements Parcelable{
     }
     @Override
     public void writeToParcel(Parcel pc, int flags) {
-        pc.writeInt(ID);
-        pc.writeString(NAME);
-        pc.writeSerializable(BEGIN_DATE);
-        pc.writeSerializable(END_DATE);
-        pc.writeString(STATUS);
+        pc.writeInt(id);
+        pc.writeString(name);
+        pc.writeSerializable(beginDate);
+        pc.writeSerializable(endDate);
+        pc.writeString(status);
         pc.writeTypedList(surveys);
     }
     public static final Creator<Research> CREATOR
@@ -106,11 +106,11 @@ public class Research implements Parcelable{
         }
     };
     private Research(Parcel in) {
-        ID = in.readInt();
-        NAME = in.readString();
-        BEGIN_DATE = (Date) in.readSerializable();
-        END_DATE = (Date) in.readSerializable();
-        STATUS = in.readString();
+        id = in.readInt();
+        name = in.readString();
+        beginDate = (Date) in.readSerializable();
+        endDate = (Date) in.readSerializable();
+        status = in.readString();
         in.readTypedList(surveys, Survey.CREATOR);
     }
 }

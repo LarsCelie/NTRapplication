@@ -12,9 +12,16 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -111,7 +118,7 @@ public class MainActivity extends Activity {
         AsyncHttpClient client = new AsyncHttpClient();
         System.out.println("HALLO IK BEN DE InvokeWS");
 
-        client.get("http://10.0.2.2:8080/NTR_application/rest/Research", new AsyncHttpResponseHandler() {
+        client.get("http://92.109.48.222:7070/NTR_application/rest/research", new AsyncHttpResponseHandler() {
 
             // When the response returned by REST has Http response code '200'
             @Override
@@ -121,14 +128,16 @@ public class MainActivity extends Activity {
                 // Gets an JSON object with researsches
                 // Write user Data to SQLite
                 ArrayList<Research> allResearches = new ArrayList<Research>();
-                for(int a = 0; a < response.length();a++){
-                    Research research = new Gson().fromJson(response,Research.class);
+                JsonArray jsonArray = new JsonParser().parse(response).getAsJsonArray();
+                System.out.println(jsonArray.toString());
+                for(JsonElement e: jsonArray){
+                    JsonObject object = (JsonObject) e;
+                    System.out.println("objecten " + object.toString());
+                    Research research = new Gson().fromJson(object,Research.class);
                     allResearches.add(research);
                 }
                 System.out.println("WIN " +allResearches.toString());
-
             }
-
             // When the response returned by REST has Http response code other than '200'
             @Override
             public void onFailure(int statusCode, Throwable error,
