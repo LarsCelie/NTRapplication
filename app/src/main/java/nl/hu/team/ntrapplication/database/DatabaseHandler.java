@@ -206,6 +206,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.replace(TABLE_RESEARCH_R,null,values);
         db.close();
     }
+
     public void addSurvey(Survey survey, Research research) {
         SQLiteDatabase db = this.getWritableDatabase();
 
