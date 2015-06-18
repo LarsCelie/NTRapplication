@@ -21,11 +21,11 @@
     <string name="pause_message">Uw voortgang wordt opgeslagen en u kunt het onderzoek hervatten vanaf de startpagina</string>
     <string name="title_activity_register">Registreer</string>
     <string name="title_activity_research_list" translatable="false">Onderzoeken</string>
-    <string name="wachtwoord">Wachtwoord</string>
     <string name="title_activity_inlog">Inloggen</string>
-    <string name="gebruikersnaam">Gebruikersnaam</string>
     <string name="inloggen">Inloggen</string>
     <string name="username">Gebruikersnaam</string>
+    <string name="wachtwoord"></string>
+    <string name="password">Wachtwoord</string>
 </resources>
 
 

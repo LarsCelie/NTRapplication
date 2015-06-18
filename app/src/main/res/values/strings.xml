@@ -31,7 +31,7 @@
     <string name="password">Password</string>
     <string name="inloggen">Log in</string>
     <string name="pause_message">Your progress will be saved and you can resume the survey from your homepage</string>
-    <string name="error_loading_string" translatable="false"></string>
+    <string name="error_loading_string" translatable="false">Something</string>
 
 
 
