@@ -25,7 +25,7 @@
     <string name="no">No</string>
     <string name="pause_message">Your progress will be saved and you can resume the survey from your homepage</string>
 
-    <string name="title_activity_inlog">InlogActivity</string>
+    <string name="title_activity_inlog" color="#7a3a75">Inloggen</string>
     <string name="gebruikersnaam">Gebruikersnaam</string>
     <string name="wachtwoord">Wachtwoord</string>
     <string name="inloggen">Inloggen</string>
