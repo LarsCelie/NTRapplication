@@ -1,11 +1,12 @@
 package nl.hu.team.ntrapplication.optionFragments;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -17,7 +18,7 @@ import nl.hu.team.ntrapplication.objects.Question;
 /**
  * Created by Lars on 4/2/2015.
  */
-public class OpenQuestionFragment extends Fragment implements AnswerOption {
+public class OpenQuestionFragment extends AnswerOption {
 
     private TextView name, description;
     private DatePicker datePicker;
@@ -45,6 +46,7 @@ public class OpenQuestionFragment extends Fragment implements AnswerOption {
    //JSON dingetje
     @Override
     public void onPause(){
+        super.onPause();
         String questionString = question.toString();
         try {
             JSONObject json = new JSONObject(questionString);
@@ -56,11 +58,14 @@ public class OpenQuestionFragment extends Fragment implements AnswerOption {
 
     @Override
     public String getValue() {
-        return null;
+        EditText editText = (EditText)getView().findViewById(R.id.openQuestionEditText);
+        return editText.getText().toString();
+
     }
 
     @Override
     public boolean setValue() {
         return false;
+
     }
 }

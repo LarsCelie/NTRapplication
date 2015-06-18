@@ -10,10 +10,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.apache.http.entity.StringEntity;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import nl.hu.team.ntrapplication.R;
@@ -21,9 +28,11 @@ import nl.hu.team.ntrapplication.attachmentFragments.AudioFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.ImageFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.InfoscreenFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
+import nl.hu.team.ntrapplication.database.DatabaseHandler;
 import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Question;
 import nl.hu.team.ntrapplication.objects.Survey;
+import nl.hu.team.ntrapplication.objects.User;
 import nl.hu.team.ntrapplication.optionFragments.AccelerometerFragment;
 import nl.hu.team.ntrapplication.optionFragments.AnswerOption;
 import nl.hu.team.ntrapplication.optionFragments.CompasSensorFragment;
@@ -40,12 +49,12 @@ import nl.hu.team.ntrapplication.optionFragments.TakePhotoFragment;
 import nl.hu.team.ntrapplication.optionFragments.TimeQuestionFragment;
 
 public class QuestionActivity extends Activity {
-    private JSONObject result;
+    private JSONArray result;
     private Survey survey;
     private int sequence = 1;
     private int maxQuestions;
     private Fragment attachmentFragment;
-    private Fragment optionFragment;
+    private AnswerOption optionFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +73,7 @@ public class QuestionActivity extends Activity {
         b.setEnabled(false);
 
         //initialize JSON
-        result = new JSONObject();
+        result = new JSONArray();
 
         //call update
         updateView();
@@ -283,15 +292,39 @@ public class QuestionActivity extends Activity {
     public void finishSurvey() {
         //Intent intent = new Intent(this, SplashScreenActivity.class);
         //startActivity(intent);
-        //TODO: service aanroepen de JSON-Object met antwoorden verstuurd naar REST-server
         //TODO: Finish the survey and continue to next screen
+        String s = createFinalJson().toString();
+        Toast.makeText(this.getApplicationContext(),"bla",Toast.LENGTH_LONG).show();
+        try{StringEntity entity = new StringEntity(s);
+            invokeWS(entity);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean saveProgress() {
+        JSONObject oneQuestion = new JSONObject();
         try {
-            String key = String.valueOf(getCurrentQuestion().getId());
-            String value = ((AnswerOption)optionFragment).getValue();
-            result.put(key, value);
+            String valueQuestion = String.valueOf(getCurrentQuestion().getId());
+            String valueAnswer = optionFragment.getValue();
+            boolean exists = false;
+
+            for(int i = 0; i < result.length();i++){
+                if(valueQuestion.equals(result.getJSONObject(i).get("question"))) {
+                    exists = true;
+                    oneQuestion = result.getJSONObject(i);
+                }
+            }
+            if(exists) {
+                oneQuestion.put("answer",valueAnswer);
+            } else {
+                oneQuestion.put("question", valueQuestion);
+                oneQuestion.put("answer", valueAnswer);
+
+                result.put(oneQuestion);
+            }
+            System.out.println(result);
+
             return true;
         } catch (JSONException e){
             return false;
@@ -302,5 +335,53 @@ public class QuestionActivity extends Activity {
     public boolean loadProgress() {
         //TODO: load previously committed progress from SQLite local database
         return false;
+    }
+    public void invokeWS(StringEntity entity) {
+        // Make RESTful webservice call using AsyncHttpClient object
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.post(this.getApplicationContext(), "http://10.0.2.2:8080/NTR_application/rest/answer",
+                entity, "application/json", new JsonHttpResponseHandler() {
+
+                    // When the response returned by REST has Http response code '200'
+                    @Override
+                    public void onSuccess(String response) {
+                        Toast.makeText(getApplicationContext(), "Succesfully posted answers", Toast.LENGTH_LONG).show();
+                    }
+
+                    // When the response returned by REST has Http response code other than '200'
+                    @Override
+                    public void onFailure(int statusCode, Throwable error,
+                                          String content) {
+                        // When Http response code is '404'
+                        if (statusCode == 404) {
+                            //TODO foutmelding tonen
+                        }
+                        // When Http response code is '500'
+                        else if (statusCode == 500) {
+                            //TODO foutmelding tonen
+                        }
+                        // When Http response code other than 404, 500
+                        else {
+                            //TODO foutmelding tonen
+                        }
+                    }
+                });
+    }
+    //get object with answers, userID en surveyID and return object with two id's and arrayList of answers
+    public JSONObject createFinalJson(){
+        JSONObject finalJson = new JSONObject();
+        //Get userId from SQL lite database
+        DatabaseHandler db = new DatabaseHandler(this);
+        User user = db.getUser();
+        //get Answer JSON object and turn it into an JSON-Array
+        try {
+            finalJson.put("user",user);
+            finalJson.put("survey", survey);
+            finalJson.put("answers",result);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println(finalJson.toString());
+        return finalJson;
     }
 }

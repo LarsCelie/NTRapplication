@@ -1,7 +1,6 @@
 package nl.hu.team.ntrapplication.optionFragments;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,7 +16,7 @@ import nl.hu.team.ntrapplication.R;
 /**
  * Created by jiry on 5-4-2015.
  */
-public class RecordVideoFragment extends Fragment implements AnswerOption {
+public class RecordVideoFragment extends AnswerOption {
 
     static final int REQUEST_VIDEO_CAPTURE = 1;
     VideoView awesomeVideoView;

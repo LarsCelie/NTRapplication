@@ -1,6 +1,5 @@
 package nl.hu.team.ntrapplication.optionFragments;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
@@ -18,7 +17,7 @@ import nl.hu.team.ntrapplication.objects.Question;
 /**
  * Created by Lars on 4/8/2015.
  */
-public class GlobalPositioningSystemFragment extends Fragment implements AnswerOption{
+public class GlobalPositioningSystemFragment extends AnswerOption{
 
     private TextView name, description, answer;
     private DatePicker datePicker;

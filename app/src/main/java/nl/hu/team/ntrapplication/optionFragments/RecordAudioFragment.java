@@ -1,7 +1,6 @@
 package nl.hu.team.ntrapplication.optionFragments;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -19,7 +18,7 @@ import nl.hu.team.ntrapplication.R;
 /**
  * Created by jiry on 8-4-2015.
  */
-public class RecordAudioFragment extends Fragment implements AnswerOption{
+public class RecordAudioFragment extends AnswerOption{
 
     SeekBar seekBar;
     private Button start, play;

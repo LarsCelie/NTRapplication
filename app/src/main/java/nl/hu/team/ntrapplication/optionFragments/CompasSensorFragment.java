@@ -1,6 +1,5 @@
 package nl.hu.team.ntrapplication.optionFragments;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -20,7 +19,7 @@ import nl.hu.team.ntrapplication.R;
 /**
  * Created by jiry on 9-4-2015.
  */
-public class CompasSensorFragment extends Fragment implements SensorEventListener,AnswerOption{
+public class CompasSensorFragment extends AnswerOption implements SensorEventListener{
 
     private ImageView compasImage;
     private float currentDegree = 0f;

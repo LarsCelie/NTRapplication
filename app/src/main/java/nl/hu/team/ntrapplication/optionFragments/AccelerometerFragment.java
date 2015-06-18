@@ -1,6 +1,5 @@
 package nl.hu.team.ntrapplication.optionFragments;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -17,12 +16,11 @@ import nl.hu.team.ntrapplication.R;
 /**
  * Created by Tinus on 8-4-2015.
  */
-public class AccelerometerFragment extends Fragment implements SensorEventListener,AnswerOption{
+public class AccelerometerFragment extends AnswerOption implements SensorEventListener{
     private SensorManager mSensorManager;
     private Sensor mSensor;
     private TextView textView;
     //private ArrayList<String> valueList = new ArrayList<String>();
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

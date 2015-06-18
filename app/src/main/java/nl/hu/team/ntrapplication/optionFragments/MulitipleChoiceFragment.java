@@ -1,6 +1,5 @@
 package nl.hu.team.ntrapplication.optionFragments;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,7 @@ import nl.hu.team.ntrapplication.objects.Question;
 /**
  * Created by jiry on 1-4-2015.
  */
-public class MulitipleChoiceFragment extends Fragment implements AnswerOption {
+public class MulitipleChoiceFragment extends AnswerOption {
     private TextView name, description;
     private RadioGroup radioGroup;
 
@@ -58,21 +57,12 @@ public class MulitipleChoiceFragment extends Fragment implements AnswerOption {
 
     @Override
     public String getValue() {
-        return null;
+        RadioGroup radioGroup = (RadioGroup)getView().findViewById(R.id.radio_group);
+        int selected = radioGroup.getCheckedRadioButtonId();
+        RadioButton radioButton = (RadioButton)getView().findViewById(selected);
+        return radioButton.getText().toString();
     }
 
-    /*public void onRadioChangeListener(RadioGroup radioGroup){
-
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case 0 :
-
-                }
-            }
-        });
-    }*/
 
     @Override
     public boolean setValue() {

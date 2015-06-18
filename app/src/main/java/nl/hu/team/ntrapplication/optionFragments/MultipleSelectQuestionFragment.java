@@ -1,6 +1,5 @@
 package nl.hu.team.ntrapplication.optionFragments;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,10 +20,9 @@ import nl.hu.team.ntrapplication.objects.Question;
 /**
  * Created by Milamber on 1-4-2015.
  */
-public class MultipleSelectQuestionFragment extends Fragment implements AnswerOption {
+public class MultipleSelectQuestionFragment extends AnswerOption {
 
     private TextView name, description;
-    private DatePicker datePicker;
     private MyCustomAdapter dataAdapter;
     private ListView listView;
 
@@ -47,10 +44,23 @@ public class MultipleSelectQuestionFragment extends Fragment implements AnswerOp
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
-
+    private class ViewHolder {
+        TextView code;
+        CheckBox name;
+    }
     @Override
     public String getValue() {
-        return null;
+        String response = "";
+        ListView list = (ListView)getView().findViewById(R.id.multipleSelectOptions);
+        for(int i = 0; i < list.getCount(); i++) {
+            View v = list.getChildAt(i);
+            CheckBox checkBox = (CheckBox)v.findViewById(R.id.checkBox1);
+            if(checkBox.isChecked()) {
+                Option option = (Option)checkBox.getTag();
+                response += option.getCONTENT()+",";
+            }
+        }
+        return response.substring(0, response.length()-1);
     }
 
     private class MyCustomAdapter extends ArrayAdapter<Option> {
@@ -61,14 +71,11 @@ public class MultipleSelectQuestionFragment extends Fragment implements AnswerOp
             this.options.addAll(options);
         }
 
-        private class ViewHolder {
-            TextView code;
-            CheckBox name;
-        }
+
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder = null;
+            ViewHolder holder;
             Log.v("ConvertView", String.valueOf(position));
 
             if(convertView == null) {

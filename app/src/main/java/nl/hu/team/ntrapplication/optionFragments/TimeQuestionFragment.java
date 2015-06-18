@@ -1,6 +1,5 @@
 package nl.hu.team.ntrapplication.optionFragments;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,7 @@ import nl.hu.team.ntrapplication.objects.Question;
 /**
  * Created by Milamber on 1-4-2015.
  */
-public class TimeQuestionFragment extends Fragment implements AnswerOption{
+public class TimeQuestionFragment extends AnswerOption{
     private TextView name, description;
     private TimePicker timePicker;
 
@@ -38,7 +37,7 @@ public class TimeQuestionFragment extends Fragment implements AnswerOption{
 
     @Override
     public String getValue() {
-        return null;
+        return timePicker.getCurrentHour()+":"+timePicker.getCurrentMinute();
     }
 
     @Override

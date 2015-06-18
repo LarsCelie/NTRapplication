@@ -1,7 +1,6 @@
 package nl.hu.team.ntrapplication.optionFragments;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -19,7 +18,7 @@ import nl.hu.team.ntrapplication.R;
 /**
  * Created by jiry on 4-4-2015.
  */
-public class TakePhotoFragment extends Fragment implements AnswerOption{
+public class TakePhotoFragment extends AnswerOption{
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView awesomeImage;

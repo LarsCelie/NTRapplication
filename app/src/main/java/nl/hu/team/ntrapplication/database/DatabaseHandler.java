@@ -197,11 +197,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(ID_R, research.getID());
-        values.put(NAME_R, research.getNAME());
-        values.put(STATUS_R, research.getSTATUS());
-        values.put(BEGIN_DATE_R, convertDateToString(research.getBEGIN_DATE()));
-        values.put(END_DATE_R, convertDateToString(research.getEND_DATE()));
+        values.put(ID_R, research.getId());
+        values.put(NAME_R, research.getName());
+        values.put(STATUS_R, research.getStatus());
+        values.put(BEGIN_DATE_R, convertDateToString(research.getBeginDate()));
+        values.put(END_DATE_R, convertDateToString(research.getEndDate()));
 
         db.replace(TABLE_RESEARCH_R,null,values);
         db.close();
@@ -215,7 +215,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(BEGIN_DATE_S, convertDateToString(survey.getBeginDate()));
         values.put(END_DATE_S, convertDateToString(survey.getEndDate()));
         values.put(STATUS_S, survey.getStatus());
-        values.put(FK_ID_R, research.getID());
+        values.put(FK_ID_R, research.getId());
 
         db.replace(TABLE_SURVEY_S,null,values);
         db.close();
@@ -263,11 +263,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()) {
             Research research = new Research();
-            research.setID(Integer.parseInt(cursor.getString(0)));
-            research.setNAME(cursor.getString(1));
-            research.setSTATUS(cursor.getString(2));
-            research.setBEGIN_DATE(convertStringToDate(cursor.getString(3)));
-            research.setEND_DATE(convertStringToDate(cursor.getString(4)));
+            research.setId(Integer.parseInt(cursor.getString(0)));
+            research.setName(cursor.getString(1));
+            research.setStatus(cursor.getString(2));
+            research.setBeginDate(convertStringToDate(cursor.getString(3)));
+            research.setEndDate(convertStringToDate(cursor.getString(4)));
             return research;
         }
         return null;
@@ -279,11 +279,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery,null);
         while(cursor.moveToNext()) {
             Research research = new Research();
-            research.setID(Integer.parseInt(cursor.getString(0)));
-            research.setNAME(cursor.getString(1));
-            research.setSTATUS(cursor.getString(2));
-            research.setBEGIN_DATE(convertStringToDate(cursor.getString(3)));
-            research.setEND_DATE(convertStringToDate(cursor.getString(4)));
+            research.setId(Integer.parseInt(cursor.getString(0)));
+            research.setName(cursor.getString(1));
+            research.setStatus(cursor.getString(2));
+            research.setBeginDate(convertStringToDate(cursor.getString(3)));
+            research.setEndDate(convertStringToDate(cursor.getString(4)));
             for(Survey s : getSurveyByResearch(research)) {
                 research.addSurvey(s);
             }
@@ -307,7 +307,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
     public ArrayList<Survey> getSurveyByResearch(Research research) {
-        String selectQuery = "SELECT * FROM " + TABLE_SURVEY_S + " WHERE " + FK_ID_R + " = " + research.getID();
+        String selectQuery = "SELECT * FROM " + TABLE_SURVEY_S + " WHERE " + FK_ID_R + " = " + research.getId();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         ArrayList<Survey> surveys = new ArrayList<>();
@@ -427,6 +427,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return date;
     }
+
 
     private String convertDateToString(Date input) {
         DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
