@@ -24,9 +24,8 @@
         android:layout_weight="1">
 
         <Button
-
             android:textColor="#FFFFFF"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:background="@drawable/buttonshape"
             android:layout_width="0dp"
             android:layout_weight="3"
@@ -38,7 +37,7 @@
         <Button
             style="?android:attr/buttonStyleSmall"
             android:textColor="#FFFFFF"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:background="@drawable/buttonshape"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -49,7 +48,7 @@
 
         <Button
             android:textColor="#FFFFFF"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:background="@drawable/buttonshape"
             android:layout_width="0dp"
             android:layout_weight="3"
