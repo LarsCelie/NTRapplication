@@ -44,9 +44,12 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="270dp"
+        android:layout_height="60dp"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
         android:text="@string/inloggen"
+        android:background="@drawable/buttonshape"
         android:id="@+id/loginbutton"
         android:onClick="loginUser"
         android:layout_below="@+id/wachtwoortext"
@@ -54,8 +57,11 @@
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="270dp"
+        android:layout_height="60dp"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:background="@drawable/buttonshape"
         android:text="Registreren"
         android:id="@+id/button2"
         android:layout_alignParentBottom="true"

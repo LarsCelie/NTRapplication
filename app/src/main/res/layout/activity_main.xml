@@ -12,26 +12,36 @@
         android:id="@+id/textviewtje" />
     <!-- TIJDELIJK -->
     <Button
+        android:layout_width="270dp"
+        android:layout_height="60dp"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:background="@drawable/buttonshape"
         android:id="@+id/videoknopid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="TIjdelijke knop"
         android:onClick="openFragment"/>
 
     <Button
+        android:layout_width="270dp"
+        android:layout_height="60dp"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:background="@drawable/buttonshape"
         android:id="@+id/researchListid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="list research"
         android:onClick="showResearchList"
         android:layout_below="@id/videoknopid"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="270dp"
+        android:layout_height="60dp"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:background="@drawable/buttonshape"
         android:layout_below="@id/researchListid"
         android:text="question view"
         android:onClick="showQuestion"/>
+
     <LinearLayout
         android:id="@+id/fragment_layout"
         android:orientation="horizontal"
