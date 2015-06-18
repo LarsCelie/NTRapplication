@@ -17,6 +17,9 @@ public class ImageFetcher extends AsyncTask<URL,String,String> {
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             InputStreamReader is = new InputStreamReader(in);
             BufferedReader br = new BufferedReader(is);
+            /*
+            httpPutRequest
+             */
             String result = br.readLine();
             return result;
         } catch (Exception e) {
