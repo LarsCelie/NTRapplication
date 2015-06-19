@@ -78,7 +78,8 @@ public class Research implements Parcelable{
     }
 
     public String toString() {
-        return name;
+
+        return id+name+beginDate+endDate+status;
     }
     //De volgende regel hoort in de toString
     //+ " heeft " + surveys.size() + " vragenlijst(en)"

@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import nl.hu.team.ntrapplication.asyncServices.ResearchService;
 import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Option;
 import nl.hu.team.ntrapplication.objects.Question;
@@ -99,6 +100,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String LOCATION_A = "location";
     private static final String FK_ID_Q = "id_q";
 
+
+    //private ResearchService researchService = new ResearchService();
+    private SQLiteDatabase sqLiteDatabase;
+
     // Constructor
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -160,6 +165,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * DB CRUD Functions
      */
     public void addUser(User user) {
+        System.out.println("User in db :)");
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -195,7 +201,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public void addResearch(Research research) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(ID_R, research.getId());
         values.put(NAME_R, research.getName());

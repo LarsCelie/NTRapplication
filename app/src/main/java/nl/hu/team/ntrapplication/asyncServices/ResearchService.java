@@ -26,7 +26,7 @@ public class ResearchService extends Activity {
         AsyncHttpClient client = new AsyncHttpClient();
         System.out.println("HALLO IK BEN DE ResearchService");
 
-        client.get("http://92.109.48.222:7070/NTR_application/rest/research", new AsyncHttpResponseHandler() {
+        client.get("http://92.109.52.61:7070/NTR_application/rest/research", new AsyncHttpResponseHandler() {
 
             // When the response returned by REST has Http response code '200'
             @Override
@@ -40,6 +40,8 @@ public class ResearchService extends Activity {
                     JsonObject object = (JsonObject) e;
                     System.out.println("objecten " + object.toString());
                     Research research = new Gson().fromJson(object,Research.class);
+                    research.setStatus("open");
+                    System.out.println(research.toString());
                     allResearches.add(research);
                     db.addResearch(research);
                 }

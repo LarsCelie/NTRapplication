@@ -29,7 +29,7 @@ public class SurveyService extends Activity {
         AsyncHttpClient client = new AsyncHttpClient();
         System.out.println("HALLO IK BEN DE SurveyService");
 
-        client.get("http://92.109.48.222:7070/NTR_application/rest/research" + researchId, new AsyncHttpResponseHandler() {
+        client.get("http://92.109.52.61:7070/NTR_application/rest/research" + researchId, new AsyncHttpResponseHandler() {
 
             // When the response returned by REST has Http response code '200'
             @Override

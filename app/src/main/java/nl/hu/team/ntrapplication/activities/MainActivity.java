@@ -77,7 +77,6 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, QuestionActivity.class);
         startActivity(intent);
     }
-
     private Date convertStringToDate(String input) {
         DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
         Date date = null;
@@ -89,4 +88,3 @@ public class MainActivity extends Activity {
         return date;
     }
 }
-

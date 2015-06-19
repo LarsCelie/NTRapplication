@@ -89,7 +89,7 @@ public class InlogActivity extends Activity {
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
 
-        client.post("http://92.109.48.222:7070/NTR_application/rest/session", params, new AsyncHttpResponseHandler() {
+        client.post("http://92.109.52.61:7070/NTR_application/rest/session", params, new AsyncHttpResponseHandler() {
 
             // When the response returned by REST has Http response code '200'
             @Override
