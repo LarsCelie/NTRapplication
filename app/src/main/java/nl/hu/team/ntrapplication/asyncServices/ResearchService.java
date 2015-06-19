@@ -19,7 +19,7 @@ import nl.hu.team.ntrapplication.objects.Research;
  * Created by Tinus on 18-6-2015.
  */
 public class ResearchService extends Activity {
-    private DatabaseHandler db = new DatabaseHandler(this);
+    DatabaseHandler db = new DatabaseHandler(this);
     // Method that performs RESTful webservice invocations
     public ResearchService() {
         // Make RESTful webservice call using AsyncHttpClient object
