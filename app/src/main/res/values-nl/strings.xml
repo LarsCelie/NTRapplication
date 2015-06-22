@@ -36,6 +36,8 @@
     <string name="heading">Ga</string>
     <string name="recordvideo">Neem video op</string>
     <string name="takephoto">Maak foto</string>
+    <string name="title_activity_question">Vraag</string>
+    <string name="title_activity_survey_list">Vragenlijst</string>
 </resources>
 
 

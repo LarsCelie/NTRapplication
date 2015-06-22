@@ -81,7 +81,7 @@ public class ResearchListActivity extends Activity implements OnItemClickListene
             }
             Research research = researches.get(position);
             holder.title.setText(" "+research.toString());
-            int resID = getResources().getIdentifier("test_research_background", "drawable", getPackageName());
+            int resID = getResources().getIdentifier("test_research_test1", "drawable", getPackageName());
             holder.background.setImageResource(resID);
             holder.title.setTag(research);
             holder.more.setText(R.string.research_more);

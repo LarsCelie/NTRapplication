@@ -4,9 +4,10 @@
 
     <!--Activity titles -->
     <string name="title_activity_research_list">Researches</string>
-    <string name="title_activity_question" translatable="false">QuestionActivity</string>
+    <string name="title_activity_question">Question</string>
     <string name="title_activity_inlog">Log in</string>
     <string name="title_activity_register">Register</string>
+    <string name="title_activity_survey_list">Surveys</string>
 
     <!--Buttons -->
     <string name="question_button_next">next</string>
