@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/register"
-        android:textColor="#35acbc"
+        android:textColor="@color/ntrblue"
         android:id="@+id/textView3"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -62,7 +62,7 @@
 
 
     <Button
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:background="@drawable/buttonshape"
         android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/password"
-        android:textColor="#35acbc"
+        android:textColor="@color/ntrblue"
         android:id="@+id/textView6"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/textView3"

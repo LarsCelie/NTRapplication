@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/error_loading_string"
+        android:textColor="@color/ntrblue"
         android:id="@+id/textView" />
 
     <TextView
@@ -16,5 +17,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/error_loading_string"
+        android:textColor="@color/ntrblue"
         android:id="@+id/textView2" />
 </LinearLayout>

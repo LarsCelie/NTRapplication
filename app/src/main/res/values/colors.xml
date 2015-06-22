@@ -3,4 +3,10 @@
     <color name="white">#FFFFFF</color>
     <color name="blue">#8BCAE9</color>
     <color name="black">#000000</color>
+
+    <!--NTR Colors-->
+    <color name="ntrblue">#35acbc</color>
+    <color name="ntrgrey">#cccccc</color>
+    <color name="ntrlightgrey">#eeeeef</color>
+
 </resources>

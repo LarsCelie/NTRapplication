@@ -7,7 +7,7 @@
 
 
     <Button
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:background="@drawable/buttonshape"
         style="?android:attr/buttonStyleSmall"
@@ -23,7 +23,7 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:background="@drawable/buttonshape"
         style="?android:attr/buttonStyleSmall"
