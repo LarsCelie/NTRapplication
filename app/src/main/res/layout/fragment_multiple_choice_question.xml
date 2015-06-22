@@ -10,12 +10,14 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/error_loading_string"
+        android:textColor="#35acbc"
         android:id="@+id/multiple_choice_QuestionName" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/error_loading_string"
+        android:textColor="#35acbc"
         android:id="@+id/multiple_choice_QuestionDescription" />
 
     <RadioGroup

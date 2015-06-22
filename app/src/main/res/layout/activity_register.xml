@@ -10,7 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Registreren"
+        android:text="@string/register"
+        android:textColor="#35acbc"
         android:id="@+id/textView3"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -19,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Voornaam"
+        android:hint="@string/firstname"
         android:ems="10"
         android:id="@+id/voornaamEditText"
         android:layout_below="@+id/textView3"
@@ -30,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Achternaam"
+        android:hint="@string/lastname"
         android:ems="10"
         android:id="@+id/achternaamEditText"
         android:layout_below="@+id/voornaamEditText"
@@ -46,38 +47,19 @@
         android:layout_below="@+id/achternaamEditText"
         android:layout_alignLeft="@+id/achternaamEditText"
         android:layout_alignStart="@+id/achternaamEditText"
-        android:text="E-mailadres" />
+        android:hint="@string/email" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Gebruikersnaam"
+        android:hint="@string/username"
         android:ems="10"
         android:id="@+id/gebruikersnaamEditText"
         android:layout_below="@+id/emailEditText"
         android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/wachtwoordEditText"
-        android:layout_below="@+id/gebruikersnaamEditText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp"
-        android:text="wachtwoord" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/controleWachtwoordEditText"
-        android:layout_below="@+id/wachtwoordEditText"
-        android:layout_centerHorizontal="true"
-        android:text="controle" />
 
     <Button
         android:textColor="#FFFFFF"
@@ -87,9 +69,40 @@
         android:layout_height="wrap_content"
         android:text="Registreren"
         android:id="@+id/registerButton"
+        android:onClick="registerUser"
         android:layout_below="@+id/controleWachtwoordEditText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
-        android:onClick="registerUser" />
+        android:layout_marginTop="43dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/password"
+        android:textColor="#35acbc"
+        android:id="@+id/textView6"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/password"
+        android:ems="10"
+        android:id="@+id/wachtwoordEditText"
+        android:layout_below="@+id/textView6"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/controlepassword"
+        android:ems="10"
+        android:id="@+id/controleWachtwoordEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/wachtwoordEditText" />
 
 </RelativeLayout>

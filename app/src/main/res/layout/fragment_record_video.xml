@@ -11,7 +11,7 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:background="@drawable/buttonshape"
-        android:text="Record video"
+        android:text="@string/recordvideo"
         android:id="@+id/awesomeVideoButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

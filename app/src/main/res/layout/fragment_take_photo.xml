@@ -11,7 +11,7 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:background="@drawable/buttonshape"
-        android:text="Take Photo"
+        android:text="@string/takephoto"
         android:id="@+id/awesomeButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

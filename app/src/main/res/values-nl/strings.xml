@@ -25,6 +25,17 @@
     <string name="inloggen">Inloggen</string>
     <string name="username">Gebruikersnaam</string>
     <string name="password">Wachtwoord</string>
+    <string name="register">Registreren</string>
+    <string name="title">Inloggen bij de NTR applicatie</string>
+    <string name="noaccount">Nog geen account?</string>
+    <string name="firstname">Voornaam</string>
+    <string name="lastname">Achternaam</string>
+    <string name="email">E-mail</string>
+    <string name="controlepassword">Controle wachtwoord</string>
+    <string name="version">Versie 1.0.Awesome</string>
+    <string name="heading">Ga</string>
+    <string name="recordvideo">Neem video op</string>
+    <string name="takephoto">Maak foto</string>
 </resources>
 
 

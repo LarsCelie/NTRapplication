@@ -5,7 +5,7 @@
     <!--Activity titles -->
     <string name="title_activity_research_list">Researches</string>
     <string name="title_activity_question" translatable="false">QuestionActivity</string>
-    <string name="title_activity_inlog" color="#7a3a75">Log in</string>
+    <string name="title_activity_inlog">Log in</string>
     <string name="title_activity_register">Register</string>
 
     <!--Buttons -->
@@ -27,9 +27,34 @@
     <string name="next">Next</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+
+    <!--SplashScreen-->
+    <string name="version">version 1.0.Awesome</string>
+
+    <!--LoginPage-->
     <string name="username">User name</string>
     <string name="password">Password</string>
     <string name="inloggen">Log in</string>
+    <string name="register">Register</string>
+    <string name="title">Log in by the NTR application</string>
+    <string name="noaccount">No account yet?</string>
+
+    <!--RegisterPage-->
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="email">E-mail</string>
+    <string name="controlepassword">Control password</string>
+
+
+    <!--CompasFragment-->
+    <string name="heading">Heading: 0.0</string>
+
+    <!--RecordVideoFragment-->
+    <string name="recordvideo">Record video</string>
+
+    <!--TakePhotoFragment-->
+    <string name="takephoto">Take photo</string>
+
     <string name="pause_message">Your progress will be saved and you can resume the survey from your homepage</string>
     <string name="error_loading_string" translatable="false">Something</string>
 
