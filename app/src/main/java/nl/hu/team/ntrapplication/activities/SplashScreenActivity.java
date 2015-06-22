@@ -12,6 +12,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.asyncServices.ResearchService;
 import nl.hu.team.ntrapplication.database.DatabaseHandler;
 import nl.hu.team.ntrapplication.objects.User;
 
@@ -72,6 +73,7 @@ public class SplashScreenActivity extends Activity {
                 public void run() {
                     // This method will be executed once the timer is over
                     // Start your app main activity
+                    ResearchService researchService = new ResearchService();
                     Intent i = new Intent(SplashScreenActivity.this, InlogActivity.class);
                     startActivity(i);
 

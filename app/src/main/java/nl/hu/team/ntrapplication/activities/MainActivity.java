@@ -24,7 +24,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ResearchService researchService = new ResearchService();
         setContentView(R.layout.activity_main);
         Intent intent = new Intent(this, ResearchListActivity.class);
         startActivity(intent);
