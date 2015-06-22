@@ -42,7 +42,6 @@
         <activity
             android:name=".activities.ResearchListActivity"
             android:label="@string/title_activity_research_list"
-            android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -51,6 +50,7 @@
         <activity
             android:name=".activities.SurveyListActivity"
             android:label="@string/title_activity_survey_list"
+            android:parentActivityName=".activities.ResearchListActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
