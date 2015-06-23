@@ -22,7 +22,6 @@ import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -407,7 +406,7 @@ public class QuestionActivity extends Activity {
             MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
             entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 
-            entityBuilder.addTextBody("userid",""+user.getId());
+            entityBuilder.addTextBody("userid",String.valueOf(user.getId()));
             //TODO: map the rest
 
 
