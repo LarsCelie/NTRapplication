@@ -15,11 +15,19 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
@@ -293,6 +301,11 @@ public class QuestionActivity extends Activity {
         //Intent intent = new Intent(this, SplashScreenActivity.class);
         //startActivity(intent);
         //TODO: Finish the survey and continue to next screen
+        try {
+            postAnswer();
+        } catch (IOException e){
+
+        }
         String s = createFinalJson().toString();
         Toast.makeText(this.getApplicationContext(),"bla",Toast.LENGTH_LONG).show();
         try{StringEntity entity = new StringEntity(s);
@@ -383,5 +396,27 @@ public class QuestionActivity extends Activity {
         }
         System.out.println(finalJson.toString());
         return finalJson;
+    }
+
+    public void postAnswer() throws IOException {
+        DatabaseHandler db = new DatabaseHandler(this);
+        User user = db.getUser();
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        try {
+            HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/NTR_application/rest/answer/test");
+            MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
+            entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+
+            entityBuilder.addTextBody("userid",""+user.getId());
+            //TODO: map the rest
+
+
+            HttpEntity entity = entityBuilder.build();
+            httpPost.setEntity(entity);
+            httpClient.execute(httpPost);
+
+        } finally {
+            httpClient.close();
+        }
     }
 }
