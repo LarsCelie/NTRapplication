@@ -12,7 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.apache.http.entity.StringEntity;
@@ -31,6 +37,7 @@ import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.database.DatabaseHandler;
 import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Question;
+import nl.hu.team.ntrapplication.objects.Research;
 import nl.hu.team.ntrapplication.objects.Survey;
 import nl.hu.team.ntrapplication.objects.User;
 import nl.hu.team.ntrapplication.optionFragments.AccelerometerFragment;
@@ -55,19 +62,23 @@ public class QuestionActivity extends Activity {
     private int maxQuestions;
     private Fragment attachmentFragment;
     private AnswerOption optionFragment;
+    private DatabaseHandler db = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
+        db = new DatabaseHandler(this);
         //Get survey object
         Bundle data = getIntent().getExtras();
         survey = (Survey) data.getParcelable("selected_survey");
-
+        getQuestions(survey.getId());
         //set initial attributes
-        maxQuestions = survey.getQuestions().size();
 
+        survey = db.getSurveyByID(survey.getId());
+
+        maxQuestions = survey.getQuestions().size();
         //disable the previous button
         Button b = (Button) findViewById(R.id.question_button_previous);
         b.setEnabled(false);
@@ -382,5 +393,40 @@ public class QuestionActivity extends Activity {
         }
         System.out.println(finalJson.toString());
         return finalJson;
+    }
+
+    public void getQuestions(int surveyId){
+        final Research research = db.getResearchByID(surveyId);
+
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        System.out.println("HALLO IK BEN DE SurveyService");
+
+        client.get("http://92.109.52.61:7070/NTR_application/rest/question/" + surveyId, new AsyncHttpResponseHandler() {
+
+            // When the response returned by REST has Http response code '200'
+            @Override
+            public void onSuccess(String response) {
+                // Gets an JSON object with surveys
+                ArrayList<Question> allQuestions = new ArrayList<Question>();
+                JsonArray jsonArray = new JsonParser().parse(response).getAsJsonArray();
+                System.out.println(jsonArray.toString());
+                for (JsonElement e : jsonArray) {
+                    JsonObject object = (JsonObject) e;
+                    System.out.println("objecten " + object.toString());
+                    Question question = new Gson().fromJson(object, Question.class);
+                    allQuestions.add(question);
+                    db.addQuestion(question, survey);
+                }
+                System.out.println("WIN " + allQuestions.toString());
+            }
+
+            // When the response returned by REST has Http response code other than '200'
+            @Override
+            public void onFailure(int statusCode, Throwable error,
+                                  String content) {
+                System.out.println("QuestionFAIL");
+            }
+        });
     }
 }

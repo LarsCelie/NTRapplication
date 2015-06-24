@@ -35,7 +35,6 @@ public class SurveyService extends Activity {
             @Override
             public void onSuccess(String response) {
                 // Gets an JSON object with surveys
-                // Write user Data to SQLite
                 ArrayList<Survey> allSurveys = new ArrayList<Survey>();
                 JsonArray jsonArray = new JsonParser().parse(response).getAsJsonArray();
                 System.out.println(jsonArray.toString());
