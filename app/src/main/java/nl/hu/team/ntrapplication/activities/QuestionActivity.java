@@ -293,7 +293,6 @@ public class QuestionActivity extends Activity {
     public void finishSurvey() {
         //Intent intent = new Intent(this, SplashScreenActivity.class);
         //startActivity(intent);
-        //TODO: Finish the survey and continue to next screen
         String s = createFinalJson().toString();
         Toast.makeText(this.getApplicationContext(),"bla",Toast.LENGTH_LONG).show();
         try{StringEntity entity = new StringEntity(s);
@@ -308,18 +307,22 @@ public class QuestionActivity extends Activity {
         try {
             String valueQuestion = String.valueOf(getCurrentQuestion().getId());
             String valueAnswer = optionFragment.getValue();
+            boolean exists = false;
 
             for(int i = 0; i < result.length();i++){
                 if(valueQuestion.equals(result.getJSONObject(i).get("question"))) {
+                    exists = true;
                     oneQuestion = result.getJSONObject(i);
-                    oneQuestion.put("answer",valueAnswer);
-                } else {
-                    oneQuestion.put("question", valueQuestion);
-                    oneQuestion.put("answer", valueAnswer);
-                    result.put(oneQuestion);
                 }
             }
+            if(exists) {
+                oneQuestion.put("answer",valueAnswer);
+            } else {
+                oneQuestion.put("question", valueQuestion);
+                oneQuestion.put("answer", valueAnswer);
 
+                result.put(oneQuestion);
+            }
             System.out.println(result);
 
             return true;
