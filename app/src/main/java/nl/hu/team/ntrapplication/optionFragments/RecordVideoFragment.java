@@ -51,6 +51,7 @@ public class RecordVideoFragment extends AnswerOption {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == Activity.RESULT_OK) {
             Uri videoUri = data.getData();
+            System.out.println(videoUri);
             awesomeVideoView.setVideoURI(videoUri);
             awesomeVideoView.start();
         }
