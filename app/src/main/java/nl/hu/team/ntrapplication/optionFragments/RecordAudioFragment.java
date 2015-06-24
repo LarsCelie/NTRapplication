@@ -29,8 +29,7 @@ public class RecordAudioFragment extends AnswerOption{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_record_audio, container, false);
-        return root;
+        return inflater.inflate(R.layout.fragment_record_audio, container, false);
     }
 
     @Override
@@ -103,7 +102,7 @@ public class RecordAudioFragment extends AnswerOption{
 
     @Override
     public String getValue() {
-        return null;
+        return savedUri.toString();
     }
 
     @Override

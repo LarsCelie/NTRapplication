@@ -21,11 +21,11 @@ public class RecordVideoFragment extends AnswerOption {
     static final int REQUEST_VIDEO_CAPTURE = 1;
     VideoView awesomeVideoView;
     Button awesomeButton;
+    String videoLocation;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_record_video, container, false);
-        return root;
+        return inflater.inflate(R.layout.fragment_record_video, container, false);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class RecordVideoFragment extends AnswerOption {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == Activity.RESULT_OK) {
             Uri videoUri = data.getData();
-            System.out.println(videoUri);
+            videoLocation = videoUri.toString();
             awesomeVideoView.setVideoURI(videoUri);
             awesomeVideoView.start();
         }
@@ -59,7 +59,7 @@ public class RecordVideoFragment extends AnswerOption {
 
     @Override
     public String getValue() {
-        return null;
+        return videoLocation;
     }
 
     @Override

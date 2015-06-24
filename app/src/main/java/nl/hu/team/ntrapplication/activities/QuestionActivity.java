@@ -21,12 +21,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import nl.hu.team.ntrapplication.R;
-import nl.hu.team.ntrapplication.asyncServices.AnswerPostService;
 import nl.hu.team.ntrapplication.attachmentFragments.AudioFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.ImageFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.InfoscreenFragment;
@@ -296,11 +294,6 @@ public class QuestionActivity extends Activity {
         //Intent intent = new Intent(this, SplashScreenActivity.class);
         //startActivity(intent);
         //TODO: Finish the survey and continue to next screen
-        try {
-            postAnswer();
-        } catch (IOException e){
-
-        }
         String s = createFinalJson().toString();
         Toast.makeText(this.getApplicationContext(),"bla",Toast.LENGTH_LONG).show();
         try{StringEntity entity = new StringEntity(s);
@@ -315,22 +308,18 @@ public class QuestionActivity extends Activity {
         try {
             String valueQuestion = String.valueOf(getCurrentQuestion().getId());
             String valueAnswer = optionFragment.getValue();
-            boolean exists = false;
 
             for(int i = 0; i < result.length();i++){
                 if(valueQuestion.equals(result.getJSONObject(i).get("question"))) {
-                    exists = true;
                     oneQuestion = result.getJSONObject(i);
+                    oneQuestion.put("answer",valueAnswer);
+                } else {
+                    oneQuestion.put("question", valueQuestion);
+                    oneQuestion.put("answer", valueAnswer);
+                    result.put(oneQuestion);
                 }
             }
-            if(exists) {
-                oneQuestion.put("answer",valueAnswer);
-            } else {
-                oneQuestion.put("question", valueQuestion);
-                oneQuestion.put("answer", valueAnswer);
 
-                result.put(oneQuestion);
-            }
             System.out.println(result);
 
             return true;
@@ -394,11 +383,5 @@ public class QuestionActivity extends Activity {
         }
         System.out.println(finalJson.toString());
         return finalJson;
-    }
-
-    public void postAnswer() throws IOException {
-//        DatabaseHandler db = new DatabaseHandler(this);
-//        User user = db.getUser();
-        new AnswerPostService().execute();
     }
 }
