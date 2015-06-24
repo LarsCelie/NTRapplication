@@ -1,48 +1,37 @@
 package nl.hu.team.ntrapplication.asyncServices;
 
-import android.os.AsyncTask;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-
-import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by Lars on 6/23/2015.
  */
-public class AnswerPostService extends AsyncTask<Void, Void, Void> {
+public class AnswerPostService {
 
 
-    @Override
-    protected Void doInBackground(Void... params) {
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        try {
-            HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/NTR_application/rest/answer/test");
-            MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
-            entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+    AsyncHttpClient client = new AsyncHttpClient();
 
-            entityBuilder.addTextBody("userid","Testing!");
-            //TODO: map the rest
+    public void postMedia(InputStream fileStream, String fileName){
+        RequestParams params = new RequestParams();
+        params.put("media", fileStream, fileName);
+        client.post("http://10.0.2.2:8080/NTR_application/rest/media",params, new AsyncHttpResponseHandler() {
 
+            // When the response returned by REST has Http response code '200'
+            @Override
+            public void onSuccess(String response) {
 
-            HttpEntity entity = entityBuilder.build();
-            httpPost.setEntity(entity);
-            httpClient.execute(httpPost);
-
-        } catch(IOException e){
-
-        } finally {
-            try {
-                httpClient.close();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-        }
-        return null;
+
+            // When the response returned by REST has Http response code other than '200'
+            @Override
+            public void onFailure(int statusCode, Throwable error, String content) {
+
+            }
+
+        });
     }
 }
 
