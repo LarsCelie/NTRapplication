@@ -23,6 +23,7 @@ public class TakePhotoFragment extends AnswerOption{
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView awesomeImage;
     Button awesomeButton;
+    Uri imageUri;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class TakePhotoFragment extends AnswerOption{
 //            Bundle extras = data.getExtras();
 //            Bitmap photo = (Bitmap) extras.get("data");
             //awesomeImage.setImageBitmap(photo);
-            Uri imageUri = data.getData();
+            imageUri = data.getData();
             awesomeImage.setImageURI(imageUri);
             System.out.println(imageUri);
         }
@@ -71,7 +72,7 @@ public class TakePhotoFragment extends AnswerOption{
 
     @Override
     public String getValue() {
-        return null;
+        return imageUri.toString();
     }
 
     @Override
