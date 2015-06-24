@@ -3,7 +3,7 @@ package nl.hu.team.ntrapplication.optionFragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -60,9 +60,12 @@ public class TakePhotoFragment extends AnswerOption{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             // Get the photo
-            Bundle extras = data.getExtras();
-            Bitmap photo = (Bitmap) extras.get("data");
-            awesomeImage.setImageBitmap(photo);
+//            Bundle extras = data.getExtras();
+//            Bitmap photo = (Bitmap) extras.get("data");
+            //awesomeImage.setImageBitmap(photo);
+            Uri imageUri = data.getData();
+            awesomeImage.setImageURI(imageUri);
+            System.out.println(imageUri);
         }
     }
 

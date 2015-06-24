@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.apache.http.entity.StringEntity;
 import org.json.JSONArray;
@@ -346,6 +347,9 @@ public class QuestionActivity extends Activity {
     public void invokeWS(StringEntity entity) {
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.put("key", "value");
+        params.put("more", "data");
         client.post(this.getApplicationContext(), "http://10.0.2.2:8080/NTR_application/rest/answer",
                 entity, "application/json", new JsonHttpResponseHandler() {
 
