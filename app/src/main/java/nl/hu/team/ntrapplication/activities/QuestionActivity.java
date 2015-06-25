@@ -58,6 +58,7 @@ import nl.hu.team.ntrapplication.optionFragments.TimeQuestionFragment;
 public class QuestionActivity extends Activity {
     private JSONArray result;
     private Survey survey;
+    private ArrayList<Question> questions;
     private int sequence = 1;
     private int maxQuestions;
     private Fragment attachmentFragment;
@@ -73,10 +74,10 @@ public class QuestionActivity extends Activity {
         //Get survey object
         Bundle data = getIntent().getExtras();
         survey = (Survey) data.getParcelable("selected_survey");
-        getQuestions(survey.getId());
+        //getQuestions(survey.getId());
         //set initial attributes
 
-        survey = db.getSurveyByID(survey.getId());
+        questions = db.getQuestionBySurvey(survey);
         System.out.println(survey);
 
         maxQuestions = survey.getQuestions().size();
@@ -116,8 +117,11 @@ public class QuestionActivity extends Activity {
 
     public void displayAttachment() {
         Question question = getCurrentQuestion();
+        if (question == null){
+            System.out.println("Jiry wil naar huis");
+        }
         Attachment attachment;
-        if (question.getAttachments().size() == 0) {
+        if (question.getAttachments() == null || question.getAttachments().size() == 0) {
             System.out.println("Error! no attachments");
             attachment = new Attachment();
             attachment.setTYPE("image");
@@ -235,7 +239,6 @@ public class QuestionActivity extends Activity {
     //returns current question according to the sequence
     public Question getCurrentQuestion() {
         Question question = null;
-        ArrayList<Question> questions = survey.getQuestions();
         for (Question q : questions) {
             if (q.getSequence() == sequence) {
                 question = q;
@@ -351,32 +354,34 @@ public class QuestionActivity extends Activity {
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
         client.post(this.getApplicationContext(), "http://10.0.2.2:8080/NTR_application/rest/answer",
-                entity, "application/json", new JsonHttpResponseHandler() {
-
-                    // When the response returned by REST has Http response code '200'
-                    @Override
-                    public void onSuccess(String response) {
-                        Toast.makeText(getApplicationContext(), "Succesfully posted answers", Toast.LENGTH_LONG).show();
-                    }
-
-                    // When the response returned by REST has Http response code other than '200'
-                    @Override
-                    public void onFailure(int statusCode, Throwable error,
-                                          String content) {
-                        // When Http response code is '404'
-                        if (statusCode == 404) {
-                            //TODO foutmelding tonen
-                        }
-                        // When Http response code is '500'
-                        else if (statusCode == 500) {
-                            //TODO foutmelding tonen
-                        }
-                        // When Http response code other than 404, 500
-                        else {
-                            //TODO foutmelding tonen
-                        }
-                    }
-                });
+                entity, "application/json", new JsonHttpResponseHandler()
+//                {
+//
+//                    // When the response returned by REST has Http response code '200'
+//                    @Override
+//                    public void onSuccess(String response) {
+//                        Toast.makeText(getApplicationContext(), "Succesfully posted answers", Toast.LENGTH_LONG).show();
+//                    }
+//
+//                    // When the response returned by REST has Http response code other than '200'
+//                    @Override
+//                    public void onFailure(int statusCode, Throwable error,
+//                                          String content) {
+//                        // When Http response code is '404'
+//                        if (statusCode == 404) {
+//                            //TODO foutmelding tonen
+//                        }
+//                        // When Http response code is '500'
+//                        else if (statusCode == 500) {
+//                            //TODO foutmelding tonen
+//                        }
+//                        // When Http response code other than 404, 500
+//                        else {
+//                            //TODO foutmelding tonen
+//                        }
+//                    }
+//                }
+    );
     }
     //get object with answers, userID en surveyID and return object with two id's and arrayList of answers
     public JSONObject createFinalJson(){
@@ -396,38 +401,38 @@ public class QuestionActivity extends Activity {
         return finalJson;
     }
 
-    public void getQuestions(int surveyId){
-        final Research research = db.getResearchByID(surveyId);
-
-
-        AsyncHttpClient client = new AsyncHttpClient();
-        System.out.println("HALLO IK BEN DE SurveyService");
-
-        client.get("http://92.109.52.61:7070/NTR_application/rest/question/" + surveyId, new AsyncHttpResponseHandler() {
-
-            // When the response returned by REST has Http response code '200'
-            @Override
-            public void onSuccess(String response) {
-                // Gets an JSON object with surveys
-                ArrayList<Question> allQuestions = new ArrayList<Question>();
-                JsonArray jsonArray = new JsonParser().parse(response).getAsJsonArray();
-                System.out.println(jsonArray.toString());
-                for (JsonElement e : jsonArray) {
-                    JsonObject object = (JsonObject) e;
-                    System.out.println("objecten " + object.toString());
-                    Question question = new Gson().fromJson(object, Question.class);
-                    allQuestions.add(question);
-                    db.addQuestion(question, survey);
-                }
-                System.out.println("WIN " + allQuestions.toString());
-            }
-
-            // When the response returned by REST has Http response code other than '200'
-            @Override
-            public void onFailure(int statusCode, Throwable error,
-                                  String content) {
-                System.out.println("QuestionFAIL");
-            }
-        });
-    }
+//    public void getQuestions(int surveyId){
+//        final Research research = db.getResearchByID(surveyId);
+//
+//
+//        AsyncHttpClient client = new AsyncHttpClient();
+//        System.out.println("HALLO IK BEN DE SurveyService");
+//
+//        client.get("http://92.109.52.61:7070/NTR_application/rest/question/" + surveyId, new AsyncHttpResponseHandler() {
+//
+//            // When the response returned by REST has Http response code '200'
+//            @Override
+//            public void onSuccess(String response) {
+//                // Gets an JSON object with surveys
+//                ArrayList<Question> allQuestions = new ArrayList<Question>();
+//                JsonArray jsonArray = new JsonParser().parse(response).getAsJsonArray();
+//                System.out.println(jsonArray.toString());
+//                for (JsonElement e : jsonArray) {
+//                    JsonObject object = (JsonObject) e;
+//                    System.out.println("objecten " + object.toString());
+//                    Question question = new Gson().fromJson(object, Question.class);
+//                    allQuestions.add(question);
+//                    db.addQuestion(question, survey);
+//                }
+//                System.out.println("WIN " + allQuestions.toString());
+//            }
+//
+//            // When the response returned by REST has Http response code other than '200'
+//            @Override
+//            public void onFailure(int statusCode, Throwable error,
+//                                  String content) {
+//                System.out.println("QuestionFAIL");
+//            }
+//        });
+//    }
 }

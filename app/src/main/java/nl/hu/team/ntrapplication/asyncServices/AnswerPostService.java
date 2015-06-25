@@ -4,6 +4,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.apache.http.Header;
+
 import java.io.InputStream;
 
 /**
@@ -19,18 +21,15 @@ public class AnswerPostService {
         params.put("media", fileStream, fileName);
         client.post("http://10.0.2.2:8080/NTR_application/rest/media",params, new AsyncHttpResponseHandler() {
 
-            // When the response returned by REST has Http response code '200'
             @Override
-            public void onSuccess(String response) {
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
             }
 
-            // When the response returned by REST has Http response code other than '200'
             @Override
-            public void onFailure(int statusCode, Throwable error, String content) {
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
             }
-
         });
     }
 }

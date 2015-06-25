@@ -11,6 +11,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.apache.http.Header;
+
 import nl.hu.team.ntrapplication.R;
 import nl.hu.team.ntrapplication.asyncServices.ResearchService;
 import nl.hu.team.ntrapplication.database.DatabaseHandler;
@@ -93,20 +95,16 @@ public class SplashScreenActivity extends Activity {
 
         client.post("http://62.45.47.22:8080/NTR_application/rest/session", params, new AsyncHttpResponseHandler() {
 
-            // When the response returned by REST has Http response code '200'
             @Override
-            public void onSuccess(String response) {
-
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 // Navigate to Home screen
                 Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
                 startActivity(i);
             }
 
-            // When the response returned by REST has Http response code other than '200'
             @Override
-            public void onFailure(int statusCode, Throwable error,
-                                  String content) {
-                Toast.makeText(getApplicationContext(), "ERROR!" + content + error + statusCode, Toast.LENGTH_LONG).show();
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(getApplicationContext(), "ERROR!" + responseBody.toString() + error + statusCode, Toast.LENGTH_LONG).show();
             }
         });
 

@@ -3,6 +3,7 @@ package nl.hu.team.ntrapplication.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestHandle;
+
+import org.apache.http.Header;
 
 import java.util.ArrayList;
 
@@ -49,6 +53,9 @@ public class SurveyListActivity extends Activity implements AdapterView.OnItemCl
         getSurveys(research.getId());
         //get all surveys from rest server
         ArrayList<Survey> surveys = db.getSurveyByResearch(research);
+        for (Survey s : surveys) {
+            getQuestions(s.getId());
+        }
 
 
 
@@ -83,7 +90,7 @@ public class SurveyListActivity extends Activity implements AdapterView.OnItemCl
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         survey = (Survey)parent.getAdapter().getItem(position);
         Intent intent = new Intent(this, QuestionActivity.class);
-        getQuestions(survey.getId());
+
         Survey selectedSurvey = db.getSurveyByID(survey.getId());
         intent.putExtra("selected_survey", selectedSurvey);
         startActivity(intent);
@@ -98,12 +105,11 @@ public class SurveyListActivity extends Activity implements AdapterView.OnItemCl
 
         client.get("http://92.109.52.61:7070/NTR_application/rest/survey/research/" + researchId, new AsyncHttpResponseHandler() {
 
-            // When the response returned by REST has Http response code '200'
             @Override
-            public void onSuccess(String response) {
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 // Gets an JSON object with surveys
                 ArrayList<Survey> allSurveys = new ArrayList<Survey>();
-                JsonArray jsonArray = new JsonParser().parse(response).getAsJsonArray();
+                JsonArray jsonArray = new JsonParser().parse(new String(responseBody)).getAsJsonArray();
                 System.out.println(jsonArray.toString());
                 for (JsonElement e : jsonArray) {
                     JsonObject object = (JsonObject) e;
@@ -115,46 +121,47 @@ public class SurveyListActivity extends Activity implements AdapterView.OnItemCl
                 System.out.println("WIN " + allSurveys.toString());
             }
 
-            // When the response returned by REST has Http response code other than '200'
             @Override
-            public void onFailure(int statusCode, Throwable error,
-                                  String content) {
-                System.out.println("SurveyFAIL");
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                System.out.println("SurveyFAIL: "+ new String(responseBody));
             }
         });
     }
 
     public void getQuestions(int surveyId){
 
+        //-------
+        final Survey survey1 = db.getSurveyByID(surveyId);
+
         AsyncHttpClient client = new AsyncHttpClient();
         System.out.println("HALLO IK BEN DE QuestionService");
         System.out.println("adfdaf    " + surveyId);
 
-        client.get("http://92.109.52.61:7070/NTR_application/rest/question/" + surveyId, new AsyncHttpResponseHandler() {
+        RequestHandle handle = client.get("http://92.109.52.61:7070/NTR_application/rest/question/" + surveyId, new AsyncHttpResponseHandler() {
 
-            // When the response returned by REST has Http response code '200'
             @Override
-            public void onSuccess(String response) {
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 // Gets an JSON object with surveys
+                System.out.println("Success: Question service -> " + responseBody.toString());
+                System.out.println(new String(responseBody));
                 ArrayList<Question> allQuestions = new ArrayList<Question>();
-                JsonArray jsonArray = new JsonParser().parse(response).getAsJsonArray();
+                JsonArray jsonArray = new JsonParser().parse(new String(responseBody)).getAsJsonArray();
                 System.out.println(jsonArray.toString());
                 for (JsonElement e : jsonArray) {
                     JsonObject object = (JsonObject) e;
                     System.out.println("objecten " + object.toString());
                     Question question = new Gson().fromJson(object, Question.class);
                     allQuestions.add(question);
-                    db.addQuestion(question, survey);
+                    db.addQuestion(question, survey1);
                 }
                 System.out.println("WIN " + allQuestions.toString());
             }
 
-            // When the response returned by REST has Http response code other than '200'
             @Override
-            public void onFailure(int statusCode, Throwable error,
-                                  String content) {
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 System.out.println("QuestionFAIL");
             }
         });
+        System.out.println("AWESOMEAWEXOME!!!!!");
     }
 }

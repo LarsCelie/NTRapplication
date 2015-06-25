@@ -130,24 +130,26 @@ public class RegisterActivity extends Activity {
         AsyncHttpClient client = new AsyncHttpClient();
 
         client.post(this.getApplicationContext(),"http://92.109.52.61:7070/NTR_application/rest/session/create",
-                entity,"application/json", new JsonHttpResponseHandler() {
-
-            // When the response returned by REST has Http response code '200'
-            @Override
-            public void onSuccess(String response) {
-                Toast.makeText(getApplicationContext(), "You are successfully registered!", Toast.LENGTH_LONG).show();
-                // Navigate to Home screen
-                navigatetoLoginActivity();
-            }
-
-            // When the response returned by REST has Http response code other than '200'
-            @Override
-            public void onFailure(int statusCode, Throwable error,
-                                  String content) {
-
-                Toast.makeText(getApplicationContext(), "ERROR!" + content + error + statusCode, Toast.LENGTH_LONG).show();
-            }
-        });
+               entity,"application/json", new JsonHttpResponseHandler()
+                //{
+//
+//            // When the response returned by REST has Http response code '200'
+//            @Override
+//            public void onSuccess(String response) {
+//                Toast.makeText(getApplicationContext(), "You are successfully registered!", Toast.LENGTH_LONG).show();
+//                // Navigate to Home screen
+//                navigatetoLoginActivity();
+//            }
+//
+//            // When the response returned by REST has Http response code other than '200'
+//            @Override
+//            public void onFailure(int statusCode, Throwable error,
+//                                  String content) {
+//
+//                Toast.makeText(getApplicationContext(), "ERROR!" + content + error + statusCode, Toast.LENGTH_LONG).show();
+//            }
+//        }
+        );
 
 
     }

@@ -10,6 +10,8 @@ import com.google.gson.JsonParser;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import org.apache.http.Header;
+
 import java.util.ArrayList;
 
 import nl.hu.team.ntrapplication.database.DatabaseHandler;
@@ -31,12 +33,11 @@ public class SurveyService extends Activity {
 
         client.get("http://92.109.52.61:7070/NTR_application/rest/research" + researchId, new AsyncHttpResponseHandler() {
 
-            // When the response returned by REST has Http response code '200'
             @Override
-            public void onSuccess(String response) {
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 // Gets an JSON object with surveys
                 ArrayList<Survey> allSurveys = new ArrayList<Survey>();
-                JsonArray jsonArray = new JsonParser().parse(response).getAsJsonArray();
+                JsonArray jsonArray = new JsonParser().parse(new String(responseBody)).getAsJsonArray();
                 System.out.println(jsonArray.toString());
                 for(JsonElement e: jsonArray){
                     JsonObject object = (JsonObject) e;
@@ -47,10 +48,9 @@ public class SurveyService extends Activity {
                 }
                 System.out.println("WIN " +allSurveys.toString());
             }
-            // When the response returned by REST has Http response code other than '200'
+
             @Override
-            public void onFailure(int statusCode, Throwable error,
-                                  String content) {
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 System.out.println("SurveyFAIL");
             }
         });

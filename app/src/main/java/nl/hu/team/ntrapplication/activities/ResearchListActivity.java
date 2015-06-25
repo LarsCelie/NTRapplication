@@ -25,6 +25,8 @@ import com.google.gson.JsonParser;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import org.apache.http.Header;
+
 import java.util.ArrayList;
 
 import nl.hu.team.ntrapplication.R;
@@ -139,12 +141,10 @@ public class ResearchListActivity extends Activity implements OnItemClickListene
 
         client.get("http://92.109.52.61:7070/NTR_application/rest/research", new AsyncHttpResponseHandler() {
 
-            // When the response returned by REST has Http response code '200'
             @Override
-            public void onSuccess(String response) {
-                // Gets an JSON object with researsches
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 ArrayList<Research> allResearches = new ArrayList<Research>();
-                JsonArray jsonArray = new JsonParser().parse(response).getAsJsonArray();
+                JsonArray jsonArray = new JsonParser().parse(new String(responseBody)).getAsJsonArray();
                 System.out.println(jsonArray.toString());
                 for (JsonElement e : jsonArray) {
                     JsonObject object = (JsonObject) e;
@@ -158,12 +158,9 @@ public class ResearchListActivity extends Activity implements OnItemClickListene
                 System.out.println("WIN " + allResearches.toString());
             }
 
-            // When the response returned by REST has Http response code other than '200'
             @Override
-            public void onFailure(int statusCode, Throwable error,
-                                  String content) {
-                // Toast.makeText(getApplicationContext(), "ERROR!" + content + error + statusCode, Toast.LENGTH_LONG).show();
-                System.out.println("FAIL");
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                System.out.println("Fail to get Researches");
             }
         });
     }

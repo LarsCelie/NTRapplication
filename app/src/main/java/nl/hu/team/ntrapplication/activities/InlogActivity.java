@@ -15,6 +15,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.apache.http.Header;
+
 import nl.hu.team.ntrapplication.R;
 import nl.hu.team.ntrapplication.database.DatabaseHandler;
 import nl.hu.team.ntrapplication.objects.User;
@@ -91,26 +93,26 @@ public class InlogActivity extends Activity {
 
         client.post("http://92.109.52.61:7070/NTR_application/rest/session", params, new AsyncHttpResponseHandler() {
 
-            // When the response returned by REST has Http response code '200'
             @Override
-            public void onSuccess(String response) {
-                Toast.makeText(getApplicationContext(), "You are successfully logged in!" + response, Toast.LENGTH_LONG).show();
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                //Toast.makeText(getApplicationContext(), "You are successfully logged in!" + response, Toast.LENGTH_LONG).show();
 
                 // Gets an JSON object with user Data
                 // Write user Data to SQLite
-                User user = new Gson().fromJson(response, User.class);
+                User user = new Gson().fromJson(new String(responseBody), User.class);
                 db.addUser(user);
 
                 // Navigate to Home screen
                 navigatetoHomeActivity();
             }
 
-            // When the response returned by REST has Http response code other than '200'
             @Override
-            public void onFailure(int statusCode, Throwable error,
-                                  String content) {
-                Toast.makeText(getApplicationContext(), "ERROR!" + content + error + statusCode, Toast.LENGTH_LONG).show();
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(getApplicationContext(), "ERROR!" + new String(responseBody) + error + statusCode, Toast.LENGTH_LONG).show();
             }
+
+            // When the response returned by REST has Http response code '200'
+
         });
 
 
