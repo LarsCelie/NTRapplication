@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -27,12 +26,11 @@ public class OpenQuestionFragment extends AnswerOption {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_open_question, container, false);
-        name = (TextView) root.findViewById(R.id.openQuestionName);
-        description = (TextView) root.findViewById(R.id.openQuestionDescription);
+        name = (TextView) root.findViewById(R.id.openQuestion);
 
         Bundle bundle = this.getArguments();
         question = bundle.getParcelable("question");
-//        name.setText(question.getName());
+        name.setText(question.getDescription());
         description.setText(question.getDescription());
 
         return root;

@@ -9,9 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.objects.Question;
 
 /**
  * Created by jiry on 5-4-2015.
@@ -25,7 +27,13 @@ public class RecordVideoFragment extends AnswerOption {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_record_video, container, false);
+        View root = inflater.inflate(R.layout.fragment_record_video, container, false);
+
+        TextView name = (TextView) root.findViewById(R.id.recordVideoQuestion);
+        Bundle bundle = this.getArguments();
+        Question question = bundle.getParcelable("question");
+        name.setText(question.getDescription());
+        return root;
     }
 
     @Override

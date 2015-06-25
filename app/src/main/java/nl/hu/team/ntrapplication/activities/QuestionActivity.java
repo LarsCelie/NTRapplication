@@ -13,13 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.apache.http.entity.StringEntity;
@@ -42,7 +36,6 @@ import nl.hu.team.ntrapplication.attachmentFragments.VideoFragment;
 import nl.hu.team.ntrapplication.database.DatabaseHandler;
 import nl.hu.team.ntrapplication.objects.Attachment;
 import nl.hu.team.ntrapplication.objects.Question;
-import nl.hu.team.ntrapplication.objects.Research;
 import nl.hu.team.ntrapplication.objects.Survey;
 import nl.hu.team.ntrapplication.objects.User;
 import nl.hu.team.ntrapplication.optionFragments.AccelerometerFragment;
@@ -122,9 +115,7 @@ public class QuestionActivity extends Activity {
 
     public void displayAttachment() {
         Question question = getCurrentQuestion();
-        if (question == null){
-            System.out.println("Jiry wil naar huis");
-        }
+        System.out.println(question.toString());
         Attachment attachment;
         if (question.getAttachments() == null || question.getAttachments().size() == 0) {
             System.out.println("Error! no attachments");
@@ -169,7 +160,7 @@ public class QuestionActivity extends Activity {
     public void displayQuestion() {
         Question question = getCurrentQuestion();
         String type = question.getType();
-        optionFragment = null;
+        System.out.println(question);
         switch (type) {
             case "multiple_choice":
                 optionFragment = new MulitipleChoiceFragment();

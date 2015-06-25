@@ -128,4 +128,17 @@ public class Question implements Parcelable {
         in.readTypedList(options, Option.CREATOR);
         in.readTypedList(attachments, Attachment.CREATOR);
     }
+
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", sequence=" + sequence +
+                ", type='" + type + '\'' +
+                ", naam='" + naam + '\'' +
+                ", options=" + options +
+                '}';
+    }
 }

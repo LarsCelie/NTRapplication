@@ -12,8 +12,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.objects.Question;
 
 /**
  * Created by jiry on 4-4-2015.
@@ -28,6 +30,12 @@ public class TakePhotoFragment extends AnswerOption{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_take_photo, container, false);
+
+        TextView name = (TextView) root.findViewById(R.id.takePhotoQuestion);
+        Bundle bundle = this.getArguments();
+        Question question = bundle.getParcelable("question");
+        name.setText(question.getDescription());
+
         return root;
     }
 

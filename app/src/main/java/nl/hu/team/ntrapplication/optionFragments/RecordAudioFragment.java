@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.objects.Question;
 
 /**
  * Created by jiry on 8-4-2015.
@@ -29,7 +31,12 @@ public class RecordAudioFragment extends AnswerOption{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_record_audio, container, false);
+        View root = inflater.inflate(R.layout.fragment_record_audio, container, false);
+        TextView name = (TextView) root.findViewById(R.id.recordAudioQuestion);
+        Bundle bundle = this.getArguments();
+        Question question = bundle.getParcelable("question");
+        name.setText(question.getDescription());
+        return root;
     }
 
     @Override
