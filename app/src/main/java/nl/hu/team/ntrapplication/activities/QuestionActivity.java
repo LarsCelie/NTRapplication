@@ -169,7 +169,7 @@ public class QuestionActivity extends Activity {
     public void displayQuestion() {
         Question question = getCurrentQuestion();
         String type = question.getType();
-
+        optionFragment = null;
         switch (type) {
             case "multiple_choice":
                 optionFragment = new MulitipleChoiceFragment();
@@ -188,7 +188,7 @@ public class QuestionActivity extends Activity {
                 break;
             case "datetime":
                 break; //TODO: datetime answer
-            case "picture":
+            case "image":
                 optionFragment = new TakePhotoFragment();
                 break;
             case "video":

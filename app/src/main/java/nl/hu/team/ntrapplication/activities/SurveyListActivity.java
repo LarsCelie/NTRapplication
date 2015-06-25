@@ -128,7 +128,7 @@ public class SurveyListActivity extends Activity implements AdapterView.OnItemCl
         });
     }
 
-    public void getQuestions(int surveyId){
+    public void getQuestions(final int surveyId){
 
         //-------
         final Survey survey1 = db.getSurveyByID(surveyId);
@@ -142,7 +142,7 @@ public class SurveyListActivity extends Activity implements AdapterView.OnItemCl
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 // Gets an JSON object with surveys
-                System.out.println("Success: Question service -> " + responseBody.toString());
+                System.out.println("Success: Question service -> " + new String(responseBody));
                 System.out.println(new String(responseBody));
                 ArrayList<Question> allQuestions = new ArrayList<Question>();
                 JsonArray jsonArray = new JsonParser().parse(new String(responseBody)).getAsJsonArray();
@@ -159,7 +159,7 @@ public class SurveyListActivity extends Activity implements AdapterView.OnItemCl
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                System.out.println("QuestionFAIL");
+                System.out.println("SurveyID: "+ surveyId+" ;QuestionFAIL: "+new String(responseBody));
             }
         });
         System.out.println("AWESOMEAWEXOME!!!!!");
