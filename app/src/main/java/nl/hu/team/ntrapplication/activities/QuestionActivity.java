@@ -82,6 +82,7 @@ public class QuestionActivity extends Activity {
         //set initial attributes
 
         survey = db.getSurveyByID(survey.getId());
+        System.out.println(survey);
 
         maxQuestions = survey.getQuestions().size();
         //disable the previous button
@@ -226,7 +227,7 @@ public class QuestionActivity extends Activity {
     }
 
     public void updateView() {
-        if (sequence > maxQuestions) {
+        if (sequence > maxQuestions && maxQuestions > 0) {
             finishSurvey();
         } else {
 //            optionFragment.onPause();
