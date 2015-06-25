@@ -4,12 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import nl.hu.team.ntrapplication.R;
 import nl.hu.team.ntrapplication.objects.Question;
@@ -19,8 +15,7 @@ import nl.hu.team.ntrapplication.objects.Question;
  */
 public class OpenQuestionFragment extends AnswerOption {
 
-    private TextView name, description;
-    private DatePicker datePicker;
+    private TextView name;
     private Question question;
 
     @Override
@@ -31,7 +26,6 @@ public class OpenQuestionFragment extends AnswerOption {
         Bundle bundle = this.getArguments();
         question = bundle.getParcelable("question");
         name.setText(question.getDescription());
-        description.setText(question.getDescription());
 
         return root;
     }
@@ -41,17 +35,9 @@ public class OpenQuestionFragment extends AnswerOption {
         super.onActivityCreated(savedInstanceState);
     }
 
-   //JSON dingetje
     @Override
     public void onPause(){
         super.onPause();
-        String questionString = question.toString();
-        try {
-            JSONObject json = new JSONObject(questionString);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
     }
 
     @Override

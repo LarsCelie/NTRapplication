@@ -21,14 +21,15 @@
         android:background="@drawable/buttonshape"
         android:text="@string/recordvideo"
         android:id="@+id/awesomeVideoButton"
+        android:layout_marginBottom="53dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="104dp" />
+        android:layout_centerHorizontal="true" />
 
     <VideoView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/awesomevideoView"
-        android:layout_above="@+id/awesomeVideoButton" />
+        android:layout_above="@+id/awesomeVideoButton"
+        android:layout_below="@+id/recordVideoQuestion" />
 
 </RelativeLayout>

@@ -78,7 +78,7 @@ public class QuestionActivity extends Activity {
         questions = db.getQuestionBySurvey(survey);
         System.out.println(survey);
 
-        maxQuestions = survey.getQuestions().size();
+        maxQuestions = questions.size();
         //disable the previous button
         Button b = (Button) findViewById(R.id.question_button_previous);
         b.setEnabled(false);
