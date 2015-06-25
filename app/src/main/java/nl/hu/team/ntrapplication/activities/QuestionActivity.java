@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,10 +27,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import nl.hu.team.ntrapplication.R;
+import nl.hu.team.ntrapplication.asyncServices.AnswerPostService;
 import nl.hu.team.ntrapplication.attachmentFragments.AudioFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.ImageFragment;
 import nl.hu.team.ntrapplication.attachmentFragments.InfoscreenFragment;
@@ -302,14 +307,37 @@ public class QuestionActivity extends Activity {
     }
 
     public void finishSurvey() {
-        //Intent intent = new Intent(this, SplashScreenActivity.class);
-        //startActivity(intent);
+        int i = 0;
+        HashMap<String,String> uris = new HashMap<>();
+        for(Question q : survey.getQuestions()) {
+            if(q.getType().equals("video")) {
+                try {
+                    JSONObject obj = (JSONObject)result.get(i);
+                    String uri = obj.getString("answer");
+                    DatabaseHandler db = new DatabaseHandler(this);
+                    String filename = survey.getId()+"_"+q.getId()+"_"+db.getUser().getUsername();
+                    obj.put("answer",filename);
+                    uris.put(filename, uri);
+                    //TODO support filename for multiple annonymous user
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            i++;
+        }
         String s = createFinalJson().toString();
         Toast.makeText(this.getApplicationContext(),"bla",Toast.LENGTH_LONG).show();
         try{StringEntity entity = new StringEntity(s);
             invokeWS(entity);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+        }
+        for(Map.Entry<String,String> uriPair : uris.entrySet()) {
+            try {
+                new AnswerPostService().postMedia(getContentResolver().openInputStream(Uri.parse(uriPair.getValue())), uriPair.getKey());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 
