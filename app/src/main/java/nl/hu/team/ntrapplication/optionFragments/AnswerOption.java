@@ -1,11 +1,13 @@
 package nl.hu.team.ntrapplication.optionFragments;
 
+import android.app.Fragment;
+
 /**
  * Created by Lars on 4/9/2015.
  */
-public interface AnswerOption {
+public abstract class AnswerOption extends Fragment {
 
-    public String getValue();
+    public abstract String getValue();
 
-    public boolean setValue();
+    public abstract boolean setValue();
 }

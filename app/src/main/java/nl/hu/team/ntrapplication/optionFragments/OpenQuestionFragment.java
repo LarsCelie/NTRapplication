@@ -17,7 +17,7 @@ import nl.hu.team.ntrapplication.objects.Question;
 /**
  * Created by Lars on 4/2/2015.
  */
-public class OpenQuestionFragment extends Fragment implements AnswerOption {
+public class OpenQuestionFragment extends AnswerOption {
 
     private TextView name, description;
     private DatePicker datePicker;

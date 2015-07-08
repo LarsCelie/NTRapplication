@@ -19,7 +19,7 @@ import nl.hu.team.ntrapplication.objects.Question;
 /**
  * Created by jiry on 1-4-2015.
  */
-public class MulitipleChoiceFragment extends Fragment implements AnswerOption {
+public class MulitipleChoiceFragment extends AnswerOption {
     private TextView name, description;
     private RadioGroup radioGroup;
 

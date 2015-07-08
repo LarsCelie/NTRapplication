@@ -17,7 +17,7 @@ import nl.hu.team.ntrapplication.R;
 /**
  * Created by jiry on 5-4-2015.
  */
-public class RecordVideoFragment extends Fragment implements AnswerOption {
+public class RecordVideoFragment extends AnswerOption {
 
     static final int REQUEST_VIDEO_CAPTURE = 1;
     VideoView awesomeVideoView;

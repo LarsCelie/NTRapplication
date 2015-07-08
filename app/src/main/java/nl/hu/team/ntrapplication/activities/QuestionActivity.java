@@ -45,7 +45,7 @@ public class QuestionActivity extends Activity {
     private int sequence = 1;
     private int maxQuestions;
     private Fragment attachmentFragment;
-    private Fragment optionFragment;
+    private AnswerOption optionFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class QuestionActivity extends Activity {
 
         //Get survey object
         Bundle data = getIntent().getExtras();
-        survey = (Survey) data.getParcelable("selected_survey");
+        survey = data.getParcelable("selected_survey");
 
         //set initial attributes
         maxQuestions = survey.getQuestions().size();
@@ -167,9 +167,9 @@ public class QuestionActivity extends Activity {
             case "audio":
                 optionFragment = new RecordAudioFragment();
                 break;
-            case "infoscreen":
-                optionFragment = new InfoscreenFragment();
-                break;
+//            case "infoscreen":
+//                optionFragment = new InfoscreenFragment();
+//                break;
             case "accelerometer":
                 optionFragment = new AccelerometerFragment();
                 break;
@@ -290,7 +290,7 @@ public class QuestionActivity extends Activity {
     public boolean saveProgress() {
         try {
             String key = String.valueOf(getCurrentQuestion().getId());
-            String value = ((AnswerOption)optionFragment).getValue();
+            String value = optionFragment.getValue();
             result.put(key, value);
             return true;
         } catch (JSONException e){

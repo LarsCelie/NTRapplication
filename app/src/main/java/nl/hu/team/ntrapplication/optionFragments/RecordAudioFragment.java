@@ -19,7 +19,7 @@ import nl.hu.team.ntrapplication.R;
 /**
  * Created by jiry on 8-4-2015.
  */
-public class RecordAudioFragment extends Fragment implements AnswerOption{
+public class RecordAudioFragment extends AnswerOption{
 
     SeekBar seekBar;
     private Button start, play;
