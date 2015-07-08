@@ -53,7 +53,7 @@ public class QuestionActivity extends Activity {
     private int sequence = 1;
     private int maxQuestions;
     private Fragment attachmentFragment;
-    private Fragment optionFragment;
+    private AnswerOption optionFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,9 +175,9 @@ public class QuestionActivity extends Activity {
             case "audio":
                 optionFragment = new RecordAudioFragment();
                 break;
-            case "infoscreen":
-                optionFragment = new InfoscreenFragment();
-                break;
+//            case "infoscreen":
+//                optionFragment = new InfoscreenFragment();
+//                break;
             case "accelerometer":
                 optionFragment = new AccelerometerFragment();
                 break;
@@ -307,7 +307,7 @@ public class QuestionActivity extends Activity {
         try {
             String valueQuestion = String.valueOf(getCurrentQuestion().getId());
 
-            String valueAnswer = ((AnswerOption)optionFragment).getValue();
+            String valueAnswer = optionFragment.getValue();
             oneQuestion.put("question", valueQuestion);
             oneQuestion.put("answer", valueAnswer);
 
