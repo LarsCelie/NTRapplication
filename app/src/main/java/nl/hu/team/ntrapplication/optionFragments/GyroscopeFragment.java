@@ -1,6 +1,5 @@
 package nl.hu.team.ntrapplication.optionFragments;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;

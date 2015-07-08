@@ -8,6 +8,5 @@ import android.app.Fragment;
 public abstract class AnswerOption extends Fragment {
 
     public abstract String getValue();
-
     public abstract boolean setValue();
 }

@@ -22,7 +22,6 @@ public class AccelerometerFragment extends AnswerOption implements SensorEventLi
     private TextView textView;
     //private ArrayList<String> valueList = new ArrayList<String>();
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_accelerometer, container, false);

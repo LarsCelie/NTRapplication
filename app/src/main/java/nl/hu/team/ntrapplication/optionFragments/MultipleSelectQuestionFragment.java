@@ -1,6 +1,5 @@
 package nl.hu.team.ntrapplication.optionFragments;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;

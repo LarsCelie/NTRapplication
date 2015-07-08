@@ -1,6 +1,5 @@
 package nl.hu.team.ntrapplication.optionFragments;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
