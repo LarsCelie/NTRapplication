@@ -46,10 +46,23 @@ public class MultipleSelectQuestionFragment extends AnswerOption {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
-
+    private class ViewHolder {
+        TextView code;
+        CheckBox name;
+    }
     @Override
     public String getValue() {
-        return null;
+        String response = null;
+        ListView list = (ListView)getView().findViewById(R.id.multipleSelectOptions);
+        for(int i = 0; i < list.getCount(); i++) {
+            View v = list.getChildAt(i);
+            CheckBox checkBox = (CheckBox)v.findViewById(R.id.checkBox1);
+            if(checkBox.isChecked()) {
+                TextView textView = (TextView)v.findViewById(R.id.code);
+                response += textView.getText().toString()+":";
+            }
+        }
+        return response;
     }
 
     private class MyCustomAdapter extends ArrayAdapter<Option> {
@@ -60,10 +73,7 @@ public class MultipleSelectQuestionFragment extends AnswerOption {
             this.options.addAll(options);
         }
 
-        private class ViewHolder {
-            TextView code;
-            CheckBox name;
-        }
+
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
