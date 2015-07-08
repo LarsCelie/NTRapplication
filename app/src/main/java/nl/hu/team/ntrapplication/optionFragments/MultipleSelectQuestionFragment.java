@@ -52,14 +52,13 @@ public class MultipleSelectQuestionFragment extends AnswerOption {
     }
     @Override
     public String getValue() {
-        String response = null;
+        String response = "";
         ListView list = (ListView)getView().findViewById(R.id.multipleSelectOptions);
         for(int i = 0; i < list.getCount(); i++) {
             View v = list.getChildAt(i);
             CheckBox checkBox = (CheckBox)v.findViewById(R.id.checkBox1);
             if(checkBox.isChecked()) {
-                TextView textView = (TextView)v.findViewById(R.id.code);
-                response += textView.getText().toString()+":";
+                response += checkBox.getTag()+":";
             }
         }
         return response;
