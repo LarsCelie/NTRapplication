@@ -59,10 +59,10 @@ public class MultipleSelectQuestionFragment extends AnswerOption {
             CheckBox checkBox = (CheckBox)v.findViewById(R.id.checkBox1);
             if(checkBox.isChecked()) {
                 Option option = (Option)checkBox.getTag();
-                response += option.getCONTENT()+":";
+                response += option.getCONTENT()+",";
             }
         }
-        return response;
+        return response.substring(0, response.length()-1);
     }
 
     private class MyCustomAdapter extends ArrayAdapter<Option> {
