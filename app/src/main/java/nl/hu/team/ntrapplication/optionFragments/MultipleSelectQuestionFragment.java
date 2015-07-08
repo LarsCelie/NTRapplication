@@ -58,7 +58,7 @@ public class MultipleSelectQuestionFragment extends AnswerOption {
             View v = list.getChildAt(i);
             CheckBox checkBox = (CheckBox)v.findViewById(R.id.checkBox1);
             if(checkBox.isChecked()) {
-                response += checkBox.getTag()+":";
+                response += checkBox.getTag().toString()+":";
             }
         }
         return response;
