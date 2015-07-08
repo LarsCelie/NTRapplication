@@ -23,6 +23,7 @@ public class DateQuestionFragment extends AnswerOption{
         View root = inflater.inflate(R.layout.fragment_date_question, container, false);
         name = (TextView) root.findViewById(R.id.dateQuestionName);
         description = (TextView) root.findViewById(R.id.dateQuestionDescription);
+        datePicker = (DatePicker) root.findViewById((R.id.dateQuestionPicker));
         Bundle bundle = this.getArguments();
         Question question = bundle.getParcelable("question");
 //        name.setText(question.getName());
@@ -36,7 +37,7 @@ public class DateQuestionFragment extends AnswerOption{
 
     @Override
     public String getValue() {
-        return null;
+        return datePicker.getYear()+":"+datePicker.getMonth()+":"+datePicker.getDayOfMonth();
     }
 
     @Override

@@ -37,7 +37,7 @@ public class TimeQuestionFragment extends AnswerOption{
 
     @Override
     public String getValue() {
-        return null;
+        return timePicker.getCurrentHour()+":"+timePicker.getCurrentMinute();
     }
 
     @Override
