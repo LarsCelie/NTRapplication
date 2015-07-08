@@ -303,22 +303,26 @@ public class QuestionActivity extends Activity {
     }
 
     public boolean saveProgress() {
-        //TODO replace question when going back to previus question
         JSONObject oneQuestion = new JSONObject();
         try {
             String valueQuestion = String.valueOf(getCurrentQuestion().getId());
             String valueAnswer = optionFragment.getValue();
             boolean exists = false;
+
             for(int i = 0; i < result.length();i++){
                 if(valueQuestion.equals(result.getJSONObject(i).get("question"))) {
                     exists = true;
+                    oneQuestion = result.getJSONObject(i);
                 }
             }
-            if(exists) System.out.println("shit");
-            oneQuestion.put("question", valueQuestion);
-            oneQuestion.put("answer", valueAnswer);
+            if(exists) {
+                oneQuestion.put("answer",valueAnswer);
+            } else {
+                oneQuestion.put("question", valueQuestion);
+                oneQuestion.put("answer", valueAnswer);
 
-            result.put(oneQuestion);
+                result.put(oneQuestion);
+            }
             System.out.println(result);
 
             return true;
