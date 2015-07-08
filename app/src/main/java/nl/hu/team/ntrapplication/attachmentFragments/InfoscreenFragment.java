@@ -9,11 +9,12 @@ import android.widget.TextView;
 
 import nl.hu.team.ntrapplication.R;
 import nl.hu.team.ntrapplication.objects.Question;
+import nl.hu.team.ntrapplication.optionFragments.AnswerOption;
 
 /**
  * Created by Milamber on 1-4-2015.
  */
-public class InfoscreenFragment extends Fragment{
+public class InfoscreenFragment extends AnswerOption{
 
     private TextView name, desription;
 
@@ -33,4 +34,13 @@ public class InfoscreenFragment extends Fragment{
         super.onActivityCreated(savedInstanceState);
     }
 
+    @Override
+    public String getValue() {
+        return null;
+    }
+
+    @Override
+    public boolean setValue() {
+        return false;
+    }
 }

@@ -175,9 +175,9 @@ public class QuestionActivity extends Activity {
             case "audio":
                 optionFragment = new RecordAudioFragment();
                 break;
-//            case "infoscreen":
-//                optionFragment = new InfoscreenFragment();
-//                break;
+            case "infoscreen":
+                optionFragment = new InfoscreenFragment();
+                break;
             case "accelerometer":
                 optionFragment = new AccelerometerFragment();
                 break;
